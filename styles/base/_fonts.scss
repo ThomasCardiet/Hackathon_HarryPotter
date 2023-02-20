@@ -1,4 +1,33 @@
 @font-face {
-  font-family: 'Harry Potter';
-  src: url("/font/harry.ttf");
+  font-family: "Chaparral Pro";
+  src: url('fonts/Chaparral-Pro-Bold.ttf') format('ttf'),
+}
+
+
+@font-face {
+  font-family: "ProzaLibre-Bold";
+  src: url('fonts/ProzaLibre-Bold.ttf') format('ttf'),
+}
+
+
+@font-face {
+  font-family: "ProzaLibre-ExtraBold";
+  src: url('fonts/ProzaLibre-ExtraBold.ttf') format('ttf'),
+}
+
+@font-face {
+  font-family: "ProzaLibre-Medium";
+  src: url('fonts/ProzaLibre-Medium.ttf') format('ttf'),
+}
+
+
+@font-face {
+  font-family: "ProzaLibre-Regular";
+  src: url('fonts/ProzaLibre-Regular.ttf') format('ttf'),
+}
+
+
+@font-face {
+  font-family: "ProzaLibre-SemiBold";
+  src: url('fonts/ProzaLibre-SemiBold.ttf') format('ttf'),
 }
