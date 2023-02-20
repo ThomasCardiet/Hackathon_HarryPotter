@@ -1,12 +1,17 @@
 import Head from 'next/head'
 import { DraggableIngredient } from '../components/DraggableIngredient'
 import { getIngredients } from '@/entities/Ingredient'
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 
-export default function Home() {
+const Test = () => {
   const dropBlockRef = useRef(null)
   const ingredients = getIngredients();
+  const [dropBox, setDropBox] = useState(null)
+
+  useEffect(() => {
+    setDropBox(dropBlockRef.current)
+  }, [])
   return (
     <>
       <Head>
@@ -16,7 +21,15 @@ export default function Home() {
       </Head>
       
       <main>
+        <div className="drop-block" ref={dropBlockRef} />
+        <div className="ingredients-block">
+          <h2>Ingrédients :</h2>
+          {ingredients.map((ingredient, index) => (<DraggableIngredient dropBox={dropBox} ingredient={ingredient} key={index} />
+          ))}
+        </div>
       </main>
     </>
   )
 }
+
+export default Test;

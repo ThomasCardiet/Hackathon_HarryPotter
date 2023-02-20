@@ -110,6 +110,56 @@
   font-family: "Harry Potter", sans-serif;
 }
 
+.ingredients-block {
+  position: absolute;
+  background-color: rgba(165, 165, 165, 0.4);
+  padding: 10px 20px;
+}
+
+.drop-block {
+  --size: 200px;
+  position: fixed;
+  top: calc(50% - var(--size) / 2);
+  left: calc(50% - var(--size) / 2);
+  width: var(--size);
+  height: var(--size);
+  background-color: red;
+}
+
+.draggable-ingredient {
+  --icon-size: 20px;
+  --green: rgba(63, 169, 63, 1);
+  --red: rgb(232, 54, 54);
+  background-color: white;
+  position: relative;
+  cursor: pointer;
+  padding: 10px;
+  border: 1px solid rgb(127, 127, 127);
+}
+.draggable-ingredient.not-droppable {
+  background-color: var(--red);
+  color: white;
+}
+.draggable-ingredient .draggable-ingredient__icon {
+  position: absolute;
+  height: var(--icon-size);
+  width: var(--icon-size);
+  right: calc(-1 * var(--icon-size) / 2);
+  bottom: calc(-1 * var(--icon-size) / 2);
+  transition: all 0.1s ease-in-out;
+  opacity: 0;
+}
+.draggable-ingredient .draggable-ingredient__icon svg * {
+  fill: var(--green);
+}
+.draggable-ingredient.droppable {
+  background-color: var(--green);
+  color: white;
+}
+.draggable-ingredient.droppable .draggable-ingredient__icon {
+  opacity: 1;
+}
+
 body {
   padding: 0;
   margin: 0;
