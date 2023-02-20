@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "Harry Potter";
+  src: url("/font/harry.ttf");
+}
+.button__primary {
+  all: unset;
+  background-color: yellow;
+  color: black;
+  border-radius: 5px;
+  padding: 0.5rem;
+  font-family: "Harry Potter", sans-serif;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+/*# sourceMappingURL=global.css.map */
