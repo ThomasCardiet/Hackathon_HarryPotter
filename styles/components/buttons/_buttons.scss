@@ -6,6 +6,7 @@ $colors: ("yellow":$yellow, "green" : $green, "white" : $white , "black" : $blac
   background-color: transparent;
   border: none;
   padding: 7px 16px;
+  cursor: pointer;
 }
 
 @each $colorName, $color in $colors {
@@ -14,9 +15,11 @@ $colors: ("yellow":$yellow, "green" : $green, "white" : $white , "black" : $blac
     background-color: transparent;
     border: 2px solid $color;
     @extend .text-Harry;
-    border-radius: 5px;
-    font-size: 15px;
+    border-radius:2px;
+    font-size: 20px;
     transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    position: relative;
+
     &:hover{
       background-color: $color;
       color: $white;
