@@ -12,6 +12,19 @@ let socket
 export default function Home() {
   const dropBlockRef = useRef(null)
   const ingredients = getIngredients();
+  const socketInitializer = async () => {
+    await fetch('/api/socket')
+    socket = io()
+
+    socket.on('connect', () => {
+      console.log('connected')
+    })
+  }
+
+  useEffect(() => {
+    socketInitializer()
+  }, [])
+
 
 
     const soundUrl = 'test.mp3';
