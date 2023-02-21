@@ -1,9 +1,10 @@
 import Head from 'next/head'
 import { getIngredients } from '@/entities/Ingredient'
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import useSound from "use-sound";
 import Sparkles from "@/components/sparkles/sparkles";
-import {SplitChars, Tween} from "react-gsap";
+import {SplitChars, Tween, Controls, PlayState,} from "react-gsap";
+import Link from "next/link";
 
 
 export default function Home() {
@@ -42,7 +43,7 @@ export default function Home() {
                               <SplitChars
                                   wrapper={<span style={{ display: 'inline-block'}} />}
                               >
-                                  Harry Potion
+                                Harry potion
                               </SplitChars>
                           </Tween>
                       </h1>
@@ -52,7 +53,7 @@ export default function Home() {
                       <p className={"text-15 text-white text-ProzaLibre-Regular"}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae consectetur deleniti ea enim, eos in inventore molestiae nihil officia perferendis.</p>
                   </div>
                   <div className={"home-container-button"}>
-                      <button className={"btn-reset btn-yellow"}>Commencer</button>
+                      <Link href={"/login"} className={"btn-reset btn-yellow"}>Commencer</Link>
                   </div>
               </aside>
           </section>
