@@ -14,8 +14,9 @@ export default function Home() {
         <meta name="description" content="Harry Potter potion maker game" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      
+
       <main>
+          <Home/>
       </main>
     </>
   )

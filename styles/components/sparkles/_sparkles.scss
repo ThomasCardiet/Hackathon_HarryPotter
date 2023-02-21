@@ -19,7 +19,7 @@ body {
 }
 .ag-fireflies_item {
   position: absolute;
-
+  z-index: 0;
   -webkit-transform: translateY(-10vh);
   transform: translateY(-10vh);
   -webkit-animation-iteration-count: infinite;

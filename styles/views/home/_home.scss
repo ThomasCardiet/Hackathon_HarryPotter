@@ -15,6 +15,7 @@
       display: inline-flex;
       justify-content: center;
       position: relative;
+      z-index: 20;
       &::after{
         position: absolute;
         content: "";
@@ -29,8 +30,8 @@
         left: 50%;
         top: 0;
         transform: translate(-50%,-0%);
-        filter: blur(30px);
-        opacity: 80%;
+        filter: blur(10px);
+        animation: ligth 2s infinite;
       }
     }
     &-description{
@@ -38,10 +39,12 @@
       justify-content: center;
       max-width: 50%;
       margin: 0 auto;
+      z-index: 20;
     }
     &-button{
       display: flex;
       justify-content: center;
+      z-index: 20;
     }
   }
 }
@@ -64,5 +67,26 @@
   }
   100% {
     opacity: 100%;
+  }
+}
+
+
+
+@keyframes ligth {
+
+  0% {
+    opacity: 75%;
+  }
+  25% {
+    opacity: 90%;
+  }
+  50% {
+    opacity: 120%;
+  }
+  75% {
+    opacity: 90%;
+  }
+  100% {
+    opacity: 75%;
   }
 }
