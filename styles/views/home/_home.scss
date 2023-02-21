@@ -32,6 +32,8 @@
         transform: translate(-50%,-0%);
         filter: blur(10px);
         animation: ligth 2s infinite;
+        display: flex;
+        justify-content: center;
       }
     }
     &-description{
