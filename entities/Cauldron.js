@@ -1,17 +1,23 @@
+import React from 'react';
 import { CauldronType, CAULDRON_TYPES } from './CauldronType';
 
 export class Cauldron {
   type;
   name;
+  img = {
+    basePath: 'images/cauldrons',
+    name: null,
+  };
 
   /**
    * @param {CauldronType} type
    */
-  constructor(type) {
+  constructor(type, imgName = CAULDRON_IMAGES.DEFAULT) {
     this.type = type;
     this.name = `Chaudron ${
       type.getIsMaterial() ? 'en ' : ''
     }${type.getName()}`;
+    this.img.name = imgName;
   }
 
   getName() {
@@ -20,6 +26,20 @@ export class Cauldron {
 
   getType() {
     return this.type;
+  }
+
+  getImgPath() {
+    return `${this.img.basePath}/${this.img.name}`;
+  }
+
+  getImgComponent(map = null) {
+    return (
+      <img
+        src={this.getImgPath()}
+        alt="Picture of Cauldron"
+        useMap={`#${map}`}
+      />
+    );
   }
 
   /**
@@ -36,6 +56,11 @@ export class Cauldron {
     this.type = type;
   }
 }
+
+// CAULDRON IMAGE LIST
+export const CAULDRON_IMAGES = {
+  DEFAULT: 'cauldron_default.png',
+};
 
 // CAULDRONS LIST
 export const CAULDRONS = {

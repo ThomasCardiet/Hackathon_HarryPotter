@@ -1,6 +1,5 @@
 .ingredients-block {
   position: absolute;
-  background-color: rgba(165, 165, 165, 0.4);
   padding: 10px 20px;
 }
 
@@ -13,19 +12,52 @@
 
   width: var(--size);
   height: var(--size);
-  background-color: red;
+  user-select: none;
+
+  img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    object-fit: cover;
+    max-width: 100%;
+  }
 }
 
 .draggable-ingredient {
   --icon-size: 20px;
+  --img-size: 60px;
   --green: rgba(63, 169, 63, 1);
   --red: rgb(232, 54, 54);
 
-  background-color: white;
   position: relative;
   cursor: pointer;
+  width: var(--img-size);
+  height: var(--img-size);
   padding: 10px;
-  border: 1px solid rgb(127, 127, 127);
+  border-radius: 50px;
+  margin: 10px auto;
+  background-color: rgba(165, 165, 165, 0.4);
+  user-select: none;
+
+  img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+
+    width: var(--img-size);
+    display: block;
+    margin: 0 auto;
+  }
 
   &.not-droppable {
     background-color: var(--red);
@@ -36,8 +68,8 @@
     position: absolute;
     height: var(--icon-size);
     width: var(--icon-size);
-    right: calc(-1 * (var(--icon-size) / 2));
-    bottom: calc(-1 * (var(--icon-size) / 2));
+    right: calc(-1 * (var(--icon-size) / 10));
+    bottom: calc(-1 * (var(--icon-size) / 10));
     transition: all 0.1s ease-in-out;
     opacity: 0;
 
