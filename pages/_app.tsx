@@ -7,8 +7,14 @@ import React from "react";
 import 'react-toastify/dist/ReactToastify.css';
 import Sparkles from "@/components/sparkles/sparkles";
 
+
+
+
 export default function App({ Component, pageProps }: AppProps) {
     const router = useRouter();
+
+
+
 
     return (
       <AnimatePresence exitBeforeEnter>
