@@ -163,6 +163,9 @@ table {
   min-height: 100vh;
   background: black;
 }
+#__next main section * {
+  z-index: 20;
+}
 
 .btn-reset {
   background-color: transparent;
@@ -270,7 +273,6 @@ body {
   animation-iteration-count: infinite;
   -webkit-animation-timing-function: linear;
   animation-timing-function: linear;
-  z-index: -1;
 }
 
 .ag-fireflies_item:nth-child(1) {

@@ -3,6 +3,33 @@ import {SplitChars, Tween} from "react-gsap";
 import React from "react";
 
 export default function Login () {
+
+    const fakeData =  [{
+        name : "Axel",
+        score : 12
+    },{
+        name : "Axel",
+        score : 12
+    },{
+        name : "Axel",
+        score : 12
+    },{
+        name : "Axel",
+        score : 12
+    },{
+        name : "Axel",
+        score : 12
+    },{
+        name : "Axel",
+        score : 12
+    },{
+        name : "Axel",
+        score : 12
+    },{
+        name : "Axel",
+        score : 12
+    },]
+
     return (
         <section className={"login"}>
             <aside className={"login-container"}>
