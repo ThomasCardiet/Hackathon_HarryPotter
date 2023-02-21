@@ -8,6 +8,7 @@ $colors: ("yellow":$yellow, "green" : $green, "white" : $white , "black" : $blac
   padding: 7px 16px;
   cursor: pointer;
   text-decoration: none;
+  width: fit-content;
 }
 
 @each $colorName, $color in $colors {

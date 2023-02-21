@@ -31,15 +31,15 @@ export default function LoginForm(){
     return (<>
         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={SchemaLogin}>
             <Form>
-                <div className={"form-row-label-input"}>
-                    <label className={""}>Nom d'utilisateur</label>
+                <div className={"form-row"}>
+                    <label className={"text-15 text-white text-ProzaLibre-Regular"}>Nom d'utilisateur</label>
                     <Field type={"text"} name={"username"} placeholder={"Axel"}/>
-                    <ErrorMessage name={"username"} component={"p"} className={"color-error text-primary"}/>
+                    <ErrorMessage name={"username"} component={"p"} className={"text-error text-ProzaLibre-Regular"}/>
                 </div>
                 <div className={"form-row"}>
                     <label className={""}>Mot de passe</label>
                     <Field type={"password"} name={"password"} placeholder={"Mot de passe"} />
-                    <ErrorMessage name={"password"} component={"p"} className={"color-error text-primary"}/>
+                    <ErrorMessage name={"password"} component={"p"} className={"text-error text-ProzaLibre-Regular"}/>
                 </div>
                 <button type={"submit"} className={"btn-reset btn-yellow"}>Connexion</button>
             </Form>

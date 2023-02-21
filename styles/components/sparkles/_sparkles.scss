@@ -16,16 +16,17 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
+  z-index:0;
 }
 .ag-fireflies_item {
   position: absolute;
-  z-index: 0;
   -webkit-transform: translateY(-10vh);
   transform: translateY(-10vh);
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
   -webkit-animation-timing-function: linear;
   animation-timing-function: linear;
+  z-index: -1;
 }
 .ag-fireflies_item:nth-child(1) {
   width: 6px;

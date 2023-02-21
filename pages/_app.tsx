@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import {ToastContainer} from "react-toastify";
 import React from "react";
 import 'react-toastify/dist/ReactToastify.css';
+import Sparkles from "@/components/sparkles/sparkles";
 
 export default function App({ Component, pageProps }: AppProps) {
     const router = useRouter();
@@ -31,8 +32,9 @@ export default function App({ Component, pageProps }: AppProps) {
                   },
               }}>
 
-      <main>
-        <Component {...pageProps} />
+      <main style={{zIndex:99}}>
+          <Sparkles/>
+          <Component {...pageProps} />
       </main>
           </motion.div>
           <ToastContainer
