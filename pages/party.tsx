@@ -32,7 +32,6 @@ const Party = () => {
       <main>
         <DropBlock cauldron={cauldrons[0]} setDropBoxOffsets={setDropBoxOffsets} />
         <div className="ingredients-block">
-          <h2>Ingrédients :</h2>
           {ingredients.map((ingredient, index) => (<DraggableIngredient dropBoxOffsets={dropBoxOffsets} ingredient={ingredient} dropIngredient={dropIngredient} key={index} />
           ))}
         </div>
