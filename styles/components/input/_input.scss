@@ -1,0 +1,15 @@
+input[type='text'] , input[type='password']{
+  border: none;
+  border-bottom: 1px solid $yellow;
+  background: transparent;
+  padding-block: 10px;
+  color: $yellow;
+  font-size: 15px;
+  @extend .text-ProzaLibre-Regular;
+  &::placeholder{
+    color: #F5F5F5;
+  }
+  &:focus{
+    outline: none;
+  }
+}

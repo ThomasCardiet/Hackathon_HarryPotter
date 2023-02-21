@@ -85,7 +85,7 @@
   font-family: "ProzaLibre-SemiBold";
 }
 
-.text-ProzaLibre-Regular {
+.text-ProzaLibre-Regular, input[type=text], input[type=password] {
   font-family: "ProzaLibre-Regular";
 }
 
@@ -7533,6 +7533,36 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+.form-row-button {
+  display: flex;
+  justify-content: center;
+}
+
+input[type=text], input[type=password] {
+  border: none;
+  border-bottom: 1px solid #F9C749;
+  background: transparent;
+  padding-block: 10px;
+  color: #F9C749;
+  font-size: 15px;
+}
+input[type=text]::placeholder, input[type=password]::placeholder {
+  color: #F5F5F5;
+}
+input[type=text]:focus, input[type=password]:focus {
+  outline: none;
+}
+
+.Toastify__toast-theme--light {
+  box-shadow: 0px 4px 20px 5px rgba(249, 199, 73, 0.51) !important;
+  background: #393737 !important;
+  color: #EFEFEF !important;
+}
+
+.Toastify__progress-bar--error {
+  background: #F9C749 !important;
 }
 
 .home {
