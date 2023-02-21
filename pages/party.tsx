@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { DraggableIngredient } from '@/components/DraggableIngredient'
 import { DropBlock } from '@/components/DropBlock'
-import { getIngredients, getShuffledIngredients, Ingredient } from '@/entities/Ingredient'
+import { getShuffledIngredients, Ingredient } from '@/entities/Ingredient'
 import { getCauldrons } from '@/entities/Cauldron'
 import { useEffect, useState } from 'react';
 

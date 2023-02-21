@@ -1,0 +1,85 @@
+.home{
+  height: 100vh;
+  background-image: url("../public/images/wallpaper-home.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  animation: apear 2s;
+  &-container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 50px;
+    &-title{
+      display: inline-flex;
+      justify-content: center;
+      position: relative;
+      z-index: 20;
+      .text-blur{
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translate(-50%,-0%);
+        filter: blur(10px);
+        animation: ligth 2s infinite;
+        display: flex;
+        justify-content: center;
+      }
+    }
+    &-description{
+      display: flex;
+      justify-content: center;
+      max-width: 50%;
+      margin: 0 auto;
+      z-index: 20;
+    }
+    &-button{
+      display: flex;
+      justify-content: center;
+      z-index: 20;
+    }
+  }
+}
+
+
+
+@keyframes apear {
+
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 25%;
+  }
+  50% {
+    opacity: 50%;
+  }
+  75% {
+    opacity: 75%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+
+
+@keyframes ligth {
+
+  0% {
+    opacity: 75%;
+  }
+  25% {
+    opacity: 90%;
+  }
+  50% {
+    opacity: 120%;
+  }
+  75% {
+    opacity: 90%;
+  }
+  100% {
+    opacity: 75%;
+  }
+}
