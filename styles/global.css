@@ -24,18 +24,39 @@
   left: calc(50% - var(--size) / 2);
   width: var(--size);
   height: var(--size);
-  background-color: red;
+}
+.drop-block img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  object-fit: cover;
+  max-width: 100%;
 }
 
 .draggable-ingredient {
   --icon-size: 20px;
+  --img-size: 60px;
   --green: rgba(63, 169, 63, 1);
   --red: rgb(232, 54, 54);
-  background-color: white;
   position: relative;
   cursor: pointer;
+  width: var(--img-size);
+  height: var(--img-size);
   padding: 10px;
-  border: 1px solid rgb(127, 127, 127);
+  border-radius: 50px;
+  margin: 10px auto;
+}
+.draggable-ingredient img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+  width: var(--img-size);
+  display: block;
+  margin: 0 auto;
 }
 .draggable-ingredient.not-droppable {
   background-color: var(--red);
