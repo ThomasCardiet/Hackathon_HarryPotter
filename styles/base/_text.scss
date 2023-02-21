@@ -10,7 +10,7 @@ $sizes: ("100":100, "50" : 50, "40" : 40, "30" : 30, "20" : 20, "17" : 17 ,  "15
 }
 
 
-$colors: ("yellow":$yellow, "green" : $green, "white" : $white , "black" : $black, "red" : $red);
+$colors: ("yellow":$yellow, "green" : $green, "white" : $white , "black" : $black, "red" : $red, "error": red);
 
 
 @each $colorName, $color in $colors {
