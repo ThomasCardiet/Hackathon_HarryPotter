@@ -1,10 +1,12 @@
 import Head from 'next/head'
 import { getIngredients } from '@/entities/Ingredient'
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import useSound from "use-sound";
 import Sparkles from "@/components/sparkles/sparkles";
 import {SplitChars, Tween, Controls, PlayState,} from "react-gsap";
 import Link from "next/link";
+import io from 'Socket.IO-client'
+let socket
 
 
 export default function Home() {
