@@ -2,9 +2,9 @@ import Head from 'next/head'
 import { getIngredients } from '@/entities/Ingredient'
 import React, { useRef } from 'react';
 import useSound from "use-sound";
-import Sparkles from "@/components/sparkles/sparkles";
 import {SplitChars, Tween, Controls, PlayState,} from "react-gsap";
 import Link from "next/link";
+import Sparkles from "@/components/sparkles/sparkles";
 
 
 export default function Home() {
@@ -30,11 +30,9 @@ export default function Home() {
         <meta name="description" content="Harry Potter potion maker game" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-
-      <main>
+        <main>
           <section className={"home"}>
               <aside className={"home-container"}>
-                  <Sparkles/>
                   <div className={"home-container-title"}>
                       <h1 className={"text-100 text-Harry text-yellow"}>
                           <Tween from={{opacity: "0", scale : "0.4"}} to={{opacity: "100%",  scale :"1"}}
