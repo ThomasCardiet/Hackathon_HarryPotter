@@ -1,0 +1,26 @@
+.home{
+  height: 100vh;
+  background-color: black;
+  &-container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 50px;
+    &-title{
+      display: inline-flex;
+      justify-content: center;
+    }
+    &-description{
+      display: flex;
+      justify-content: center;
+      max-width: 70%;
+      margin: 0 auto;
+    }
+    &-button{
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

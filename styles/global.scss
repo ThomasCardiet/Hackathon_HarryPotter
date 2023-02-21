@@ -1,8 +1,7 @@
-@import './base/_base.scss';
-@import './components/buttons/_primaryButton.scss';
-@import './home/index.scss';
-@import './test/index.scss';
-
+@import "base/base";
+@import  "test/index";
+@import  "components/components";
+@import "views/views";
 body {
   padding: 0;
   margin: 0;

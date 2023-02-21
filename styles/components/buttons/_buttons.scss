@@ -1,0 +1,25 @@
+
+$colors: ("yellow":$yellow, "green" : $green, "white" : $white , "black" : $black, "red" : $red);
+
+
+.btn-reset{
+  background-color: transparent;
+  border: none;
+  padding: 7px 16px;
+}
+
+@each $colorName, $color in $colors {
+  .btn-#{$colorName} {
+    color: $color;
+    background-color: transparent;
+    border: 2px solid $color;
+    @extend .text-Harry;
+    border-radius: 5px;
+    font-size: 15px;
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    &:hover{
+      background-color: $color;
+      color: $white;
+    }
+  }
+}

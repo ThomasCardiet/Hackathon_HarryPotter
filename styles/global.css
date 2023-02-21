@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "Chaparral Pro";
-  src: url("fonts/Chaparral-Pro-Bold.ttf") format("ttf");
+  font-family: "Crimes of Grindelwald";
+  src: url("fonts/Crimes of Grindelwald.otf") format("otf");
 }
 @font-face {
   font-family: "ProzaLibre-Bold";
@@ -77,10 +77,6 @@
   color: #740001;
 }
 
-.text-ChaparralPro {
-  font-family: "Chaparral-Pro";
-}
-
 .text-ProzaLibre-SemiBold {
   font-family: "ProzaLibre-SemiBold";
 }
@@ -101,13 +97,66 @@
   font-family: "ProzaLibre-Bold";
 }
 
-.button__primary {
-  all: unset;
-  background-color: yellow;
-  color: black;
-  border-radius: 5px;
-  padding: 0.5rem;
-  font-family: "Harry Potter", sans-serif;
+.text-Harry, .btn-red, .btn-black, .btn-white, .btn-green, .btn-yellow {
+  font-family: "Crimes of Grindelwald";
+}
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+#__next main {
+  min-height: 100vh;
 }
 
 .ingredients-block {
@@ -158,6 +207,104 @@
 }
 .draggable-ingredient.droppable .draggable-ingredient__icon {
   opacity: 1;
+}
+
+.btn-reset {
+  background-color: transparent;
+  border: none;
+  padding: 7px 16px;
+}
+
+.btn-yellow {
+  color: #F9C749;
+  background-color: transparent;
+  border: 2px solid #F9C749;
+  border-radius: 5px;
+  font-size: 15px;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+.btn-yellow:hover {
+  background-color: #F9C749;
+  color: #EFEFEF;
+}
+
+.btn-green {
+  color: #2E8B57;
+  background-color: transparent;
+  border: 2px solid #2E8B57;
+  border-radius: 5px;
+  font-size: 15px;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+.btn-green:hover {
+  background-color: #2E8B57;
+  color: #EFEFEF;
+}
+
+.btn-white {
+  color: #EFEFEF;
+  background-color: transparent;
+  border: 2px solid #EFEFEF;
+  border-radius: 5px;
+  font-size: 15px;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+.btn-white:hover {
+  background-color: #EFEFEF;
+  color: #EFEFEF;
+}
+
+.btn-black {
+  color: #393737;
+  background-color: transparent;
+  border: 2px solid #393737;
+  border-radius: 5px;
+  font-size: 15px;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+.btn-black:hover {
+  background-color: #393737;
+  color: #EFEFEF;
+}
+
+.btn-red {
+  color: #740001;
+  background-color: transparent;
+  border: 2px solid #740001;
+  border-radius: 5px;
+  font-size: 15px;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+.btn-red:hover {
+  background-color: #740001;
+  color: #EFEFEF;
+}
+
+.home {
+  height: 100vh;
+  background-color: black;
+}
+.home-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 50px;
+}
+.home-container-title {
+  display: inline-flex;
+  justify-content: center;
+}
+.home-container-description {
+  display: flex;
+  justify-content: center;
+  max-width: 70%;
+  margin: 0 auto;
+}
+.home-container-button {
+  display: flex;
+  justify-content: center;
 }
 
 body {

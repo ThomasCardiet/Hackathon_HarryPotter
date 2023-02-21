@@ -4,6 +4,7 @@ $sizes: ("100":100, "50" : 50, "40" : 40, "30" : 30, "20" : 20, "17" : 17 ,  "15
   .text-#{$name} {
     font-size: #{$size}px;
     line-height: #{$size +5}px;
+
   }
 
 }
@@ -16,18 +17,16 @@ $colors: ("yellow":$yellow, "green" : $green, "white" : $white , "black" : $blac
   .text-#{$colorName} {
     color: $color;
   }
-
 }
 
 
 
-$fonts: ("ChaparralPro":"Chaparral-Pro", "ProzaLibre-SemiBold": "ProzaLibre-SemiBold", "ProzaLibre-Regular" : "ProzaLibre-Regular", "ProzaLibre-Medium" : "ProzaLibre-Medium" , "ProzaLibre-ExtraBold" :"ProzaLibre-ExtraBold" , "ProzaLibre-Bold": "ProzaLibre-Bold");
+$fonts: ("ProzaLibre-SemiBold": "ProzaLibre-SemiBold", "ProzaLibre-Regular" : "ProzaLibre-Regular", "ProzaLibre-Medium" : "ProzaLibre-Medium" , "ProzaLibre-ExtraBold" :"ProzaLibre-ExtraBold" , "ProzaLibre-Bold": "ProzaLibre-Bold", "Harry" :"Crimes of Grindelwald");
 
 
 @each $fontName, $font in $fonts {
   .text-#{$fontName} {
     font-family: $font;
   }
-
 }
 
