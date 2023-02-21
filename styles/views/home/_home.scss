@@ -1,6 +1,9 @@
 .home{
   height: 100vh;
-  background-color: black;
+  background-image: url("../public/images/wallpaper-home.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  animation: apear 2s;
   &-container{
     height: 100%;
     width: 100%;
@@ -11,16 +14,55 @@
     &-title{
       display: inline-flex;
       justify-content: center;
+      position: relative;
+      &::after{
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 120%;
+      }
+      span{
+        transform: scale(0.5);
+      }
+      .text-blur{
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translate(-50%,-0%);
+        filter: blur(30px);
+        opacity: 80%;
+      }
     }
     &-description{
       display: flex;
       justify-content: center;
-      max-width: 70%;
+      max-width: 50%;
       margin: 0 auto;
     }
     &-button{
       display: flex;
       justify-content: center;
     }
+  }
+}
+
+
+
+@keyframes apear {
+
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 25%;
+  }
+  50% {
+    opacity: 50%;
+  }
+  75% {
+    opacity: 75%;
+  }
+  100% {
+    opacity: 100%;
   }
 }
