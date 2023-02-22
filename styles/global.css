@@ -7803,9 +7803,6 @@ input[type=text]:focus, input[type=password]:focus {
   background-image: url("../public/images/wallpaper-choice.png");
   background-size: cover;
   background-repeat: no-repeat;
-  animation: apear 2s;
-  background-position: center center;
-  align-items: center;
 }
 .choice-container {
   position: absolute;
@@ -8031,7 +8028,6 @@ input[type=text]:focus, input[type=password]:focus {
   background-image: url("../public/images/wallpaper-choice.png");
   background-size: cover;
   background-repeat: no-repeat;
-  animation: apear 2s;
 }
 .join-container {
   --padding-top: 90px;
