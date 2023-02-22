@@ -95,6 +95,28 @@ export class Api {
     );
   }
 
+  /**
+   * LOGOUT USER
+   *
+   * @param {Object} credentials
+   */
+  static LogoutUser(setState = null) {
+    if (!this.isLoggedUser()) {
+      return {
+        statusCode: 400,
+        message: "Vous n'êtes pas connecté",
+      };
+    }
+
+    this.unStoreUser();
+    if (setState) setState(null);
+
+    return {
+      statusCode: 200,
+      message: 'Vous avez été déconnecté',
+    };
+  }
+
   // AUTH
 
   /**
@@ -103,6 +125,14 @@ export class Api {
    */
   static storeUser(credentials) {
     localStorage.setItem(LOCAL_STORAGE_AUTH, JSON.stringify(credentials));
+  }
+
+  /**
+   * UNSTORE USER
+   *
+   */
+  static unStoreUser() {
+    localStorage.removeItem(LOCAL_STORAGE_AUTH);
   }
 
   /**
