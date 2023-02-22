@@ -6,8 +6,10 @@ import { Api } from '@/api';
 import { Router } from '@/router';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
+import {SplitChars, Tween} from "react-gsap";
+import UserBadge from "../UserBadge/UserBadge";
 
-const Choice = ({ setUser }) => {
+const Choice = ({ setUser, user }) => {
   const router = useRouter();
   const soundUrl = '/sounds/button1.wav';
 
@@ -21,58 +23,60 @@ const Choice = ({ setUser }) => {
     if (!Api.isLoggedUser()) router.push(Router.getRoutes().LOGIN.slug);
   }, []);
 
-  const logout = () => {
-    const result = Api.LogoutUser(setUser);
-    if (result.statusCode !== 200) {
-      return toast.error(result.message, {
-        icon: '🧙',
-        theme: 'light',
-      });
-    }
-
-    toast.success(result.message, {
-      icon: '🧙',
-      theme: 'light',
-    });
-
-    router.push(Router.getRoutes().HOME);
-  };
 
   return (
     <>
       <main>
         <section className={'choice'}>
           <aside className={'choice-container'}>
-            <div className={'choice-container-user'}>
-              <div className={'choice-container-user-image'}>
-                <img src={'images/houses/serpentard.png'} alt={'house'} />
-              </div>
-
-              <h2 className={'text-20 text-ProzaLibre-SemiBold text-white'}>
-                Axel
-              </h2>
-            </div>
-            <div className={'choice-container-title'}>
-              <h1 className={'text-50 text-Harry text-white'}>
-                Make your choice
+            <div className="choice-container-title">
+              <h1 className={'text-100 text-Harry text-yellow'}>
+                <Tween
+                    from={{ opacity: '0', scale: '0.4' }}
+                    to={{ opacity: '100%', scale: '1' }}
+                    ease="expo.out()"
+                    duration={6}
+                    stagger={0.1}
+                >
+                  <SplitChars
+                      wrapper={<span style={{ display: 'inline-block' }} />}
+                  >
+                    Fait ton choix
+                  </SplitChars>
+                </Tween>
+              </h1>
+              <h1 className={'text-100 text-Harry text-yellow text-blur'}>
+                <Tween
+                    from={{ opacity: '0', scale: '0.4' }}
+                    to={{ opacity: '100%', scale: '1' }}
+                    ease="expo.out()"
+                    duration={6}
+                    stagger={0.1}
+                >
+                  <SplitChars
+                      wrapper={<span style={{ display: 'inline-block' }} />}
+                  >
+                    Fait ton choix
+                  </SplitChars>
+                </Tween>
               </h1>
             </div>
-            <div className={'choice-container-button'}>
+            <UserBadge user={user} setUser={setUser}/>
+            <div className={"choice-container-buttons"}>
               <Link
-                href={'/create-party'}
-                className={'btn-reset btn-white-clear'}
-                onClick={(e) => onClickLaunchSound()}
+                  href={'/create-party'}
+                  className={'btn-reset btn-yellow'}
+                  onClick={(e) => onClickLaunchSound()}
               >
-                Create a party
+                Creer une partie
               </Link>
               <Link
-                href={'/join-party'}
-                className={'btn-reset btn-white-clear'}
-                onClick={(e) => onClickLaunchSound()}
+                  href={'/join-party'}
+                  className={'btn-reset btn-yellow'}
+                  onClick={(e) => onClickLaunchSound()}
               >
-                Join a party
+                Rejoindre une partie
               </Link>
-              <button onClick={() => logout()}>Déconnexion</button>
             </div>
           </aside>
         </section>

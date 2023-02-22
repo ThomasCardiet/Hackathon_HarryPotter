@@ -1,0 +1,67 @@
+.compteur{
+  height: 100vh;
+  &-container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 50px;
+    &-title{
+      display: inline-flex;
+      justify-content: center;
+      position: relative;
+      z-index: 20;
+      .text-blur{
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translate(-50%,-0%);
+        filter: blur(10px);
+        animation: ligth 2s infinite;
+        display: flex;
+        justify-content: center;
+      }
+    }
+    &-content{
+      display: flex;justify-content: center;align-items: center;
+      h1{
+        position: absolute;
+
+      }
+      .third{
+        opacity: 0%;
+        animation: disapear 2.7s;
+      }
+    }
+  }
+}
+@keyframes disapear {
+  from{
+    opacity: 100%;
+  }
+  to{
+    opacity: 0%;
+  }
+}
+
+
+
+@keyframes ligth {
+
+  0% {
+    opacity: 75%;
+  }
+  25% {
+    opacity: 90%;
+  }
+  50% {
+    opacity: 120%;
+  }
+  75% {
+    opacity: 90%;
+  }
+  100% {
+    opacity: 75%;
+  }
+}

@@ -27,6 +27,7 @@
     "react-dom": "18.2.0",
     "react-draggable": "^4.4.5",
     "react-gsap": "^3.2.1",
+    "react-loader-spinner": "^5.3.4",
     "react-parallax-tilt": "^1.7.107",
     "react-toastify": "^9.1.1",
     "sass": "^1.58.3",

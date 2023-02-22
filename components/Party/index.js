@@ -9,6 +9,11 @@ import React from 'react';
 import { CountDown, DEFAULT_INIT_TIME } from '../CountDown';
 import { toast } from 'react-toastify';
 
+const TIME_PENALITY = {
+  INDICE: 20,
+  WRONG_INGREDIENT: 5,
+};
+
 const Party = () => {
   const [ingredients, setIngredients] = useState([]);
   const [dropBoxOffsets, setDropBoxOffsets] = useState(null);
@@ -34,31 +39,54 @@ const Party = () => {
    * @param {Ingredient} ingredient
    */
   const dropIngredient = (droppedIngredient) => {
+    // ERROR IF INDICE IS FLIP
+    if (
+      classFlipFirst === 'flip' ||
+      classFlipSecond === 'flip' ||
+      classFlipThird === 'flip'
+    ) {
+      return toast.error('Impossible, vous lisez un indice !', {
+        icon: '❌',
+        theme: 'light',
+        position: 'bottom-center',
+      });
+    }
+
+    // GET NEEDED INGREDIENT
     const neededIngredient =
       potions[currentPotionIndex].getIngredients()[
         currentIngredientPotionIndex
       ];
+
+    // VERIFY IS DROPPED INGREDIENT IS EQUAL TO NEEDED INGREDIENT
     const isNeededIngredient = droppedIngredient === neededIngredient;
+
+    // GOOD INGREDIENT
     if (isNeededIngredient) {
+      // RESET CAN TAKE INDICE
+      setCanTakeIndice(true);
+      resetAllClassFlip();
+
       toast.success('Ingrédient ajouté', {
         icon: '🧪',
         theme: 'light',
         position: 'bottom-center',
       });
+
+      // REMOVE INGREDIENT FROM LIST
       setIngredients(
         ingredients.filter((ingredient) => droppedIngredient !== ingredient)
       );
 
+      // IF NOT LAST NEEDED INGREDIENT OF CURRENT POTION
       if (
         currentIngredientPotionIndex <
         potions[currentPotionIndex].getIngredients().length - 1
       ) {
-        console.log(
-          currentIngredientPotionIndex,
-          potions[currentPotionIndex].getIngredients().length - 1
-        );
         setCurrentIngredientPotionIndex((prev) => prev + 1);
       } else {
+        // IF ITS LAST NEEDED INGREDIENT OF CURRENT POSTION
+        // GO TO NEXT POTION
         if (currentPotionIndex < potions.length - 1) {
           setCurrentPotionIndex((prev) => prev + 1);
           setCurrentIngredientPotionIndex(0);
@@ -69,10 +97,13 @@ const Party = () => {
             position: 'bottom-center',
           });
         } else {
+          // IF LAST POTION FINISH GAME
+          setFinished(true);
         }
       }
     } else {
-      setCountDownTime((prev) => prev - 5);
+      // BAD INGREDIENT
+      setCountDownTime((prev) => prev - TIME_PENALITY.WRONG_INGREDIENT);
       toast.error('Mauvais ingrédient (- 5 sec)', {
         icon: '❌',
         theme: 'light',
@@ -82,19 +113,35 @@ const Party = () => {
   };
 
   const [indices, setIndices] = useState([
-    { img: '', indiceTaken: false },
-    { img: '', indiceTaken: false },
-    { img: '', indiceTaken: false },
+    { indiceTaken: false },
+    { indiceTaken: false },
+    { indiceTaken: false },
   ]);
+
   const [classFlipFirst, setClassFlipFirst] = useState('');
   const [classFlipSecond, setClassFlipSecond] = useState('');
   const [classFlipThird, setClassFlipThird] = useState('');
   const [canTakeIndice, setCanTakeIndice] = useState(true);
 
+  const resetAllClassFlip = () => {
+    setClassFlipSecond('');
+    setClassFlipFirst('');
+    setClassFlipThird('');
+  };
+
   const launchIndices = (index) => {
+    // NOT ENOUGH TIME
+    if (countdownTime <= TIME_PENALITY.INDICE + 10) {
+      return toast.error('Tu nas plus le temps !', {
+        icon: '❌',
+        theme: 'light',
+        position: 'bottom-center',
+      });
+    }
+
     let findIndice = indices.find((item, indexItem) => indexItem === index);
     if (findIndice.indiceTaken === false && canTakeIndice) {
-      setCountDownTime((prev) => prev - 20);
+      setCountDownTime((prev) => prev - TIME_PENALITY.INDICE);
       /*Set to true if already taken*/
       let indicesCopy = [...indices];
       findIndice.indiceTaken = true;
@@ -108,16 +155,24 @@ const Party = () => {
       }
       setCanTakeIndice(false);
       setTimeout(() => {
-        setClassFlipSecond('');
-        setClassFlipFirst('');
-        setClassFlipThird('');
+        resetAllClassFlip();
       }, '5000');
     }
   };
 
-  useEffect(() => {
-    if (finished) console.log('Countdown terminé');
-  }, [finished]);
+  if (finished)
+    return (
+      <div className="party-finish">
+        <h2>Partie Terminée !</h2>
+        {countdownTime <= 0 ? (
+          <p className="party-finish__text lose">Le temps est écoulé...</p>
+        ) : (
+          <p className="party-finish__text win">
+            Félicitation vous voilà Alchimiste !
+          </p>
+        )}
+      </div>
+    );
 
   return (
     <main className="party">
@@ -171,11 +226,15 @@ const Party = () => {
                     <img src={'images/carte.png'} />
                   </div>
                   <div className={'content'}>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Aut commodi consequatur facere impedit nobis perspiciatis,
-                      quam quasi sunt ullam veniam.
-                    </p>
+                    {/* {item.img && item.img} */}
+                    {potions &&
+                      potions[currentPotionIndex] &&
+                      potions[currentPotionIndex].getIngredients()[
+                        currentIngredientPotionIndex
+                      ] &&
+                      potions[currentPotionIndex]
+                        .getIngredients()
+                        [currentIngredientPotionIndex].getImgComponent()}
                   </div>
                 </div>
               );
@@ -195,6 +254,17 @@ const Party = () => {
                   <div className={'indices-container-item-background'}>
                     <img src={'images/carte.png'} />
                   </div>
+                  <div className={'content'}>
+                    {/* {item.img && item.img} */}
+                    {potions &&
+                      potions[currentPotionIndex] &&
+                      potions[currentPotionIndex].getIngredients()[
+                        currentIngredientPotionIndex
+                      ] &&
+                      potions[currentPotionIndex]
+                        .getIngredients()
+                        [currentIngredientPotionIndex].getImgComponent()}
+                  </div>
                 </div>
               );
             } else if (index === 2) {
@@ -213,13 +283,24 @@ const Party = () => {
                   <div className={'indices-container-item-background'}>
                     <img src={'images/carte.png'} />
                   </div>
+                  <div className={'content'}>
+                    {/* {item.img && item.img} */}
+                    {potions &&
+                      potions[currentPotionIndex] &&
+                      potions[currentPotionIndex].getIngredients()[
+                        currentIngredientPotionIndex
+                      ] &&
+                      potions[currentPotionIndex]
+                        .getIngredients()
+                        [currentIngredientPotionIndex].getImgComponent()}
+                  </div>
                 </div>
               );
             }
           })}
         </div>
       </div>
-      <div className="ingredients-block">
+      <ul className="ingredients-block">
         {ingredients.map((ingredient, index) => (
           <DraggableIngredient
             dropBoxOffsets={dropBoxOffsets}
@@ -228,7 +309,7 @@ const Party = () => {
             key={index}
           />
         ))}
-      </div>
+      </ul>
     </main>
   );
 };

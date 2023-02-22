@@ -25,12 +25,15 @@ $colors: (
     font-size: 20px;
     transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
     position: relative;
-
+    &.btn-little{
+      font-size: 15px;
+      background: $color;
+      color: $white;
+    }
     &:hover {
       background-color: $color;
       color: $white;
     }
-
     &-clear {
       @extend .btn-#{$colorName};
       background-color: transparent;

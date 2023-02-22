@@ -4,23 +4,23 @@
 }
 @font-face {
   font-family: "ProzaLibre-Bold";
-  src: url("fonts/ProzaLibre-Bold.ttf") format("ttf");
+  src: url("fonts/ProzaLibre-Bold.ttf") format("truetype");
 }
 @font-face {
   font-family: "ProzaLibre-ExtraBold";
-  src: url("fonts/ProzaLibre-ExtraBold.ttf") format("ttf");
+  src: url("fonts/ProzaLibre-ExtraBold.ttf") format("truetype");
 }
 @font-face {
   font-family: "ProzaLibre-Medium";
-  src: url("fonts/ProzaLibre-Medium.ttf") format("ttf");
+  src: url("fonts/ProzaLibre-Medium.ttf") format("truetype");
 }
 @font-face {
   font-family: "ProzaLibre-Regular";
-  src: url("fonts/ProzaLibre-Regular.ttf") format("ttf");
+  src: url("fonts/ProzaLibre-Regular.ttf") format("truetype");
 }
 @font-face {
   font-family: "ProzaLibre-SemiBold";
-  src: url("fonts/ProzaLibre-SemiBold.ttf") format("ttf");
+  src: url("fonts/ProzaLibre-SemiBold.ttf") format("truetype");
 }
 .text-100 {
   font-size: 100px;
@@ -167,6 +167,10 @@ table {
   z-index: 20;
 }
 
+body {
+  overflow-y: hidden;
+}
+
 .btn-reset {
   background-color: transparent;
   border: none;
@@ -184,6 +188,11 @@ table {
   font-size: 20px;
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   position: relative;
+}
+.btn-yellow.btn-little, .btn-little.btn-yellow-clear {
+  font-size: 15px;
+  background: #F9C749;
+  color: #EFEFEF;
 }
 .btn-yellow:hover, .btn-yellow-clear:hover {
   background-color: #F9C749;
@@ -213,6 +222,11 @@ table {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   position: relative;
 }
+.btn-green.btn-little, .btn-little.btn-green-clear {
+  font-size: 15px;
+  background: #2E8B57;
+  color: #EFEFEF;
+}
 .btn-green:hover, .btn-green-clear:hover {
   background-color: #2E8B57;
   color: #EFEFEF;
@@ -240,6 +254,11 @@ table {
   font-size: 20px;
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   position: relative;
+}
+.btn-white.btn-little, .btn-little.btn-white-clear {
+  font-size: 15px;
+  background: #EFEFEF;
+  color: #EFEFEF;
 }
 .btn-white:hover, .btn-white-clear:hover {
   background-color: #EFEFEF;
@@ -269,6 +288,11 @@ table {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   position: relative;
 }
+.btn-black.btn-little, .btn-little.btn-black-clear {
+  font-size: 15px;
+  background: #393737;
+  color: #EFEFEF;
+}
 .btn-black:hover, .btn-black-clear:hover {
   background-color: #393737;
   color: #EFEFEF;
@@ -296,6 +320,11 @@ table {
   font-size: 20px;
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   position: relative;
+}
+.btn-red.btn-little, .btn-little.btn-red-clear {
+  font-size: 15px;
+  background: #740001;
+  color: #EFEFEF;
 }
 .btn-red:hover, .btn-red-clear:hover {
   background-color: #740001;
@@ -7694,6 +7723,10 @@ input[type=text]:focus, input[type=password]:focus {
   opacity: 0%;
   transform: rotateY(-180deg);
   transition: 1s opacity 0.3s ease-in-out;
+  text-align: center;
+}
+.indices-container-item .content img {
+  width: 100%;
 }
 .indices-container-item-background {
   width: 100%;
@@ -7736,12 +7769,36 @@ input[type=text]:focus, input[type=password]:focus {
   color: rgb(216, 70, 70);
 }
 
+.user-badge-container {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  padding-inline: 1em;
+  padding-block: 20px;
+}
+.user-badge-container .info {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+.user-badge-container img {
+  width: 75px;
+}
+
+.position-badge {
+  border-radius: 20px;
+  position: fixed;
+  left: 80%;
+  top: 20%;
+}
+
 .home {
   height: 100vh;
   background-image: url("../public/images/wallpaper-home.png");
   background-size: cover;
   background-repeat: no-repeat;
-  animation: apear 2s;
 }
 .home-container {
   height: 100%;
@@ -7773,6 +7830,7 @@ input[type=text]:focus, input[type=password]:focus {
   max-width: 50%;
   margin: 0 auto;
   z-index: 20;
+  text-align: center;
 }
 .home-container-button {
   display: flex;
@@ -7780,23 +7838,6 @@ input[type=text]:focus, input[type=password]:focus {
   z-index: 20;
 }
 
-@keyframes apear {
-  0% {
-    opacity: 0;
-  }
-  25% {
-    opacity: 25%;
-  }
-  50% {
-    opacity: 50%;
-  }
-  75% {
-    opacity: 75%;
-  }
-  100% {
-    opacity: 100%;
-  }
-}
 @keyframes ligth {
   0% {
     opacity: 75%;
@@ -7821,44 +7862,18 @@ input[type=text]:focus, input[type=password]:focus {
   background-repeat: no-repeat;
 }
 .choice-container {
-  position: absolute;
-  width: 70%;
-  height: 60%;
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
   gap: 50px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 90px;
-  border-radius: 20px;
-}
-.choice-container-user {
-  position: absolute;
-  right: 5%;
-  top: 90px;
-  display: flex;
-  align-items: center;
-}
-.choice-container-user-image {
-  width: 60px;
-  height: 60px;
-  margin-right: 20px;
-}
-.choice-container-user-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 .choice-container-title {
   display: inline-flex;
   justify-content: center;
   position: relative;
   z-index: 20;
-}
-.choice-container-title span {
-  transform: scale(0.5);
 }
 .choice-container-title .text-blur {
   position: absolute;
@@ -7870,25 +7885,18 @@ input[type=text]:focus, input[type=password]:focus {
   display: flex;
   justify-content: center;
 }
-.choice-container-button {
+.choice-container-buttons {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  z-index: 20;
-  margin: auto;
-}
-.choice-container-button a:last-of-type {
-  margin-top: 24px;
-  margin-left: auto;
-  margin-right: auto;
+  align-items: center;
+  gap: 20px;
 }
 
 .login {
   height: 100vh;
-  background-image: url("../public/images/wallpaper-home.png");
+  background-image: url("../public/images/wallpaper-login.png");
   background-size: cover;
   background-repeat: no-repeat;
-  animation: apear 2s;
 }
 .login-container {
   height: 100%;
@@ -7945,6 +7953,7 @@ input[type=text]:focus, input[type=password]:focus {
 .ingredients-block {
   position: absolute;
   padding: 10px 20px;
+  column-count: 2;
 }
 
 .party__potion-name {
@@ -8038,25 +8047,146 @@ input[type=text]:focus, input[type=password]:focus {
   opacity: 1;
 }
 
-.waiting-block {
-  --width: 40vw;
-  --height: 40vh;
+.party-finish {
   position: fixed;
-  background-color: rgba(163, 163, 163, 0.286);
-  color: yellow;
-  width: var(--width);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   text-align: center;
-  height: var(--height);
-  border-radius: 8px;
-  top: 30vh;
-  left: 30vw;
+  color: white;
 }
-.waiting-block p {
-  height: 100%;
-  transform: translateY(50%);
-  font-size: 25px;
+.party-finish h2 {
+  font-size: 40px;
+  transform: translateY(40vh);
+}
+.party-finish .party-finish__text {
+  font-size: 30px;
+  transform: translateY(40vh);
+}
+.party-finish .party-finish__text.lose {
+  color: #740001;
+}
+.party-finish .party-finish__text.win {
+  color: #2E8B57;
 }
 
+.waiting-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+}
+
+.success {
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  animation: apear 2s;
+}
+.success.Serpentard {
+  background-image: url("../public/images/wallpaper-win-serpentard.png");
+}
+.success.Griffondor {
+  background-image: url("../public/images/wallpaper-win-griffondor.png");
+}
+.success.Serdaigle {
+  background-image: url("../public/images/wallpaper-win-Serdaigle.png");
+}
+.success.Poufsouffle {
+  background-image: url("../public/images/wallpaper-win-Poufsouffle.png");
+}
+.success-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 50px;
+}
+.success-container-title {
+  display: inline-flex;
+  justify-content: center;
+  position: relative;
+  z-index: 20;
+  max-width: 80%;
+  margin: 0 auto;
+  flex-direction: column;
+}
+.success-container-title h1 {
+  text-align: center;
+}
+.success-container-title .text-blur {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, 0%);
+  filter: blur(10px);
+  animation: ligth 2s infinite;
+  display: flex;
+  justify-content: center;
+}
+.success-container-logo {
+  display: flex;
+  justify-content: center;
+}
+.success-container-logo img {
+  width: 200px;
+}
+.success-container-button {
+  display: flex;
+  justify-content: center;
+}
+.success-container-content {
+  height: 30%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+}
+.success-container-content li {
+  display: flex;
+  align-items: center;
+}
+.success-container-content li img {
+  width: 60px;
+}
+
+@keyframes apear {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 25%;
+  }
+  50% {
+    opacity: 50%;
+  }
+  75% {
+    opacity: 75%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+@keyframes ligth {
+  0% {
+    opacity: 75%;
+  }
+  25% {
+    opacity: 90%;
+  }
+  50% {
+    opacity: 120%;
+  }
+  75% {
+    opacity: 90%;
+  }
+  100% {
+    opacity: 75%;
+  }
+}
 .join {
   height: 100vh;
   background-image: url("../public/images/wallpaper-choice.png");
@@ -8141,6 +8271,71 @@ input[type=text]:focus, input[type=password]:focus {
   margin-right: auto;
 }
 
+.compteur {
+  height: 100vh;
+}
+.compteur-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 50px;
+}
+.compteur-container-title {
+  display: inline-flex;
+  justify-content: center;
+  position: relative;
+  z-index: 20;
+}
+.compteur-container-title .text-blur {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, 0%);
+  filter: blur(10px);
+  animation: ligth 2s infinite;
+  display: flex;
+  justify-content: center;
+}
+.compteur-container-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.compteur-container-content h1 {
+  position: absolute;
+}
+.compteur-container-content .third {
+  opacity: 0%;
+  animation: disapear 2.7s;
+}
+
+@keyframes disapear {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+  }
+}
+@keyframes ligth {
+  0% {
+    opacity: 75%;
+  }
+  25% {
+    opacity: 90%;
+  }
+  50% {
+    opacity: 120%;
+  }
+  75% {
+    opacity: 90%;
+  }
+  100% {
+    opacity: 75%;
+  }
+}
 body {
   padding: 0;
   margin: 0;

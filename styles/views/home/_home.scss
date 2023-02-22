@@ -3,7 +3,6 @@
   background-image: url("../public/images/wallpaper-home.png");
   background-size: cover;
   background-repeat: no-repeat;
-  animation: apear 2s;
   &-container{
     height: 100%;
     width: 100%;
@@ -33,6 +32,7 @@
       max-width: 50%;
       margin: 0 auto;
       z-index: 20;
+      text-align: center;
     }
     &-button{
       display: flex;
@@ -42,26 +42,6 @@
   }
 }
 
-
-
-@keyframes apear {
-
-  0% {
-    opacity: 0;
-  }
-  25% {
-    opacity: 25%;
-  }
-  50% {
-    opacity: 50%;
-  }
-  75% {
-    opacity: 75%;
-  }
-  100% {
-    opacity: 100%;
-  }
-}
 
 
 

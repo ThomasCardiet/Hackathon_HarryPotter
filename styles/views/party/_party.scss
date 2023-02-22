@@ -1,6 +1,7 @@
 .ingredients-block {
   position: absolute;
   padding: 10px 20px;
+  column-count: 2;
 }
 
 .party__potion-name {
@@ -104,6 +105,34 @@
 
     .draggable-ingredient__icon {
       opacity: 1;
+    }
+  }
+}
+
+.party-finish {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  color: white;
+
+  h2 {
+    font-size: 40px;
+    transform: translateY(40vh);
+  }
+
+  .party-finish__text {
+    font-size: 30px;
+    transform: translateY(40vh);
+
+    &.lose {
+      color: $red;
+    }
+
+    &.win {
+      color: $green;
     }
   }
 }
