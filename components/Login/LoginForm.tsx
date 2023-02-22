@@ -20,7 +20,7 @@ let SchemaLogin = yup.object().shape({
     password: yup.string().required("Le mot de passe est obligatoire pour ce connecter"),
 });
 
-export default function LoginForm(){
+export default function LoginForm({setUser}){
 
     const router = useRouter();
 
@@ -45,6 +45,8 @@ export default function LoginForm(){
         }
 
         Api.storeUser(data);
+        setUser(data.user)
+          console.log(data)
         router.push(Router.getRoutes().CHOICE.slug)
         return toast.success("Connexion réussie", {
           icon : "🧙",

@@ -2,7 +2,7 @@ import LoginForm from './LoginForm';
 import { SplitChars, Tween } from 'react-gsap';
 import React from 'react';
 
-const Login = () => {
+const Login = ({setUser}) => {
 
   
   
@@ -43,7 +43,7 @@ const Login = () => {
           </h1>
         </div>
         <div className={'login-container-form'}>
-          <LoginForm></LoginForm>
+          <LoginForm setUser={setUser}></LoginForm>
         </div>
       </aside>
     </section>
