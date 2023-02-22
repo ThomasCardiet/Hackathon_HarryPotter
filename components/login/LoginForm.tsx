@@ -43,6 +43,7 @@ export default function LoginForm(){
                 </div>
                 <div className={"form-row-button"}>
                     <button type={"submit"} className={"btn-reset btn-yellow"}>Connexion</button>
+                    <a href={"#"} type={"submit"} className={"btn-reset btn-yellow"}>Inscription</a>
                 </div>
             </Form>
         </Formik>

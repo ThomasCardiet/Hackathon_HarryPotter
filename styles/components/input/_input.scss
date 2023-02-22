@@ -7,7 +7,7 @@ input[type='text'] , input[type='password']{
   font-size: 15px;
   @extend .text-ProzaLibre-Regular;
   &::placeholder{
-    color: #F5F5F5;
+    color: gray;
   }
   &:focus{
     outline: none;
