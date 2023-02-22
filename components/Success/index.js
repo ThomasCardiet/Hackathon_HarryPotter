@@ -3,7 +3,7 @@ import React, {useRef, useEffect, useState} from 'react';
 import Link from 'next/link';
 import {SplitChars, Tween} from "react-gsap";
 
-const Choice = () => {
+const Success = () => {
   
   const [winnerHouse, setWinnerHouse] = useState("Serdaigle");
   const [winnerHouseImg, setWinnerHouseImg] = useState(<img src={"/images/" + winnerHouse + ".png"}/>);
@@ -70,4 +70,4 @@ const Choice = () => {
   );
 };
 
-export default Choice;
+export default Success;

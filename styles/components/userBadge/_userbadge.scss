@@ -1,0 +1,27 @@
+.user-badge{
+  &-container{
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    padding-inline: 1em;
+    padding-block: 20px;
+    .info{
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+    }
+    img{
+      width: 75px;
+    }
+  }
+}
+
+
+.position-badge{
+  border-radius: 20px;
+  position: fixed;
+  left: 80%;
+  top: 20%;
+}

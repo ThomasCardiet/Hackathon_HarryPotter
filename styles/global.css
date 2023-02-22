@@ -185,6 +185,11 @@ table {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   position: relative;
 }
+.btn-yellow.btn-little, .btn-little.btn-yellow-clear {
+  font-size: 15px;
+  background: #F9C749;
+  color: #EFEFEF;
+}
 .btn-yellow:hover, .btn-yellow-clear:hover {
   background-color: #F9C749;
   color: #EFEFEF;
@@ -212,6 +217,11 @@ table {
   font-size: 20px;
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   position: relative;
+}
+.btn-green.btn-little, .btn-little.btn-green-clear {
+  font-size: 15px;
+  background: #2E8B57;
+  color: #EFEFEF;
 }
 .btn-green:hover, .btn-green-clear:hover {
   background-color: #2E8B57;
@@ -241,6 +251,11 @@ table {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   position: relative;
 }
+.btn-white.btn-little, .btn-little.btn-white-clear {
+  font-size: 15px;
+  background: #EFEFEF;
+  color: #EFEFEF;
+}
 .btn-white:hover, .btn-white-clear:hover {
   background-color: #EFEFEF;
   color: #EFEFEF;
@@ -269,6 +284,11 @@ table {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   position: relative;
 }
+.btn-black.btn-little, .btn-little.btn-black-clear {
+  font-size: 15px;
+  background: #393737;
+  color: #EFEFEF;
+}
 .btn-black:hover, .btn-black-clear:hover {
   background-color: #393737;
   color: #EFEFEF;
@@ -296,6 +316,11 @@ table {
   font-size: 20px;
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   position: relative;
+}
+.btn-red.btn-little, .btn-little.btn-red-clear {
+  font-size: 15px;
+  background: #740001;
+  color: #EFEFEF;
 }
 .btn-red:hover, .btn-red-clear:hover {
   background-color: #740001;
@@ -7720,6 +7745,31 @@ input[type=text]:focus, input[type=password]:focus {
   box-shadow: 0px 0px 50px 30px rgba(249, 199, 73, 0.76);
 }
 
+.user-badge-container {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  padding-inline: 1em;
+  padding-block: 20px;
+}
+.user-badge-container .info {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+.user-badge-container img {
+  width: 75px;
+}
+
+.position-badge {
+  border-radius: 20px;
+  position: fixed;
+  left: 80%;
+  top: 20%;
+}
+
 .home {
   height: 100vh;
   background-image: url("../public/images/wallpaper-home.png");
@@ -7806,44 +7856,18 @@ input[type=text]:focus, input[type=password]:focus {
   background-repeat: no-repeat;
 }
 .choice-container {
-  position: absolute;
-  width: 70%;
-  height: 60%;
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
   gap: 50px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 90px;
-  border-radius: 20px;
-}
-.choice-container-user {
-  position: absolute;
-  right: 5%;
-  top: 90px;
-  display: flex;
-  align-items: center;
-}
-.choice-container-user-image {
-  width: 60px;
-  height: 60px;
-  margin-right: 20px;
-}
-.choice-container-user-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 .choice-container-title {
   display: inline-flex;
   justify-content: center;
   position: relative;
   z-index: 20;
-}
-.choice-container-title span {
-  transform: scale(0.5);
 }
 .choice-container-title .text-blur {
   position: absolute;
@@ -7855,17 +7879,11 @@ input[type=text]:focus, input[type=password]:focus {
   display: flex;
   justify-content: center;
 }
-.choice-container-button {
+.choice-container-buttons {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  z-index: 20;
-  margin: auto;
-}
-.choice-container-button a:last-of-type {
-  margin-top: 24px;
-  margin-left: auto;
-  margin-right: auto;
+  align-items: center;
+  gap: 20px;
 }
 
 .login {

@@ -33,6 +33,10 @@ const Page = ({ path }) => {
   }, [])
 
 
+  useEffect(() => {
+    console.log(user)
+  }, [user])
+
   useEffect(() => {socketInitializer()}, [])
 
   const socketInitializer = async () => {
