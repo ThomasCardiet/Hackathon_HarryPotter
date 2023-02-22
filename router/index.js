@@ -22,6 +22,10 @@ export class Router {
       name: 'Party',
       slug: '/party',
     },
+    JOIN_PARTY: {
+      name: 'JoinParty',
+      slug: '/join-party',
+    },
   };
 
   /**
