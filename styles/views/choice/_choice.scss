@@ -1,0 +1,86 @@
+.choice {
+  position: relative;
+  height: 100vh;
+  background-image: url('../public/images/wallpaper-choice.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  animation: apear 2s;
+  background-position: center center;
+  align-items: center;
+
+  &-container {
+    position: absolute;
+    width: 70%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 50px;
+    background: rgba(217, 217, 217, 0.08);
+    box-shadow: inset 67px -67px 67px rgba(165, 165, 165, 0.1),
+      inset -67px 67px 67px rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 90px;
+    border-radius: 20px;
+
+    &-user {
+      position: absolute;
+
+      right: 5%;
+      top: 90px;
+
+      display: flex;
+      align-items: center;
+
+      &-image {
+        width: 60px;
+        height: 60px;
+        margin-right: 20px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    &-title {
+      display: inline-flex;
+      justify-content: center;
+      position: relative;
+      z-index: 20;
+
+      span {
+        transform: scale(0.5);
+      }
+      .text-blur {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translate(-50%, -0%);
+        filter: blur(10px);
+        animation: ligth 2s infinite;
+        display: flex;
+        justify-content: center;
+      }
+    }
+    &-button {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      z-index: 20;
+      margin: auto;
+
+      a:last-of-type {
+        margin-top: 24px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+}

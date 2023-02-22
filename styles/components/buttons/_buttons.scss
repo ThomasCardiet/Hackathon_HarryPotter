@@ -1,8 +1,12 @@
+$colors: (
+  'yellow': $yellow,
+  'green': $green,
+  'white': $white,
+  'black': $black,
+  'red': $red,
+);
 
-$colors: ("yellow":$yellow, "green" : $green, "white" : $white , "black" : $black, "red" : $red);
-
-
-.btn-reset{
+.btn-reset {
   background-color: transparent;
   border: none;
   padding: 7px 16px;
@@ -17,16 +21,25 @@ $colors: ("yellow":$yellow, "green" : $green, "white" : $white , "black" : $blac
     background-color: transparent;
     border: 2px solid $color;
     @extend .text-Harry;
-    border-radius:2px;
+    border-radius: 2px;
     font-size: 20px;
     transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
     position: relative;
-    &.plain{
 
-    }
-    &:hover{
+    &:hover {
       background-color: $color;
       color: $white;
+    }
+
+    &-plain {
+      @extend .btn-#{$colorName};
+      background-color: $color;
+      color: $white;
+
+      &:hover {
+        background-color: transparent;
+        color: $color;
+      }
     }
   }
 }
