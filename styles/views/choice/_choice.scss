@@ -1,0 +1,48 @@
+.choice {
+  height: 100vh;
+  background-image: url('../public/images/wallpaper-choice.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  animation: apear 2s;
+  background-position: center center;
+  &-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 50px;
+
+    &-title {
+      display: inline-flex;
+      justify-content: center;
+      position: relative;
+      z-index: 20;
+
+      span {
+        transform: scale(0.5);
+      }
+      .text-blur {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translate(-50%, -0%);
+        filter: blur(10px);
+        animation: ligth 2s infinite;
+        display: flex;
+        justify-content: center;
+      }
+    }
+    &-button {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      z-index: 20;
+      margin: 0 auto;
+
+      a:last-of-type {
+        margin-top: 24px;
+      }
+    }
+  }
+}
