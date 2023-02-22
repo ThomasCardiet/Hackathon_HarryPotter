@@ -101,7 +101,7 @@
   font-family: "ProzaLibre-Bold";
 }
 
-.text-Harry, .btn-red, .btn-black, .btn-white, .btn-green, .btn-yellow {
+.text-Harry, .btn-red, .btn-red-plain, .btn-black, .btn-black-plain, .btn-white, .btn-white-plain, .btn-green, .btn-green-plain, .btn-yellow, .btn-yellow-plain {
   font-family: "Crimes of Grindelwald";
 }
 
@@ -176,7 +176,7 @@ table {
   width: fit-content;
 }
 
-.btn-yellow {
+.btn-yellow, .btn-yellow-plain {
   color: #F9C749;
   background-color: transparent;
   border: 2px solid #F9C749;
@@ -185,12 +185,16 @@ table {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   position: relative;
 }
-.btn-yellow:hover {
+.btn-yellow-plain {
+  background-color: #F9C749;
+  color: #F9C749;
+}
+.btn-yellow:hover, .btn-yellow-plain:hover {
   background-color: #F9C749;
   color: #EFEFEF;
 }
 
-.btn-green {
+.btn-green, .btn-green-plain {
   color: #2E8B57;
   background-color: transparent;
   border: 2px solid #2E8B57;
@@ -199,12 +203,16 @@ table {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   position: relative;
 }
-.btn-green:hover {
+.btn-green-plain {
+  background-color: #2E8B57;
+  color: #F9C749;
+}
+.btn-green:hover, .btn-green-plain:hover {
   background-color: #2E8B57;
   color: #EFEFEF;
 }
 
-.btn-white {
+.btn-white, .btn-white-plain {
   color: #EFEFEF;
   background-color: transparent;
   border: 2px solid #EFEFEF;
@@ -213,12 +221,16 @@ table {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   position: relative;
 }
-.btn-white:hover {
+.btn-white-plain {
+  background-color: #EFEFEF;
+  color: #F9C749;
+}
+.btn-white:hover, .btn-white-plain:hover {
   background-color: #EFEFEF;
   color: #EFEFEF;
 }
 
-.btn-black {
+.btn-black, .btn-black-plain {
   color: #393737;
   background-color: transparent;
   border: 2px solid #393737;
@@ -227,12 +239,16 @@ table {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   position: relative;
 }
-.btn-black:hover {
+.btn-black-plain {
+  background-color: #393737;
+  color: #F9C749;
+}
+.btn-black:hover, .btn-black-plain:hover {
   background-color: #393737;
   color: #EFEFEF;
 }
 
-.btn-red {
+.btn-red, .btn-red-plain {
   color: #740001;
   background-color: transparent;
   border: 2px solid #740001;
@@ -241,7 +257,11 @@ table {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   position: relative;
 }
-.btn-red:hover {
+.btn-red-plain {
+  background-color: #740001;
+  color: #F9C749;
+}
+.btn-red:hover, .btn-red-plain:hover {
   background-color: #740001;
   color: #EFEFEF;
 }
