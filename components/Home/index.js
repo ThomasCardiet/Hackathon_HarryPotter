@@ -41,7 +41,7 @@ const Home = ({user}) => {
   return (
     <>
       <Head>
-        <title>Hckaton Harry Potter - Potion Game</title>
+        <title>Hackaton Harry Potter - Potion Game</title>
         <meta name="description" content="Harry Potter potion maker game" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
