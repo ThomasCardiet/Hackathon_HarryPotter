@@ -61,7 +61,7 @@ const Choice = ({ setUser, user }) => {
                 </Tween>
               </h1>
             </div>
-            <UserBadge user={user}/>
+            <UserBadge user={user} setUser={setUser}/>
             <div className={"choice-container-buttons"}>
               <Link
                   href={'/create-party'}
