@@ -7729,6 +7729,7 @@ input[type=text]:focus, input[type=password]:focus {
   max-width: 50%;
   margin: 0 auto;
   z-index: 20;
+  text-align: center;
 }
 .home-container-button {
   display: flex;

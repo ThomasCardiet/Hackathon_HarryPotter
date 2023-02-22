@@ -3,43 +3,12 @@ import { SplitChars, Tween } from 'react-gsap';
 import React from 'react';
 
 const Login = () => {
-  const fakeData = [
-    {
-      name: 'Axel',
-      score: 12,
-    },
-    {
-      name: 'Axel',
-      score: 12,
-    },
-    {
-      name: 'Axel',
-      score: 12,
-    },
-    {
-      name: 'Axel',
-      score: 12,
-    },
-    {
-      name: 'Axel',
-      score: 12,
-    },
-    {
-      name: 'Axel',
-      score: 12,
-    },
-    {
-      name: 'Axel',
-      score: 12,
-    },
-    {
-      name: 'Axel',
-      score: 12,
-    },
-  ];
 
+  
+  
   return (
     <section className={'login'}>
+
       <aside className={'login-container'}>
         <div className={'login-container-title'}>
           <h1 className={'text-100 text-Harry text-yellow'}>
