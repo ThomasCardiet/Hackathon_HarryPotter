@@ -39,12 +39,11 @@ export default function App({ Component, pageProps }: AppProps) {
               }}>
 
       <main style={{zIndex:99}}>
-          <Sparkles/>
           <Component {...pageProps} />
+          <Sparkles/>
       </main>
           </motion.div>
-          <ToastContainer
-          />
+          <ToastContainer/>
       </AnimatePresence>
   )
 }

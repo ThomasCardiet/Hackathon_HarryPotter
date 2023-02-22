@@ -2,6 +2,7 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as yup from 'yup';
 import {toast, ToastContainer} from "react-toastify";
 import React from "react";
+import {User} from "@/model/UserModel";
 
 
 interface MyFormValues {
@@ -16,15 +17,17 @@ let SchemaLogin = yup.object().shape({
     password: yup.string().required("Le mot de passe est obligatoire pour ce connecter"),
 });
 
-export default function LoginForm(){
+interface LoginFormType {
+    users: User[];
+}
 
-    const onSubmit = (values) =>{
+export default function LoginForm({users}: LoginFormType ){
+    const onSubmit = (values: any) =>{
        toast.error("Une erreur est survenue lors de la connexion", {
            icon : "🧙",
            theme :"light"
        })
     }
-
 
     const initialValues: MyFormValues = { username:'',password : '' };
     return (<>
