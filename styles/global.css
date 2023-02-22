@@ -8086,6 +8086,10 @@ input[type=text]:focus, input[type=password]:focus {
 .success-container-logo img {
   width: 200px;
 }
+.success-container-button {
+  display: flex;
+  justify-content: center;
+}
 .success-container-content {
   height: 30%;
   display: flex;

@@ -9,7 +9,7 @@ const Success = () => {
   const [winnerHouseImg, setWinnerHouseImg] = useState(<img src={"/images/" + winnerHouse + ".png"}/>);
     
     
-    const [users, setUsers] = useState([{name : "Axel", house :"Serpentard",  potionDone: 3},{name : "Sofiane", house :"Griffondor",  potionDone: 2},{name : "Thomas", house :"Serdaigle",  potionDone: 1},{name : "Thomas", house :"Poufsouffle",  potionDone: 2}]);
+    const [users, setUsers] = useState([{name : "Axel", house :"Serpentard",  potionDone: 3},{name : "Sofyane", house :"Griffondor",  potionDone: 2},{name : "Thomas", house :"Serdaigle",  potionDone: 1},{name : "Louis", house :"Poufsouffle",  potionDone: 2}]);
     
     return (
     <>
@@ -63,6 +63,9 @@ const Success = () => {
                       )
                   })}
               </ul>
+              <div className={"success-container-button"}>
+                  <Link href={"/choice"} className={"btn-reset btn-yellow"}>Rejouer</Link>
+              </div>
           </aside>
         </section>
       </main>

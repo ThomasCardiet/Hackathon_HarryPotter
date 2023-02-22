@@ -52,6 +52,10 @@
         width: 200px;
       }
     }
+    &-button{
+      display: flex;
+      justify-content: center;
+    }
     &-content{
       height: 30%;
       display: flex;
