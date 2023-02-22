@@ -30,6 +30,11 @@ export class Router {
       name: 'JoinParty',
       slug: '/join-party',
     },
+
+    COMPTEUR: {
+      name: 'Compteur',
+      slug: '/compteur',
+    },
   };
 
   /**

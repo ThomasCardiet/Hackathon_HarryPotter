@@ -7779,7 +7779,6 @@ input[type=text]:focus, input[type=password]:focus {
   background-image: url("../public/images/wallpaper-home.png");
   background-size: cover;
   background-repeat: no-repeat;
-  animation: apear 2s;
 }
 .home-container {
   height: 100%;
@@ -7819,23 +7818,6 @@ input[type=text]:focus, input[type=password]:focus {
   z-index: 20;
 }
 
-@keyframes apear {
-  0% {
-    opacity: 0;
-  }
-  25% {
-    opacity: 25%;
-  }
-  50% {
-    opacity: 50%;
-  }
-  75% {
-    opacity: 75%;
-  }
-  100% {
-    opacity: 100%;
-  }
-}
 @keyframes ligth {
   0% {
     opacity: 75%;
@@ -7895,7 +7877,6 @@ input[type=text]:focus, input[type=password]:focus {
   background-image: url("../public/images/wallpaper-login.png");
   background-size: cover;
   background-repeat: no-repeat;
-  animation: apear 2s;
 }
 .login-container {
   height: 100%;
@@ -8228,6 +8209,71 @@ input[type=text]:focus, input[type=password]:focus {
   margin-right: auto;
 }
 
+.compteur {
+  height: 100vh;
+}
+.compteur-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 50px;
+}
+.compteur-container-title {
+  display: inline-flex;
+  justify-content: center;
+  position: relative;
+  z-index: 20;
+}
+.compteur-container-title .text-blur {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, 0%);
+  filter: blur(10px);
+  animation: ligth 2s infinite;
+  display: flex;
+  justify-content: center;
+}
+.compteur-container-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.compteur-container-content h1 {
+  position: absolute;
+}
+.compteur-container-content .third {
+  opacity: 0%;
+  animation: disapear 2.7s;
+}
+
+@keyframes disapear {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+  }
+}
+@keyframes ligth {
+  0% {
+    opacity: 75%;
+  }
+  25% {
+    opacity: 90%;
+  }
+  50% {
+    opacity: 120%;
+  }
+  75% {
+    opacity: 90%;
+  }
+  100% {
+    opacity: 75%;
+  }
+}
 body {
   padding: 0;
   margin: 0;

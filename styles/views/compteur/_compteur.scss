@@ -1,8 +1,5 @@
-.login{
+.compteur{
   height: 100vh;
-  background-image: url("../public/images/wallpaper-login.png");
-  background-size: cover;
-  background-repeat: no-repeat;
   &-container{
     height: 100%;
     width: 100%;
@@ -26,20 +23,27 @@
         justify-content: center;
       }
     }
-    &-form{
-      display: flex;
-      justify-content: center;
-      form{
-        width: 30%;
-        display: flex;
-        flex-direction: column;
-        gap: 40px;
+    &-content{
+      display: flex;justify-content: center;align-items: center;
+      h1{
+        position: absolute;
+
+      }
+      .third{
+        opacity: 0%;
+        animation: disapear 2.7s;
       }
     }
   }
 }
-
-
+@keyframes disapear {
+  from{
+    opacity: 100%;
+  }
+  to{
+    opacity: 0%;
+  }
+}
 
 
 

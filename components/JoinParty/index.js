@@ -26,6 +26,7 @@ const JoinParty = () => {
               <div className={'join-container-top-user'}>
                 <div className={'join-container-top-user-image'}>
                   <img src={'images/houses/serpentard.png'} alt={'house'} />
+
                 </div>
 
                 <h2 className={'text-20 text-ProzaLibre-SemiBold text-white'}>
