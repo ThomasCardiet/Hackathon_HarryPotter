@@ -7665,7 +7665,6 @@ input[type=text]:focus, input[type=password]:focus {
   background: rgba(217, 217, 217, 0.08);
   box-shadow: inset 67px -67px 67px rgba(165, 165, 165, 0.1), inset -67px 67px 67px rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(15px);
-  margin: 0;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -7854,6 +7853,25 @@ input[type=text]:focus, input[type=password]:focus {
 }
 .draggable-ingredient.droppable .draggable-ingredient__icon {
   opacity: 1;
+}
+
+.waiting-block {
+  --width: 40vw;
+  --height: 40vh;
+  position: fixed;
+  background-color: rgba(163, 163, 163, 0.286);
+  color: yellow;
+  width: var(--width);
+  text-align: center;
+  height: var(--height);
+  border-radius: 8px;
+  top: 30vh;
+  left: 30vw;
+}
+.waiting-block p {
+  height: 100%;
+  transform: translateY(50%);
+  font-size: 25px;
 }
 
 body {
