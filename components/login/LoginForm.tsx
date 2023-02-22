@@ -19,7 +19,6 @@ let SchemaLogin = yup.object().shape({
 export default function LoginForm(){
 
     const onSubmit = (values) =>{
-        console.log(values)
        toast.error("Une erreur est survenue lors de la connexion", {
            icon : "🧙",
            theme :"light"
