@@ -4,7 +4,7 @@
 }
 
 .drop-block {
-  --size: 200px;
+  --size: 400px;
 
   position: fixed;
   top: calc(50% - var(--size) / 2);
@@ -44,7 +44,7 @@
   padding: 10px;
   border-radius: 50px;
   margin: 10px auto;
-  background-color: rgba(165, 165, 165, 0.4);
+  background-color: $black;
   user-select: none;
 
   img {

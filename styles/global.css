@@ -7566,6 +7566,92 @@ input[type=text]:focus, input[type=password]:focus {
   background: #F9C749 !important;
 }
 
+.indices-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}
+.indices-container-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 397px;
+  height: 626px;
+  transform: scale(0.5) translate(-50%, -50%);
+  border-radius: 20px;
+  transition: transform 1s ease-in-out, box-shadow 0.2s ease-in-out, left 1s ease-in-out, top 1s ease-in-out;
+  cursor: pointer;
+}
+.indices-container-item.inactive img {
+  -webkit-filter: grayscale(100%);
+  /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+.indices-container-item.second {
+  position: fixed;
+  top: 80%;
+  left: 75%;
+}
+.indices-container-item.third {
+  position: fixed;
+  top: 80%;
+  left: 80%;
+}
+.indices-container-item.first {
+  position: fixed;
+  top: 80%;
+  left: 70%;
+}
+.indices-container-item.flip {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotateY(-180deg);
+}
+.indices-container-item.flip.inactive img {
+  -webkit-filter: grayscale(0%);
+  /* Safari 6.0 - 9.0 */
+  filter: grayscale(0%);
+}
+.indices-container-item.flip::after {
+  -webkit-box-shadow: 0px 0px 50px 30px rgba(249, 199, 73, 0.76);
+  box-shadow: 0px 0px 50px 30px rgba(249, 199, 73, 0.76);
+}
+.indices-container-item.flip .content {
+  opacity: 100%;
+  padding: 3em;
+}
+.indices-container-item .content {
+  opacity: 0%;
+  transform: rotateY(-180deg);
+  transition: 1s opacity 0.3s ease-in-out;
+}
+.indices-container-item-background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  object-fit: cover;
+}
+.indices-container-item-background::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background: white;
+  z-index: -1;
+  transition: box-shadow 0.2s ease-in-out;
+}
+.indices-container-item-background:hover::after {
+  -webkit-box-shadow: 0px 0px 50px 30px rgba(249, 199, 73, 0.76);
+  box-shadow: 0px 0px 50px 30px rgba(249, 199, 73, 0.76);
+}
+
 .home {
   height: 100vh;
   background-image: url("../public/images/wallpaper-home.png");
@@ -7709,7 +7795,7 @@ input[type=text]:focus, input[type=password]:focus {
 }
 
 .drop-block {
-  --size: 200px;
+  --size: 400px;
   position: fixed;
   top: calc(50% - var(--size) / 2);
   left: calc(50% - var(--size) / 2);
@@ -7744,7 +7830,7 @@ input[type=text]:focus, input[type=password]:focus {
   padding: 10px;
   border-radius: 50px;
   margin: 10px auto;
-  background-color: rgba(165, 165, 165, 0.4);
+  background-color: #393737;
   user-select: none;
 }
 .draggable-ingredient img {

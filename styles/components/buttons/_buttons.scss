@@ -21,7 +21,9 @@ $colors: ("yellow":$yellow, "green" : $green, "white" : $white , "black" : $blac
     font-size: 20px;
     transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
     position: relative;
+    &.plain{
 
+    }
     &:hover{
       background-color: $color;
       color: $white;
