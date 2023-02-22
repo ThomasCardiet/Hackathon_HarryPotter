@@ -25,7 +25,7 @@ const Choice = () => {
               </h2>
             </div>
             <div className={'choice-container-title'}>
-              <h1 className={'text-50 text-ProzaLibre-SemiBold text-white'}>
+              <h1 className={'text-50 text-Harry text-white'}>
                 Make your choice
               </h1>
             </div>
