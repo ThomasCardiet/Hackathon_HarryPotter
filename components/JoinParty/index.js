@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import useSound from 'use-sound';
+import { Api } from '@/api';
+import { Router } from '@/router';
+import { useRouter } from 'next/router';
+import { SplitChars, Tween } from 'react-gsap';
+import UserBadge from '../UserBadge/UserBadge';
 
-const JoinParty = () => {
+const JoinParty = ({ setUser, user }) => {
+  const router = useRouter();
+
   const soundUrl = '/sounds/button1.wav';
 
   const [play, { stop }] = useSound(soundUrl, { volume: 0.4 });
   const onClickLaunchSound = () => {
     play();
   };
+
+  useEffect(() => {
+    // REDIRECT IF NOT LOGGED
+    if (!Api.isLoggedUser()) router.push(Router.getRoutes().LOGIN.slug);
+  }, []);
   return (
     <>
       <main>
@@ -19,20 +31,38 @@ const JoinParty = () => {
                 <img src={'images/icons/arrow-left.svg'} alt={'back'} />
               </Link>
               <div className={'join-container-top-title'}>
-                <h1 className={'text-50 text-ProzaLibre-SemiBold text-white'}>
-                  Join a party
-                </h1>
+                <h3 className={'text-50 text-Harry text-yellow'}>
+                  <Tween
+                    from={{ opacity: '0', scale: '0.4' }}
+                    to={{ opacity: '100%', scale: '1' }}
+                    ease="expo.out()"
+                    duration={6}
+                    stagger={0.1}
+                  >
+                    <SplitChars
+                      wrapper={<span style={{ display: 'inline-block' }} />}
+                    >
+                      Rejoins une partie
+                    </SplitChars>
+                  </Tween>
+                </h3>
+                <h3 className={'text-50 text-Harry text-yellow text-blur'}>
+                  <Tween
+                    from={{ opacity: '0', scale: '0.4' }}
+                    to={{ opacity: '100%', scale: '1' }}
+                    ease="expo.out()"
+                    duration={6}
+                    stagger={0.1}
+                  >
+                    <SplitChars
+                      wrapper={<span style={{ display: 'inline-block' }} />}
+                    >
+                      Rejoins une partie
+                    </SplitChars>
+                  </Tween>
+                </h3>
               </div>
-              <div className={'join-container-top-user'}>
-                <div className={'join-container-top-user-image'}>
-                  <img src={'images/houses/serpentard.png'} alt={'house'} />
-
-                </div>
-
-                <h2 className={'text-20 text-ProzaLibre-SemiBold text-white'}>
-                  Axel
-                </h2>
-              </div>
+              <UserBadge user={user} setUser={setUser} />
             </div>
             <div className={'join-container-form'}>
               <form>
@@ -49,13 +79,13 @@ const JoinParty = () => {
                     className={'text-20 text-ProzaLibre-SemiBold text-white'}
                   />
                 </div>
-                <a
-                  type={'submit'}
-                  className={'btn-reset btn-white-clear'}
+                <Link
+                  href={'/create-party'}
+                  className={'btn-reset btn-yellow'}
                   onClick={(e) => onClickLaunchSound()}
                 >
                   Join
-                </a>
+                </Link>
               </form>
             </div>
           </aside>

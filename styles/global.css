@@ -8194,28 +8194,25 @@ input[type=text]:focus, input[type=password]:focus {
   background-repeat: no-repeat;
 }
 .join-container {
-  --padding-top: 90px;
-  position: absolute;
-  width: 70%;
-  height: 60%;
+  height: 100%;
+  width: 100%;
   display: flex;
+  justify-content: center;
   flex-direction: column;
   gap: 50px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: var(--padding-top);
-  border-radius: 20px;
 }
 .join-container-top {
+  position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 .join-container-top-back {
+  position: absolute;
+  left: 20%;
+  top: -100%;
   --size: 40px;
   width: var(--size);
   height: var(--size);
-  top: var(--padding-top);
   z-index: 999;
   cursor: pointer;
 }
@@ -8224,32 +8221,25 @@ input[type=text]:focus, input[type=password]:focus {
   height: 100%;
   object-fit: cover;
 }
-.join-container-top-user {
-  top: var(--padding-top);
-  display: flex;
-  align-items: center;
-}
-.join-container-top-user-image {
-  width: 60px;
-  height: 60px;
-  margin-right: 20px;
-}
-.join-container-top-user-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 .join-container-top-title {
   display: inline-flex;
   justify-content: center;
+  position: relative;
+  z-index: 20;
 }
-.join-container-top-title span {
-  transform: scale(0.5);
+.join-container-top-title .text-blur {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, 0%);
+  filter: blur(10px);
+  animation: ligth 2s infinite;
+  display: flex;
+  justify-content: center;
 }
 .join-container-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
   align-items: center;
   justify-content: center;
   position: relative;
