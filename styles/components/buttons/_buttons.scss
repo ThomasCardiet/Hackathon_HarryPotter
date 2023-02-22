@@ -31,14 +31,21 @@ $colors: (
       color: $white;
     }
 
-    &-plain {
+    &-clear {
       @extend .btn-#{$colorName};
-      background-color: $color;
-      color: $white;
+      background-color: transparent;
+      color: $color;
+      border: none;
+      background-image: linear-gradient($yellow, $yellow),
+        linear-gradient(transparent, transparent);
+      background-size: 0 2px, auto;
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      transition: all 0.2s ease-out;
 
       &:hover {
+        background-size: 70% 2px, auto;
         background-color: transparent;
-        color: $color;
       }
     }
   }

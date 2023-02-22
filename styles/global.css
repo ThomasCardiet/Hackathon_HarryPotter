@@ -101,7 +101,7 @@
   font-family: "ProzaLibre-Bold";
 }
 
-.text-Harry, .btn-red, .btn-red-plain, .btn-black, .btn-black-plain, .btn-white, .btn-white-plain, .btn-green, .btn-green-plain, .btn-yellow, .btn-yellow-plain {
+.text-Harry, .btn-red, .btn-red-clear, .btn-black, .btn-black-clear, .btn-white, .btn-white-clear, .btn-green, .btn-green-clear, .btn-yellow, .btn-yellow-clear {
   font-family: "Crimes of Grindelwald";
 }
 
@@ -176,7 +176,7 @@ table {
   width: fit-content;
 }
 
-.btn-yellow, .btn-yellow-plain {
+.btn-yellow, .btn-yellow-clear {
   color: #F9C749;
   background-color: transparent;
   border: 2px solid #F9C749;
@@ -185,20 +185,26 @@ table {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   position: relative;
 }
-.btn-yellow:hover, .btn-yellow-plain:hover {
+.btn-yellow:hover, .btn-yellow-clear:hover {
   background-color: #F9C749;
   color: #EFEFEF;
 }
-.btn-yellow-plain {
-  background-color: #F9C749;
-  color: #EFEFEF;
-}
-.btn-yellow-plain:hover {
+.btn-yellow-clear {
   background-color: transparent;
   color: #F9C749;
+  border: none;
+  background-image: linear-gradient(#F9C749, #F9C749), linear-gradient(transparent, transparent);
+  background-size: 0 2px, auto;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  transition: all 0.2s ease-out;
+}
+.btn-yellow-clear:hover {
+  background-size: 70% 2px, auto;
+  background-color: transparent;
 }
 
-.btn-green, .btn-green-plain {
+.btn-green, .btn-green-clear {
   color: #2E8B57;
   background-color: transparent;
   border: 2px solid #2E8B57;
@@ -207,20 +213,26 @@ table {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   position: relative;
 }
-.btn-green:hover, .btn-green-plain:hover {
+.btn-green:hover, .btn-green-clear:hover {
   background-color: #2E8B57;
   color: #EFEFEF;
 }
-.btn-green-plain {
-  background-color: #2E8B57;
-  color: #EFEFEF;
-}
-.btn-green-plain:hover {
+.btn-green-clear {
   background-color: transparent;
   color: #2E8B57;
+  border: none;
+  background-image: linear-gradient(#F9C749, #F9C749), linear-gradient(transparent, transparent);
+  background-size: 0 2px, auto;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  transition: all 0.2s ease-out;
+}
+.btn-green-clear:hover {
+  background-size: 70% 2px, auto;
+  background-color: transparent;
 }
 
-.btn-white, .btn-white-plain {
+.btn-white, .btn-white-clear {
   color: #EFEFEF;
   background-color: transparent;
   border: 2px solid #EFEFEF;
@@ -229,20 +241,26 @@ table {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   position: relative;
 }
-.btn-white:hover, .btn-white-plain:hover {
+.btn-white:hover, .btn-white-clear:hover {
   background-color: #EFEFEF;
   color: #EFEFEF;
 }
-.btn-white-plain {
-  background-color: #EFEFEF;
-  color: #EFEFEF;
-}
-.btn-white-plain:hover {
+.btn-white-clear {
   background-color: transparent;
   color: #EFEFEF;
+  border: none;
+  background-image: linear-gradient(#F9C749, #F9C749), linear-gradient(transparent, transparent);
+  background-size: 0 2px, auto;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  transition: all 0.2s ease-out;
+}
+.btn-white-clear:hover {
+  background-size: 70% 2px, auto;
+  background-color: transparent;
 }
 
-.btn-black, .btn-black-plain {
+.btn-black, .btn-black-clear {
   color: #393737;
   background-color: transparent;
   border: 2px solid #393737;
@@ -251,20 +269,26 @@ table {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   position: relative;
 }
-.btn-black:hover, .btn-black-plain:hover {
+.btn-black:hover, .btn-black-clear:hover {
   background-color: #393737;
   color: #EFEFEF;
 }
-.btn-black-plain {
-  background-color: #393737;
-  color: #EFEFEF;
-}
-.btn-black-plain:hover {
+.btn-black-clear {
   background-color: transparent;
   color: #393737;
+  border: none;
+  background-image: linear-gradient(#F9C749, #F9C749), linear-gradient(transparent, transparent);
+  background-size: 0 2px, auto;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  transition: all 0.2s ease-out;
+}
+.btn-black-clear:hover {
+  background-size: 70% 2px, auto;
+  background-color: transparent;
 }
 
-.btn-red, .btn-red-plain {
+.btn-red, .btn-red-clear {
   color: #740001;
   background-color: transparent;
   border: 2px solid #740001;
@@ -273,17 +297,23 @@ table {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   position: relative;
 }
-.btn-red:hover, .btn-red-plain:hover {
+.btn-red:hover, .btn-red-clear:hover {
   background-color: #740001;
   color: #EFEFEF;
 }
-.btn-red-plain {
-  background-color: #740001;
-  color: #EFEFEF;
-}
-.btn-red-plain:hover {
+.btn-red-clear {
   background-color: transparent;
   color: #740001;
+  border: none;
+  background-image: linear-gradient(#F9C749, #F9C749), linear-gradient(transparent, transparent);
+  background-size: 0 2px, auto;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  transition: all 0.2s ease-out;
+}
+.btn-red-clear:hover {
+  background-size: 70% 2px, auto;
+  background-color: transparent;
 }
 
 .ag-format-container {
@@ -7785,9 +7815,6 @@ input[type=text]:focus, input[type=password]:focus {
   justify-content: center;
   flex-direction: column;
   gap: 50px;
-  background: rgba(217, 217, 217, 0.08);
-  box-shadow: inset 67px -67px 67px rgba(165, 165, 165, 0.1), inset -67px 67px 67px rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -8005,7 +8032,6 @@ input[type=text]:focus, input[type=password]:focus {
   background-size: cover;
   background-repeat: no-repeat;
   animation: apear 2s;
-  background-position: center center;
 }
 .join-container {
   --padding-top: 90px;
@@ -8015,9 +8041,6 @@ input[type=text]:focus, input[type=password]:focus {
   display: flex;
   flex-direction: column;
   gap: 50px;
-  background: rgba(217, 217, 217, 0.08);
-  box-shadow: inset 67px -67px 67px rgba(165, 165, 165, 0.1), inset -67px 67px 67px rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -8029,8 +8052,8 @@ input[type=text]:focus, input[type=password]:focus {
   --size: 40px;
   width: var(--size);
   height: var(--size);
-  top: calc(var(--padding-top) - 20px);
-  left: 5%;
+  top: var(--padding-top);
+  left: 14%;
 }
 .join-container-back img {
   width: 100%;
@@ -8039,7 +8062,7 @@ input[type=text]:focus, input[type=password]:focus {
 }
 .join-container-user {
   position: absolute;
-  right: 5%;
+  right: 7%;
   top: var(--padding-top);
   display: flex;
   align-items: center;

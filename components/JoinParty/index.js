@@ -14,11 +14,9 @@ const JoinParty = () => {
       <main>
         <section className={'join'}>
           <aside className={'join-container'}>
-            <div className={'join-container-back'}>
-              <Link href={'/choice'}>
-                <img src={'images/icons/arrow-left.svg'} alt={'back'} />
-              </Link>
-            </div>
+            <Link href={'/choice'} className={'join-container-back'}>
+              <img src={'images/icons/arrow-left.svg'} alt={'back'} />
+            </Link>
             <div className={'join-container-user'}>
               <div className={'join-container-user-image'}>
                 <img src={'images/houses/serpentard.png'} alt={'house'} />
@@ -50,7 +48,7 @@ const JoinParty = () => {
                 </div>
                 <a
                   type={'submit'}
-                  className={'btn-reset btn-yellow-plain'}
+                  className={'btn-reset btn-white-clear'}
                   onClick={(e) => onClickLaunchSound()}
                 >
                   Join
