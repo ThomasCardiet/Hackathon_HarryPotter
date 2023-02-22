@@ -7,7 +7,7 @@ import { Router } from '@/router';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 
-const Choice = () => {
+const Choice = ({ setUser }) => {
   const router = useRouter();
   const soundUrl = '/sounds/button1.wav';
 
@@ -22,7 +22,7 @@ const Choice = () => {
   }, []);
 
   const logout = () => {
-    const result = Api.LogoutUser();
+    const result = Api.LogoutUser(setUser);
     if (result.statusCode !== 200) {
       return toast.error(result.message, {
         icon: '🧙',
@@ -60,14 +60,14 @@ const Choice = () => {
             <div className={'choice-container-button'}>
               <Link
                 href={'/create-party'}
-                className={'btn-reset btn-yellow-plain'}
+                className={'btn-reset btn-white-clear'}
                 onClick={(e) => onClickLaunchSound()}
               >
                 Create a party
               </Link>
               <Link
                 href={'/join-party'}
-                className={'btn-reset btn-yellow-plain'}
+                className={'btn-reset btn-white-clear'}
                 onClick={(e) => onClickLaunchSound()}
               >
                 Join a party

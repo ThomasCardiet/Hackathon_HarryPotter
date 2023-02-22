@@ -14,24 +14,24 @@ const JoinParty = () => {
       <main>
         <section className={'join'}>
           <aside className={'join-container'}>
-            <div className={'join-container-back'}>
-              <Link href={'/choice'}>
+            <div className={'join-container-top'}>
+              <Link href={'/choice'} className={'join-container-top-back'}>
                 <img src={'images/icons/arrow-left.svg'} alt={'back'} />
               </Link>
-            </div>
-            <div className={'join-container-user'}>
-              <div className={'join-container-user-image'}>
-                <img src={'images/houses/serpentard.png'} alt={'house'} />
+              <div className={'join-container-top-title'}>
+                <h1 className={'text-50 text-ProzaLibre-SemiBold text-white'}>
+                  Join a party
+                </h1>
               </div>
+              <div className={'join-container-top-user'}>
+                <div className={'join-container-top-user-image'}>
+                  <img src={'images/houses/serpentard.png'} alt={'house'} />
+                </div>
 
-              <h2 className={'text-20 text-ProzaLibre-SemiBold text-white'}>
-                Axel
-              </h2>
-            </div>
-            <div className={'join-container-title'}>
-              <h1 className={'text-50 text-ProzaLibre-SemiBold text-white'}>
-                Join a party
-              </h1>
+                <h2 className={'text-20 text-ProzaLibre-SemiBold text-white'}>
+                  Axel
+                </h2>
+              </div>
             </div>
             <div className={'join-container-form'}>
               <form>
@@ -50,7 +50,7 @@ const JoinParty = () => {
                 </div>
                 <a
                   type={'submit'}
-                  className={'btn-reset btn-yellow-plain'}
+                  className={'btn-reset btn-white-clear'}
                   onClick={(e) => onClickLaunchSound()}
                 >
                   Join

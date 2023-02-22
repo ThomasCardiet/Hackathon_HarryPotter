@@ -100,7 +100,7 @@ export class Api {
    *
    * @param {Object} credentials
    */
-  static LogoutUser() {
+  static LogoutUser(setState = null) {
     if (!this.isLoggedUser()) {
       return {
         statusCode: 400,
@@ -109,6 +109,7 @@ export class Api {
     }
 
     this.unStoreUser();
+    if (setState) setState(null);
 
     return {
       statusCode: 200,
