@@ -37,12 +37,14 @@ const Page = ({ path }) => {
 
     socket.on('connect', () => {})
   }
-
   if(!users) return <Waiting />
 
   return (<Component route={route} />)
-
+/*
+  return (<Component route={route} />)
+*/
 }
+
 
 export default Page;
 

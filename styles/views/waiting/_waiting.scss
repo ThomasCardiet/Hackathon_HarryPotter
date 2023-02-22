@@ -1,20 +1,7 @@
 .waiting-block {
-  --width: 40vw;
-  --height: 40vh;
-
-  position: fixed;
-  background-color: rgba(163, 163, 163, 0.286);
-  color: yellow;
-  width: var(--width);
-  text-align: center;
-  height: var(--height);
-  border-radius: 8px;
-  top: 30vh;
-  left: 30vw;
-
-  p {
-    height: 100%;
-    transform: translateY(50%);
-    font-size: 25px;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
 }

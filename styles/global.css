@@ -7848,7 +7848,7 @@ input[type=text]:focus, input[type=password]:focus {
 
 .login {
   height: 100vh;
-  background-image: url("../public/images/wallpaper-home.png");
+  background-image: url("../public/images/wallpaper-login.png");
   background-size: cover;
   background-repeat: no-repeat;
   animation: apear 2s;
@@ -7984,22 +7984,11 @@ input[type=text]:focus, input[type=password]:focus {
 }
 
 .waiting-block {
-  --width: 40vw;
-  --height: 40vh;
-  position: fixed;
-  background-color: rgba(163, 163, 163, 0.286);
-  color: yellow;
-  width: var(--width);
-  text-align: center;
-  height: var(--height);
-  border-radius: 8px;
-  top: 30vh;
-  left: 30vw;
-}
-.waiting-block p {
-  height: 100%;
-  transform: translateY(50%);
-  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
 }
 
 body {

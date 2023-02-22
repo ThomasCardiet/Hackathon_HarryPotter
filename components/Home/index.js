@@ -6,7 +6,6 @@ import { SplitChars, Tween, Controls, PlayState } from 'react-gsap';
 import Link from 'next/link';
 import io from 'Socket.IO-client';
 let socket;
-import Sparkles from '../sparkles/sparkles';
 
 const Home = () => {
   const dropBlockRef = useRef(null);
@@ -14,7 +13,6 @@ const Home = () => {
   const socketInitializer = async () => {
     await fetch('/api/socket');
     socket = io();
-
     socket.on('connect', () => {
       console.log('connected');
     });
@@ -24,13 +22,23 @@ const Home = () => {
     socketInitializer();
   }, []);
 
-  const soundUrl = 'test.mp3';
-
-  const [play, { stop }] = useSound(soundUrl, { volume: 0.2 });
-  if (soundUrl) {
-    play();
+  const soundUrl = 'Booum.mp3';
+  const soundUrl2 = 'rain-and-thunder-113218.mp3';
+  
+  const [play, { stop }] = useSound(
+      soundUrl,
+      { volume: 1 },
+  );
+  
+  const [play2, { stop2 }] = useSound(
+      soundUrl2,
+      { volume: 0.6 },
+  );
+  const onClickLaunchSound = ()=>{
+    play()
+    play2()
   }
-
+  
   return (
     <>
       <Head>
@@ -81,7 +89,7 @@ const Home = () => {
               </p>
             </div>
             <div className={'home-container-button'}>
-              <Link href={'/Login'} className={'btn-reset btn-yellow'}>
+              <Link onClick={()=>onClickLaunchSound()} href={'/Login'} className={'btn-reset btn-yellow'}>
                 Commencer
               </Link>
             </div>
