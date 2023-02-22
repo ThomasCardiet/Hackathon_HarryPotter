@@ -8047,43 +8047,43 @@ input[type=text]:focus, input[type=password]:focus {
   padding: var(--padding-top);
   border-radius: 20px;
 }
-.join-container-back {
-  position: absolute;
+.join-container-top {
+  display: flex;
+  justify-content: space-between;
+}
+.join-container-top-back {
   --size: 40px;
   width: var(--size);
   height: var(--size);
   top: var(--padding-top);
-  left: 14%;
+  z-index: 999;
+  cursor: pointer;
 }
-.join-container-back img {
+.join-container-top-back img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.join-container-user {
-  position: absolute;
-  right: 7%;
+.join-container-top-user {
   top: var(--padding-top);
   display: flex;
   align-items: center;
 }
-.join-container-user-image {
+.join-container-top-user-image {
   width: 60px;
   height: 60px;
   margin-right: 20px;
 }
-.join-container-user-image img {
+.join-container-top-user-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.join-container-title {
+.join-container-top-title {
   display: inline-flex;
   justify-content: center;
-  position: relative;
-  z-index: 20;
 }
-.join-container-title span {
+.join-container-top-title span {
   transform: scale(0.5);
 }
 .join-container-form {
