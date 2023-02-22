@@ -20,15 +20,14 @@ let SchemaLogin = yup.object().shape({
     password: yup.string().required("Le mot de passe est obligatoire pour ce connecter"),
 });
 
-export default function LoginForm( { users } ){
+export default function LoginForm(){
 
     const router = useRouter();
 
+    // REDIRECT IF LOGGED
     useEffect(() => {
       if(Api.isLoggedUser()) router.push(Router.getRoutes().CHOICE.slug)
     }, [])
-
-    if (!users) return <Waiting />;
 
 
     const onSubmit = (credentials: MyFormValues) => {
