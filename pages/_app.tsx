@@ -18,6 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
     return (
       <AnimatePresence exitBeforeEnter>
+          <Sparkles/>
           <motion.div
               key={router.route}
               initial="initialState"
@@ -39,7 +40,6 @@ export default function App({ Component, pageProps }: AppProps) {
               }}>
 
       <main style={{zIndex:99}}>
-          <Sparkles/>
           <Component {...pageProps} />
       </main>
           </motion.div>
