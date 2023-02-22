@@ -7720,6 +7720,22 @@ input[type=text]:focus, input[type=password]:focus {
   box-shadow: 0px 0px 50px 30px rgba(249, 199, 73, 0.76);
 }
 
+.count-down {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  color: white;
+}
+.count-down p {
+  font-size: 25px;
+}
+.count-down.warning {
+  color: rgb(206, 157, 65);
+}
+.count-down.dangerous {
+  color: rgb(216, 70, 70);
+}
+
 .home {
   height: 100vh;
   background-image: url("../public/images/wallpaper-home.png");
@@ -7931,10 +7947,28 @@ input[type=text]:focus, input[type=password]:focus {
   padding: 10px 20px;
 }
 
+.party__potion-name {
+  --width: 30vw;
+  position: fixed;
+  top: 10px;
+  left: calc(50vw - var(--width) / 2);
+  background: url("/images/carte.png");
+  background-size: cover;
+  padding: 35px 10px 20px 10px;
+  width: var(--width);
+  text-align: center;
+}
+.party__potion-name p {
+  margin-top: 10px;
+}
+.party__potion-name p span {
+  color: rgb(114, 67, 175);
+}
+
 .drop-block {
   --size: 400px;
   position: fixed;
-  top: calc(50% - var(--size) / 2);
+  top: calc(60% - var(--size) / 2);
   left: calc(50% - var(--size) / 2);
   width: var(--size);
   height: var(--size);

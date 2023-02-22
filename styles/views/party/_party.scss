@@ -3,11 +3,31 @@
   padding: 10px 20px;
 }
 
+.party__potion-name {
+  --width: 30vw;
+
+  position: fixed;
+  top: 10px;
+  left: calc(50vw - (var(--width) / 2));
+  background: url('/images/carte.png');
+  background-size: cover;
+  padding: 35px 10px 20px 10px;
+  width: var(--width);
+  text-align: center;
+
+  p {
+    margin-top: 10px;
+    span {
+      color: rgb(114, 67, 175);
+    }
+  }
+}
+
 .drop-block {
   --size: 400px;
 
   position: fixed;
-  top: calc(50% - var(--size) / 2);
+  top: calc(60% - var(--size) / 2);
   left: calc(50% - var(--size) / 2);
 
   width: var(--size);
