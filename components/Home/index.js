@@ -15,9 +15,7 @@ const Home = () => {
     await fetch('/api/socket');
     socket = io();
 
-    socket.on('connect', () => {
-      console.log('connected');
-    });
+    socket.on('connect', () => {});
   };
 
   useEffect(() => {

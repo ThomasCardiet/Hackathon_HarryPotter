@@ -1,6 +1,5 @@
 import { Router } from '@/router';
 import Default from '@/components/Default';
-import {Waiting} from '@/components/Waiting';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import io from 'Socket.IO-client'
@@ -18,7 +17,8 @@ const Page = ({ path }) => {
   });
 
   // SOCKET STATES
-  const [users, setUsers] = useState(null);
+  const [users, setUsers] = useState([]);
+  const [user, setUser] = useState(null);
 
   // GET USERS FROM API
   useEffect(() => {
@@ -27,6 +27,7 @@ const Page = ({ path }) => {
         setUsers(data);
       }
     })
+    setUser(Api.getLoggedUser())
   }, [])
 
   useEffect(() => {socketInitializer()}, [])
@@ -38,9 +39,7 @@ const Page = ({ path }) => {
     socket.on('connect', () => {})
   }
 
-  if(!users) return <Waiting />
-
-  return (<Component route={route} />)
+  return (<Component route={route} users={users} />)
 
 }
 

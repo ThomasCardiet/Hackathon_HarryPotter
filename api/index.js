@@ -1,8 +1,12 @@
+const LOCAL_STORAGE_AUTH = 'auth';
+
 export class Api {
   static path = '/';
 
   static routes = {
     GET_USERS: 'users',
+    AUTH_LOGIN: 'auth/log-in',
+    AUTH_REGISTER: 'auth/register',
   };
 
   static getPath() {
@@ -18,13 +22,16 @@ export class Api {
    *
    * @param {Object} params
    *
-   * @return {Headers}
+   * @return {Object}
    */
   static getHeaders(params = {}) {
-    const headers = new Headers();
+    const headers = {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    };
 
     Object.values(params).forEach(([key, value]) => {
-      headers.append(key, value);
+      headers[key] = value;
     });
 
     return headers;
@@ -68,5 +75,52 @@ export class Api {
    */
   static async getAllUsers() {
     return await this.fetchApi(this.getRoutes().GET_USERS);
+  }
+
+  /**
+   * LOGIN USER
+   *
+   * @param {Object} credentials
+   */
+  static async loginUser(credentials) {
+    if (this.isLoggedUser())
+      return {
+        statusCode: 500,
+        message: 'Vous êtes déjà connecté',
+      };
+    return await this.fetchApi(
+      this.getRoutes().AUTH_LOGIN,
+      credentials,
+      'POST'
+    );
+  }
+
+  // AUTH
+
+  /**
+   * STORE USER
+   *
+   */
+  static storeUser(credentials) {
+    localStorage.setItem(LOCAL_STORAGE_AUTH, JSON.stringify(credentials));
+  }
+
+  /**
+   * EXIST LOGGED USER
+   *
+   */
+  static isLoggedUser() {
+    return localStorage.getItem(LOCAL_STORAGE_AUTH) ? true : false;
+  }
+
+  /**
+   * GET CURRENT LOGGED USER
+   *
+   */
+  static getLoggedUser() {
+    if (!this.isLoggedUser()) return null;
+    const local = JSON.parse(localStorage.getItem(LOCAL_STORAGE_AUTH));
+    if (!local.user) return null;
+    return local.user;
   }
 }
