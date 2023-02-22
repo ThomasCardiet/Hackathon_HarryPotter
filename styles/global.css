@@ -185,13 +185,17 @@ table {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   position: relative;
 }
-.btn-yellow-plain {
-  background-color: #F9C749;
-  color: #F9C749;
-}
 .btn-yellow:hover, .btn-yellow-plain:hover {
   background-color: #F9C749;
   color: #EFEFEF;
+}
+.btn-yellow-plain {
+  background-color: #F9C749;
+  color: #EFEFEF;
+}
+.btn-yellow-plain:hover {
+  background-color: transparent;
+  color: #F9C749;
 }
 
 .btn-green, .btn-green-plain {
@@ -203,13 +207,17 @@ table {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   position: relative;
 }
-.btn-green-plain {
-  background-color: #2E8B57;
-  color: #F9C749;
-}
 .btn-green:hover, .btn-green-plain:hover {
   background-color: #2E8B57;
   color: #EFEFEF;
+}
+.btn-green-plain {
+  background-color: #2E8B57;
+  color: #EFEFEF;
+}
+.btn-green-plain:hover {
+  background-color: transparent;
+  color: #2E8B57;
 }
 
 .btn-white, .btn-white-plain {
@@ -221,12 +229,16 @@ table {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   position: relative;
 }
-.btn-white-plain {
-  background-color: #EFEFEF;
-  color: #F9C749;
-}
 .btn-white:hover, .btn-white-plain:hover {
   background-color: #EFEFEF;
+  color: #EFEFEF;
+}
+.btn-white-plain {
+  background-color: #EFEFEF;
+  color: #EFEFEF;
+}
+.btn-white-plain:hover {
+  background-color: transparent;
   color: #EFEFEF;
 }
 
@@ -239,13 +251,17 @@ table {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   position: relative;
 }
-.btn-black-plain {
-  background-color: #393737;
-  color: #F9C749;
-}
 .btn-black:hover, .btn-black-plain:hover {
   background-color: #393737;
   color: #EFEFEF;
+}
+.btn-black-plain {
+  background-color: #393737;
+  color: #EFEFEF;
+}
+.btn-black-plain:hover {
+  background-color: transparent;
+  color: #393737;
 }
 
 .btn-red, .btn-red-plain {
@@ -257,13 +273,17 @@ table {
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   position: relative;
 }
-.btn-red-plain {
-  background-color: #740001;
-  color: #F9C749;
-}
 .btn-red:hover, .btn-red-plain:hover {
   background-color: #740001;
   color: #EFEFEF;
+}
+.btn-red-plain {
+  background-color: #740001;
+  color: #EFEFEF;
+}
+.btn-red-plain:hover {
+  background-color: transparent;
+  color: #740001;
 }
 
 .ag-format-container {
