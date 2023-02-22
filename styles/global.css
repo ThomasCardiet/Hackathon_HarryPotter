@@ -7692,6 +7692,17 @@ input[type=text]:focus, input[type=password]:focus {
   box-shadow: 0px 0px 50px 30px rgba(249, 199, 73, 0.76);
 }
 
+.text-75{
+  font-size: 75px;
+  line-height: 105px;
+}
+
+.text-center{
+  text-align: center;
+}
+.text-left{
+  text-align: left;
+}
 .home {
   height: 100vh;
   background-image: url("../public/images/wallpaper-home.png");
@@ -7720,8 +7731,6 @@ input[type=text]:focus, input[type=password]:focus {
   transform: translate(-50%, 0%);
   filter: blur(10px);
   animation: ligth 2s infinite;
-  display: flex;
-  justify-content: center;
 }
 .home-container-description {
   display: flex;
@@ -7736,7 +7745,67 @@ input[type=text]:focus, input[type=password]:focus {
   z-index: 20;
 }
 
-@keyframes apear {
+.success{
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  animation: apear 2s;
+  text-align: center;
+}
+.success-container{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.success-container-description{
+  margin-left: 15vw;
+  margin-right: 15vw;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+  height: 50vh;
+  background: rgba(217, 217, 217, 0.08);
+  opacity: 0.97;
+  border-radius: 20px;
+  /* Add the blur effect */
+  backdrop-filter: blur(15px);
+  box-shadow: inset 67px -67px 67px rgba(165, 165, 165, 0.1), inset -67px 67px 67px rgba(255, 255, 255, 0.1);
+  font-size: 21px;
+}
+
+.Serpentard{
+  background-image: url("../public/images/SucessImgSerpentard.png");
+}
+
+.Griffondor{
+  background-image: url("../public/images/SucessImgGriffondor.png");
+}
+
+.Poussoufle{
+  background-image: url("../public/images/SucessImgPoussoufle.png");
+}
+
+.Serdaigle{
+  background-image: url("../public/images/SucessImgSerdaigle.png");
+}
+
+.adjust-description {
+  margin: 5vh auto;
+}
+table,
+td, th{
+    border: 2px solid #F9C749;
+    min-width: 10vw;
+    padding: 1vh 0vw;
+}
+
+table{
+  border-radius: 2px;
+}
+@keyframes appear {
   0% {
     opacity: 0;
   }
