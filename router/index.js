@@ -12,7 +12,7 @@ export class Router {
     },
     LOGIN: {
       name: 'Login',
-      slug: '/login',
+      slug: '/Login',
     },
     HOME: {
       name: 'Home',
@@ -21,6 +21,10 @@ export class Router {
     PARTY: {
       name: 'Party',
       slug: '/party',
+    },
+    JOIN_PARTY: {
+      name: 'JoinParty',
+      slug: '/join-party',
     },
   };
 
