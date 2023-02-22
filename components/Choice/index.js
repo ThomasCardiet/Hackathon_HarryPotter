@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import React from 'react';
 import Link from 'next/link';
 import useSound from 'use-sound';
@@ -32,14 +31,14 @@ const Choice = () => {
             <div className={'choice-container-button'}>
               <Link
                 href={'/create-party'}
-                className={'btn-reset btn-yellow-plain'}
+                className={'btn-reset btn-white-clear'}
                 onClick={(e) => onClickLaunchSound()}
               >
                 Create a party
               </Link>
               <Link
                 href={'/join-party'}
-                className={'btn-reset btn-yellow-plain'}
+                className={'btn-reset btn-white-clear'}
                 onClick={(e) => onClickLaunchSound()}
               >
                 Join a party

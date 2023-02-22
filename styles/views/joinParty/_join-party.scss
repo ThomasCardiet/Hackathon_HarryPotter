@@ -4,7 +4,6 @@
   background-size: cover;
   background-repeat: no-repeat;
   animation: apear 2s;
-  background-position: center center;
 
   &-container {
     --padding-top: 90px;
@@ -15,10 +14,6 @@
     display: flex;
     flex-direction: column;
     gap: 50px;
-    background: rgba(217, 217, 217, 0.08);
-    box-shadow: inset 67px -67px 67px rgba(165, 165, 165, 0.1),
-      inset -67px 67px 67px rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
 
     top: 50%;
     left: 50%;
@@ -31,8 +26,8 @@
       --size: 40px;
       width: var(--size);
       height: var(--size);
-      top: calc(var(--padding-top) - 20px);
-      left: 5%;
+      top: var(--padding-top);
+      left: 14%;
 
       img {
         width: 100%;
@@ -44,7 +39,7 @@
     &-user {
       position: absolute;
 
-      right: 5%;
+      right: 7%;
       top: var(--padding-top);
 
       display: flex;
