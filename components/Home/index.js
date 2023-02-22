@@ -5,11 +5,9 @@ import useSound from 'use-sound';
 import { SplitChars, Tween, Controls, PlayState } from 'react-gsap';
 import Link from 'next/link';
 import io from 'Socket.IO-client';
-let socket;
 import { Router } from '../../router';
-import Sparkles from '../sparkles/sparkles';
-
-const Home = ({ user }) => {
+let socket;
+const Home = ({user}) => {
   const dropBlockRef = useRef(null);
   const ingredients = getIngredients();
   const socketInitializer = async () => {
@@ -23,13 +21,23 @@ const Home = ({ user }) => {
     socketInitializer();
   }, []);
 
-  const soundUrl = 'test.mp3';
-
-  const [play, { stop }] = useSound(soundUrl, { volume: 0.2 });
-  if (soundUrl) {
-    play();
+  const soundUrl = 'Booum.mp3';
+  const soundUrl2 = 'rain-and-thunder-113218.mp3';
+  
+  const [play, { stop }] = useSound(
+      soundUrl,
+      { volume: 1 },
+  );
+  
+  const [play2, { stop2 }] = useSound(
+      soundUrl2,
+      { volume: 0.6 },
+  );
+  const onClickLaunchSound = ()=>{
+    play()
+    play2()
   }
-
+  
   return (
     <>
       <Head>
@@ -81,6 +89,7 @@ const Home = ({ user }) => {
             </div>
             <div className={'home-container-button'}>
               <Link
+                  onClick={()=>onClickLaunchSound()}
                 href={
                   user
                     ? Router.getRoutes().CHOICE.slug
