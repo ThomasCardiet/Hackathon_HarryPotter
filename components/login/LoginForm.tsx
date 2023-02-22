@@ -37,11 +37,14 @@ export default function LoginForm(){
                     <ErrorMessage name={"username"} component={"p"} className={"text-error text-ProzaLibre-Regular"}/>
                 </div>
                 <div className={"form-row"}>
-                    <label className={""}>Mot de passe</label>
+                    <label className={"text-15 text-white text-ProzaLibre-Regular"}>Mot de passe</label>
                     <Field type={"password"} name={"password"} placeholder={"Mot de passe"} />
                     <ErrorMessage name={"password"} component={"p"} className={"text-error text-ProzaLibre-Regular"}/>
                 </div>
-                <button type={"submit"} className={"btn-reset btn-yellow"}>Connexion</button>
+                <div className={"form-row-button"}>
+                    <button type={"submit"} className={"btn-reset btn-yellow"}>Connexion</button>
+                    <a href={"#"} type={"submit"} className={"btn-reset btn-yellow"}>Inscription</a>
+                </div>
             </Form>
         </Formik>
     </>
