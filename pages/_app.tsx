@@ -39,8 +39,8 @@ export default function App({ Component, pageProps }: AppProps) {
               }}>
 
       <main style={{zIndex:99}}>
-          <Component {...pageProps} />
           <Sparkles/>
+          <Component {...pageProps} />
       </main>
           </motion.div>
           <ToastContainer/>
