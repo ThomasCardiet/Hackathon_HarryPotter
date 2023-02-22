@@ -26,15 +26,20 @@ $colors: (
     transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
     position: relative;
 
-    &-plain {
-      @extend .btn-#{$colorName};
-      background-color: $color;
-      color: $yellow;
-    }
-
     &:hover {
       background-color: $color;
       color: $white;
+    }
+
+    &-plain {
+      @extend .btn-#{$colorName};
+      background-color: $color;
+      color: $white;
+
+      &:hover {
+        background-color: transparent;
+        color: $color;
+      }
     }
   }
 }

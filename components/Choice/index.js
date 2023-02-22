@@ -29,10 +29,10 @@ const Choice = () => {
               </h1>
             </div>
             <div className={'choice-container-button'}>
-              <Link href={'/create'} className={'btn-reset btn-white-plain'}>
+              <Link href={'/create'} className={'btn-reset btn-yellow-plain'}>
                 Create a party
               </Link>
-              <Link href={'/join'} className={'btn-reset btn-white-plain'}>
+              <Link href={'/join'} className={'btn-reset btn-yellow-plain'}>
                 Join a party
               </Link>
             </div>
