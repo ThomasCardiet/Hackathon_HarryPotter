@@ -1,15 +1,43 @@
 import Head from 'next/head';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import useSound from 'use-sound';
+import { Api } from '@/api';
+import { Router } from '@/router';
+import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
 const Choice = () => {
+  const router = useRouter();
   const soundUrl = '/sounds/button1.wav';
 
   const [play, { stop }] = useSound(soundUrl, { volume: 0.4 });
   const onClickLaunchSound = () => {
     play();
   };
+
+  useEffect(() => {
+    // REDIRECT IF NOT LOGGED
+    if (!Api.isLoggedUser()) router.push(Router.getRoutes().LOGIN.slug);
+  }, []);
+
+  const logout = () => {
+    const result = Api.LogoutUser();
+    if (result.statusCode !== 200) {
+      return toast.error(result.message, {
+        icon: '🧙',
+        theme: 'light',
+      });
+    }
+
+    toast.success(result.message, {
+      icon: '🧙',
+      theme: 'light',
+    });
+
+    router.push(Router.getRoutes().HOME);
+  };
+
   return (
     <>
       <main>
@@ -44,6 +72,7 @@ const Choice = () => {
               >
                 Join a party
               </Link>
+              <button onClick={() => logout()}>Déconnexion</button>
             </div>
           </aside>
         </section>

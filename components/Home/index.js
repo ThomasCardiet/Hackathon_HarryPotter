@@ -83,8 +83,8 @@ const Home = ({ user }) => {
               <Link
                 href={
                   user
-                    ? Router.getRoutes().AUTH_LOGIN.slug
-                    : Router.getRoutes().CHOICE.slug
+                    ? Router.getRoutes().CHOICE.slug
+                    : Router.getRoutes().LOGIN.slug
                 }
                 className={'btn-reset btn-yellow'}
               >

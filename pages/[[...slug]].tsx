@@ -39,7 +39,7 @@ const Page = ({ path }) => {
     socket.on('connect', () => {})
   }
 
-  return (<Component route={route} users={users} />)
+  return (<Component route={route} users={users} user={user} />)
 
 }
 
