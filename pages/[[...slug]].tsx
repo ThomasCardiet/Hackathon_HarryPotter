@@ -17,6 +17,11 @@ const Page = ({ path }) => {
     });
   });
 
+  // SOCKET STATES
+  const [users, setUsers] = useState([]);
+  const [user, setUser] = useState(null);
+
+
   useEffect(() => {socketInitializer()}, [])
 
   const socketInitializer = async () => {

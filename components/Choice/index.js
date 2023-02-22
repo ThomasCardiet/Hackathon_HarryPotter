@@ -1,16 +1,16 @@
-import Head from 'next/head';
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
+import useSound from 'use-sound';
 
 const Choice = () => {
+  const soundUrl = '/sounds/button1.wav';
+
+  const [play, { stop }] = useSound(soundUrl, { volume: 0.4 });
+  const onClickLaunchSound = () => {
+    play();
+  };
   return (
     <>
-      <Head>
-        <title>Hckaton Harry Potter - Potion Game</title>
-        <meta name="description" content="Harry Potter potion maker game" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
-
       <main>
         <section className={'choice'}>
           <aside className={'choice-container'}>
@@ -24,20 +24,22 @@ const Choice = () => {
               </h2>
             </div>
             <div className={'choice-container-title'}>
-              <h1 className={'text-50 text-ProzaLibre-SemiBold text-white'}>
+              <h1 className={'text-50 text-Harry text-white'}>
                 Make your choice
               </h1>
             </div>
             <div className={'choice-container-button'}>
               <Link
                 href={'/create-party'}
-                className={'btn-reset btn-yellow-plain'}
+                className={'btn-reset btn-white-clear'}
+                onClick={(e) => onClickLaunchSound()}
               >
                 Create a party
               </Link>
               <Link
                 href={'/join-party'}
-                className={'btn-reset btn-yellow-plain'}
+                className={'btn-reset btn-white-clear'}
+                onClick={(e) => onClickLaunchSound()}
               >
                 Join a party
               </Link>
