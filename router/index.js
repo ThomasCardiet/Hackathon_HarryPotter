@@ -22,6 +22,10 @@ export class Router {
       name: 'Party',
       slug: '/party',
     },
+    SUCCESS: {
+      name: 'Success',
+      slug: '/success',
+    },
   };
 
   /**

@@ -17,18 +17,6 @@ const Page = ({ path }) => {
     });
   });
 
-  // SOCKET STATES
-  const [users, setUsers] = useState(null);
-
-  // GET USERS FROM API
-  useEffect(() => {
-    Api.getAllUsers().then(data => {
-      if(!data.status || data.status !== 400) {
-        setUsers(data);
-      }
-    })
-  }, [])
-
   useEffect(() => {socketInitializer()}, [])
 
   const socketInitializer = async () => {
@@ -37,14 +25,10 @@ const Page = ({ path }) => {
 
     socket.on('connect', () => {})
   }
-  if(!users) return <Waiting />
 
   return (<Component route={route} />)
-/*
-  return (<Component route={route} />)
-*/
+
 }
-
 
 export default Page;
 
