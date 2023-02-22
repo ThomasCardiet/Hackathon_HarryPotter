@@ -7673,6 +7673,8 @@ input[type=text]:focus, input[type=password]:focus {
 }
 .choice-container-user {
   position: absolute;
+  right: 5%;
+  top: 90px;
   display: flex;
   align-items: center;
 }

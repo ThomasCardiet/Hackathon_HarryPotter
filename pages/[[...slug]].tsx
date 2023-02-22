@@ -38,7 +38,7 @@ const Page = ({ path }) => {
     socket.on('connect', () => {})
   }
 
-  if(!users) return <Waiting />
+  //if(!users) return <Waiting />
 
   return (<Component route={route} />)
 
