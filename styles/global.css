@@ -4,23 +4,23 @@
 }
 @font-face {
   font-family: "ProzaLibre-Bold";
-  src: url("fonts/ProzaLibre-Bold.ttf") format("ttf");
+  src: url("fonts/ProzaLibre-Bold.ttf") format("truetype");
 }
 @font-face {
   font-family: "ProzaLibre-ExtraBold";
-  src: url("fonts/ProzaLibre-ExtraBold.ttf") format("ttf");
+  src: url("fonts/ProzaLibre-ExtraBold.ttf") format("truetype");
 }
 @font-face {
   font-family: "ProzaLibre-Medium";
-  src: url("fonts/ProzaLibre-Medium.ttf") format("ttf");
+  src: url("fonts/ProzaLibre-Medium.ttf") format("truetype");
 }
 @font-face {
   font-family: "ProzaLibre-Regular";
-  src: url("fonts/ProzaLibre-Regular.ttf") format("ttf");
+  src: url("fonts/ProzaLibre-Regular.ttf") format("truetype");
 }
 @font-face {
   font-family: "ProzaLibre-SemiBold";
-  src: url("fonts/ProzaLibre-SemiBold.ttf") format("ttf");
+  src: url("fonts/ProzaLibre-SemiBold.ttf") format("truetype");
 }
 .text-100 {
   font-size: 100px;
@@ -7655,8 +7655,7 @@ input[type=text]:focus, input[type=password]:focus {
   cursor: pointer;
 }
 .indices-container-item.inactive img {
-  -webkit-filter: grayscale(100%);
-  /* Safari 6.0 - 9.0 */
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
 }
 .indices-container-item.second {
@@ -7680,8 +7679,7 @@ input[type=text]:focus, input[type=password]:focus {
   transform: translate(-50%, -50%) rotateY(-180deg);
 }
 .indices-container-item.flip.inactive img {
-  -webkit-filter: grayscale(0%);
-  /* Safari 6.0 - 9.0 */
+  -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
   filter: grayscale(0%);
 }
 .indices-container-item.flip::after {
