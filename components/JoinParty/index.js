@@ -1,16 +1,17 @@
 import Head from 'next/head';
 import React, { useRef, useEffect } from 'react';
 import Link from 'next/link';
+import useSound from 'use-sound';
 
 const JoinParty = () => {
+  const soundUrl = '/sounds/button1.wav';
+
+  const [play, { stop }] = useSound(soundUrl, { volume: 0.6 });
+  const onClickLaunchSound = () => {
+    play();
+  };
   return (
     <>
-      <Head>
-        <title>Hackaton Harry Potter - Potion Game</title>
-        <meta name="description" content="Harry Potter potion maker game" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
-
       <main>
         <section className={'join'}>
           <aside className={'join-container'}>
@@ -48,7 +49,11 @@ const JoinParty = () => {
                     className={'text-20 text-ProzaLibre-SemiBold text-white'}
                   />
                 </div>
-                <a type={'submit'} className={'btn-reset btn-yellow-plain'}>
+                <a
+                  type={'submit'}
+                  className={'btn-reset btn-yellow-plain'}
+                  onClick={(e) => onClickLaunchSound()}
+                >
                   Join
                 </a>
               </form>
