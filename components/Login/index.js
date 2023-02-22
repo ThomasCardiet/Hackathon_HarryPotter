@@ -2,42 +2,7 @@ import LoginForm from './LoginForm';
 import { SplitChars, Tween } from 'react-gsap';
 import React from 'react';
 
-const Login = () => {
-  const fakeData = [
-    {
-      name: 'Axel',
-      score: 12,
-    },
-    {
-      name: 'Axel',
-      score: 12,
-    },
-    {
-      name: 'Axel',
-      score: 12,
-    },
-    {
-      name: 'Axel',
-      score: 12,
-    },
-    {
-      name: 'Axel',
-      score: 12,
-    },
-    {
-      name: 'Axel',
-      score: 12,
-    },
-    {
-      name: 'Axel',
-      score: 12,
-    },
-    {
-      name: 'Axel',
-      score: 12,
-    },
-  ];
-
+const Login = ({ users }) => {
   return (
     <section className={'login'}>
       <aside className={'login-container'}>
@@ -74,7 +39,7 @@ const Login = () => {
           </h1>
         </div>
         <div className={'login-container-form'}>
-          <LoginForm></LoginForm>
+          <LoginForm users={users}></LoginForm>
         </div>
       </aside>
     </section>

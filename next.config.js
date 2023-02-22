@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   env: {
     API_HOST: process.env.API_HOST || 'https://hp-api-iim.azurewebsites.net',
   },
