@@ -1,0 +1,101 @@
+.indices{
+
+  &-container{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    &-item{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 397px;
+      height: 626px;
+      transform: scale(0.5) translate(-50%,-50%);
+      border-radius: 20px;
+      transition: transform 1s ease-in-out , box-shadow 0.2s ease-in-out, left 1s ease-in-out, top 1s ease-in-out;
+      cursor: pointer;
+      &.inactive{
+        img{
+          -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+          filter: grayscale(100%)
+        }
+      }
+      &.second{
+        position: fixed;
+        top: 80%;
+        left: 75%;
+      }
+      &.third{
+        position: fixed;
+        top: 80%;
+        left: 80%;
+      }
+      &.first{
+        position: fixed;
+        top: 80%;
+        left: 70%;
+      }
+      &.flip{
+        .indices-container-item-background{
+        }
+        &.inactive {
+          img {
+            -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+            filter: grayscale(0%)
+          }
+        }
+        left:50%;
+        top: 50%;
+        transform: translate(-50%, -50%) rotateY(-180deg);
+        &::after{
+          -webkit-box-shadow: 0px 0px 50px 30px rgba(249,199,73,0.76);
+          box-shadow: 0px 0px 50px 30px rgba(249,199,73,0.76);
+        }
+        .content{
+          opacity: 100%;
+          padding: 3em;
+        }
+      }
+      .content{
+        opacity: 0%;
+        transform: rotateY(-180deg);
+        transition: 1s opacity 0.3s ease-in-out;
+      }
+      &-second{
+
+      }
+      &-third{
+
+      }
+      &-background{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        object-fit: cover;
+
+        &::after{
+          content: "";
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%,-50%);
+          width: 80%;
+          height: 80%;
+          background: white;
+          z-index: -1;
+          transition: box-shadow 0.2s ease-in-out;
+        }
+        &:hover{
+          &::after{
+            -webkit-box-shadow: 0px 0px 50px 30px rgba(249,199,73,0.76);
+            box-shadow: 0px 0px 50px 30px rgba(249,199,73,0.76);
+          }
+        }
+      }
+    }
+  }
+}

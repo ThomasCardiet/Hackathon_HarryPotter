@@ -81,7 +81,7 @@ const Home = () => {
               </p>
             </div>
             <div className={'home-container-button'}>
-              <Link href={'/login'} className={'btn-reset btn-yellow'}>
+              <Link href={'/Login'} className={'btn-reset btn-yellow'}>
                 Commencer
               </Link>
             </div>

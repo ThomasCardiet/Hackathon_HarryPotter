@@ -12,7 +12,7 @@ export class Router {
     },
     LOGIN: {
       name: 'Login',
-      slug: '/login',
+      slug: '/Login',
     },
     HOME: {
       name: 'Home',
