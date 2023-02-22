@@ -68,14 +68,14 @@ const Choice = ({ setUser, user }) => {
                   className={'btn-reset btn-yellow'}
                   onClick={(e) => onClickLaunchSound()}
               >
-                Create a party
+                Creer une partie
               </Link>
               <Link
                   href={'/join-party'}
                   className={'btn-reset btn-yellow'}
                   onClick={(e) => onClickLaunchSound()}
               >
-                Join a party
+                Rejoindre une partie
               </Link>
             </div>
           </aside>
