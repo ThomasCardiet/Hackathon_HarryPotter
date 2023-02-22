@@ -25,6 +25,7 @@ const Party = () => {
     setIngredients(
       ingredients.filter((ingredient) => droppedIngredient !== ingredient)
     );
+    setCanTakeIndice(true)
   };
 
   const [indices, setIndices] = useState([
@@ -150,7 +151,7 @@ const Party = () => {
             })}
           </div>
         </div>
-        <div className="ingredients-block">
+        <ul className="ingredients-block">
           {ingredients.map((ingredient, index) => (
             <DraggableIngredient
               dropBoxOffsets={dropBoxOffsets}
@@ -159,7 +160,7 @@ const Party = () => {
               key={index}
             />
           ))}
-        </div>
+        </ul>
       </main>
     </>
   );
