@@ -6,18 +6,17 @@ import { SplitChars, Tween, Controls, PlayState } from 'react-gsap';
 import Link from 'next/link';
 import io from 'Socket.IO-client';
 let socket;
+import { Router } from '../../router';
 import Sparkles from '../sparkles/sparkles';
 
-const Home = () => {
+const Home = ({ user }) => {
   const dropBlockRef = useRef(null);
   const ingredients = getIngredients();
   const socketInitializer = async () => {
     await fetch('/api/socket');
     socket = io();
 
-    socket.on('connect', () => {
-      console.log('connected');
-    });
+    socket.on('connect', () => {});
   };
 
   useEffect(() => {
@@ -81,7 +80,14 @@ const Home = () => {
               </p>
             </div>
             <div className={'home-container-button'}>
-              <Link href={'/Login'} className={'btn-reset btn-yellow'}>
+              <Link
+                href={
+                  user
+                    ? Router.getRoutes().AUTH_LOGIN.slug
+                    : Router.getRoutes().CHOICE.slug
+                }
+                className={'btn-reset btn-yellow'}
+              >
                 Commencer
               </Link>
             </div>
