@@ -5,8 +5,9 @@ import useSound from 'use-sound';
 import { SplitChars, Tween, Controls, PlayState } from 'react-gsap';
 import Link from 'next/link';
 import io from 'Socket.IO-client';
+import { Router } from '../../router';
 let socket;
-const Home = () => {
+const Home = ({user}) => {
   const dropBlockRef = useRef(null);
   const ingredients = getIngredients();
   const socketInitializer = async () => {

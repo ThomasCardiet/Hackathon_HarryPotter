@@ -7655,7 +7655,8 @@ input[type=text]:focus, input[type=password]:focus {
   cursor: pointer;
 }
 .indices-container-item.inactive img {
-  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  -webkit-filter: grayscale(100%);
+  /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
 }
 .indices-container-item.second {
@@ -7679,7 +7680,8 @@ input[type=text]:focus, input[type=password]:focus {
   transform: translate(-50%, -50%) rotateY(-180deg);
 }
 .indices-container-item.flip.inactive img {
-  -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+  -webkit-filter: grayscale(0%);
+  /* Safari 6.0 - 9.0 */
   filter: grayscale(0%);
 }
 .indices-container-item.flip::after {
@@ -7757,6 +7759,7 @@ input[type=text]:focus, input[type=password]:focus {
   max-width: 50%;
   margin: 0 auto;
   z-index: 20;
+  text-align: center;
 }
 .home-container-button {
   display: flex;
@@ -7872,7 +7875,7 @@ input[type=text]:focus, input[type=password]:focus {
 
 .login {
   height: 100vh;
-  background-image: url("../public/images/wallpaper-home.png");
+  background-image: url("../public/images/wallpaper-login.png");
   background-size: cover;
   background-repeat: no-repeat;
   animation: apear 2s;
@@ -8008,24 +8011,117 @@ input[type=text]:focus, input[type=password]:focus {
 }
 
 .waiting-block {
-  --width: 40vw;
-  --height: 40vh;
-  position: fixed;
-  background-color: rgba(163, 163, 163, 0.286);
-  color: yellow;
-  width: var(--width);
-  text-align: center;
-  height: var(--height);
-  border-radius: 8px;
-  top: 30vh;
-  left: 30vw;
-}
-.waiting-block p {
-  height: 100%;
-  transform: translateY(50%);
-  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
 }
 
+.success {
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  animation: apear 2s;
+}
+.success.Serpentard {
+  background-image: url("../public/images/wallpaper-win-serpentard.png");
+}
+.success.Griffondor {
+  background-image: url("../public/images/wallpaper-win-griffondor.png");
+}
+.success.Serdaigle {
+  background-image: url("../public/images/wallpaper-win-Serdaigle.png");
+}
+.success.Poufsouffle {
+  background-image: url("../public/images/wallpaper-win-Poufsouffle.png");
+}
+.success-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 50px;
+}
+.success-container-title {
+  display: inline-flex;
+  justify-content: center;
+  position: relative;
+  z-index: 20;
+  max-width: 80%;
+  margin: 0 auto;
+  flex-direction: column;
+}
+.success-container-title h1 {
+  text-align: center;
+}
+.success-container-title .text-blur {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, 0%);
+  filter: blur(10px);
+  animation: ligth 2s infinite;
+  display: flex;
+  justify-content: center;
+}
+.success-container-logo {
+  display: flex;
+  justify-content: center;
+}
+.success-container-logo img {
+  width: 200px;
+}
+.success-container-content {
+  height: 30%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+}
+.success-container-content li {
+  display: flex;
+  align-items: center;
+}
+.success-container-content li img {
+  width: 60px;
+}
+
+@keyframes apear {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 25%;
+  }
+  50% {
+    opacity: 50%;
+  }
+  75% {
+    opacity: 75%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+@keyframes ligth {
+  0% {
+    opacity: 75%;
+  }
+  25% {
+    opacity: 90%;
+  }
+  50% {
+    opacity: 120%;
+  }
+  75% {
+    opacity: 90%;
+  }
+  100% {
+    opacity: 75%;
+  }
+}
 .join {
   height: 100vh;
   background-image: url("../public/images/wallpaper-choice.png");

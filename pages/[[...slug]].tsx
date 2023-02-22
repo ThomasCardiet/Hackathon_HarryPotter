@@ -17,9 +17,20 @@ const Page = ({ path }) => {
     });
   });
 
+
   // SOCKET STATES
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState(null);
+
+  // GET USERS FROM API
+  useEffect(() => {
+    Api.getAllUsers().then(data => {
+      if(!data.status || data.status !== 400) {
+        setUsers(data);
+      }
+    })
+    setUser(Api.getLoggedUser())
+  }, [])
 
 
   useEffect(() => {socketInitializer()}, [])
@@ -31,7 +42,7 @@ const Page = ({ path }) => {
     socket.on('connect', () => {})
   }
 
-  return (<Component route={route} />)
+  return (<Component route={route} users={users} />)
 
 }
 
