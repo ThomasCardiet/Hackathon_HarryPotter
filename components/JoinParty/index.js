@@ -1,12 +1,11 @@
-import Head from 'next/head';
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import useSound from 'use-sound';
 
 const JoinParty = () => {
   const soundUrl = '/sounds/button1.wav';
 
-  const [play, { stop }] = useSound(soundUrl, { volume: 0.6 });
+  const [play, { stop }] = useSound(soundUrl, { volume: 0.4 });
   const onClickLaunchSound = () => {
     play();
   };
