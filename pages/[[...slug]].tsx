@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import io from 'Socket.IO-client'
 import { Api } from '../api'
+import Head from 'next/head';
 let socket;
 
 const Page = ({ path }) => {
@@ -46,7 +47,16 @@ const Page = ({ path }) => {
     socket.on('connect', () => {})
   }
 
-  return (<Component route={route} users={users} user={user} setUser={setUser} />)
+  return (
+    <>
+      <Head>
+        <title>Hckaton Harry Potter - Potion Game</title>
+        <meta name="description" content="Harry Potter potion maker game" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+      <Component route={route} users={users} user={user} setUser={setUser} />
+    </>
+  )
 
 }
 

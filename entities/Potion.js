@@ -1,5 +1,6 @@
 import { Cauldron, CAULDRONS } from './Cauldron';
 import { Ingredient, INGREDIENTS } from './Ingredient';
+import { shuffleArray } from '@/helpers/array';
 
 export class Potion {
   name;
@@ -57,12 +58,12 @@ export const POTIONS = {
     [INGREDIENTS.BEZOAR, INGREDIENTS.ACONITE, INGREDIENTS.ORPHIDIAN_SKIN],
     CAULDRONS.FOLDABLE
   ),
-  WIFFENWELD: new Potion(
+  WIGGENWELD: new Potion(
     'Wiggenweld',
-    [INGREDIENTS.SILVER_UNICORN_HORN, INGREDIENTS.WOLFSBANE],
+    [INGREDIENTS.SILVER_UNICORN_HORN, INGREDIENTS.ACONITE],
     CAULDRONS.FOLDABLE
   ),
-  WIFFENWELD_EXTRA: new Potion(
+  WIGGENWELD_EXTRA: new Potion(
     'Wiggenweld extra',
     [
       INGREDIENTS.OCTOPUS_POWDER,
@@ -96,7 +97,7 @@ export const POTIONS = {
   ),
   VITAMIX: new Potion(
     'Vitamix',
-    [INGREDIENTS.MUGWORT, INGREDIENTS.ASPHODEL_ROOT, INGREDIENTS.NAPELL_ROOT],
+    [INGREDIENTS.MUGWORT, INGREDIENTS.ASPHODEL_ROOT, INGREDIENTS.DICTAME],
     CAULDRONS.COPPER
   ),
 };
@@ -116,4 +117,11 @@ export const getPotions = () => {
  */
 export const getPotionByName = (name) => {
   return getPotions().find((potion) => potion.getName() === name);
+};
+
+/**
+ * GET 3 SHUFFLED ARRAY OF POTIONS
+ */
+export const getPartyPotions = () => {
+  return shuffleArray(getPotions()).slice(0, 3);
 };

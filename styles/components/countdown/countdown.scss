@@ -1,0 +1,18 @@
+.count-down {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  color: white;
+
+  p {
+    font-size: 25px;
+  }
+
+  &.warning {
+    color: rgb(206, 157, 65);
+  }
+
+  &.dangerous {
+    color: rgb(216, 70, 70);
+  }
+}
