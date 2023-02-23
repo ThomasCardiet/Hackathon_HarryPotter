@@ -175,7 +175,7 @@ const Party = () => {
     );
 
   return (
-    <main className="party">
+    <div className="party">
       <CountDown
         time={countdownTime}
         setTime={setCountDownTime}
@@ -184,7 +184,10 @@ const Party = () => {
       {potions && potions[currentPotionIndex] && (
         <>
           <div className="party__potion-name">
-            <h1>Potion: {potions[currentPotionIndex].getName()}</h1>
+            <h1>
+              Potion ({currentPotionIndex + 1}/{potions.length}):{' '}
+              {potions[currentPotionIndex].getName()}
+            </h1>
             {potions[currentPotionIndex].getIngredients()[
               currentIngredientPotionIndex
             ] && (
@@ -310,7 +313,7 @@ const Party = () => {
           />
         ))}
       </ul>
-    </main>
+    </div>
   );
 };
 
