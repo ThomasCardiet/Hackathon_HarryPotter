@@ -11,23 +11,24 @@ const SocketHandler = (req, res) => {
     res.socket.server.io = io;
 
     io.on('connection', (socket) => {
+      // CREATE PARTY
       socket.on('createParty', (user) => {
         const room = createRoom(user);
         rooms.push(room);
         socket.emit('redirectRoom', { user, room });
       });
 
+      // GET ROOM BY ID
       socket.on('getRoomById', (roomId) => {
         const room = rooms.find(
           (room) => parseInt(room.id) === parseInt(roomId)
         );
         if (!room) return;
 
-        console.log(room, rooms);
-
         socket.emit('setRoom', { room });
       });
 
+      // ADD USER TO ROOM
       socket.on('addUserToRoom', ({ user, roomId }) => {
         const room = rooms.find(
           (room) => parseInt(room.id) === parseInt(roomId)
@@ -55,25 +56,33 @@ const SocketHandler = (req, res) => {
         socket.emit('updateRoom', { newRoom });
       });
 
+      // START GAME
       socket.on('startGame', (roomId) => {
         const room = rooms.find(
           (room) => parseInt(room.id) === parseInt(roomId)
         );
         if (!room || room.started) return;
 
-        rooms = rooms.filter((r) => r.id !== roomId);
+        rooms = rooms.filter((r) => r.id !== parseInt(roomId));
         const newRoom = {
           ...room,
           started: true,
         };
-        console.log('ROOMS LENGHT 1', rooms);
-        rooms.push(newRoom);
-        console.log('ROOMS LENGHT 2', rooms);
-
         console.log('StartRoom sent');
+
+        if (!rooms.find((r) => parseInt(r.id) === parseInt(roomId))) {
+          rooms.push(newRoom);
+        }
 
         socket.broadcast.emit('redirectToParty', roomId);
         socket.emit('redirectToParty', roomId);
+      });
+
+      // STOP GAME
+      socket.on('stopGame', ({ roomId, winner }) => {
+        console.log('stopGame', roomId, winner);
+        socket.broadcast.emit('sendWinner', { rId: roomId, winner });
+        socket.emit('sendWinner', { rId: roomId, winner });
       });
     });
   }
