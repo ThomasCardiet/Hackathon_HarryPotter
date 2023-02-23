@@ -3,7 +3,7 @@ import { ViewRoom } from '@/components/ViewRoom';
 import { Waiting } from '@/components/Waiting';
 import { useRouter } from 'next/router';
 import { Router } from '@/router';
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import io from 'Socket.IO-client';
@@ -19,8 +19,7 @@ const Create = () => {
   const [room, setRoom] = useState(null);
   const [partyCanStart, setPartyCanStart] = useState(false);
   const [socket, setSocket] = useState(null);
-  
-  
+
   // GET USERS FROM API
   useEffect(() => {
     setUser(Api.getLoggedUser());
@@ -40,6 +39,7 @@ const Create = () => {
 
     // SET ROOM
     socket.on('setRoom', ({ room }) => {
+      if (room.started) router.push(`/party/${roomId}`);
       setRoom(room);
     });
 
@@ -96,7 +96,6 @@ const Create = () => {
     if (socket) socket.emit('startGame', roomId);
   };
 
-  
   if (!roomId || !user || !room) return <Waiting />;
 
   return (
