@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import useSound from 'use-sound';
 import { Api } from '@/api';
@@ -11,6 +11,8 @@ const JoinParty = ({ setUser, user }) => {
   const router = useRouter();
 
   const soundUrl = '/sounds/button1.wav';
+
+  const [inputRoomId, setInputRoomId] = useState(0);
 
   const [play, { stop }] = useSound(soundUrl, { volume: 0.4 });
   const onClickLaunchSound = () => {
@@ -74,13 +76,16 @@ const JoinParty = ({ setUser, user }) => {
                     Party code :
                   </label>
                   <input
-                    type={'text'}
+                    type={'number'}
                     id={'party-code'}
                     className={'text-20 text-ProzaLibre-SemiBold text-white'}
+                    value={inputRoomId}
+                    onChange={(e) => setInputRoomId(e.target.value)}
+                    required
                   />
                 </div>
                 <Link
-                  href={'/create-party'}
+                  href={`create-party/${inputRoomId}`}
                   className={'btn-reset btn-yellow'}
                   onClick={(e) => onClickLaunchSound()}
                 >

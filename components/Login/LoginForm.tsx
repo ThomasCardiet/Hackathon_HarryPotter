@@ -32,7 +32,6 @@ export default function LoginForm({setUser}){
 
     const onSubmit = (credentials: MyFormValues) => {
       Api.loginUser(credentials).then((data) => {
-          console.log(data)
         if(data.statusCode) {
           switch (data.message) {
             case "Internal server error":

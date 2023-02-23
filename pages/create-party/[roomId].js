@@ -2,9 +2,13 @@ import { Api } from '@/api';
 import { CreateParty } from '@/components/CreateParty';
 import { Waiting } from '@/components/Waiting';
 import { useRouter } from 'next/router';
+import { Router } from '@/router';
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import io from 'Socket.IO-client';
+
+const MAX_USER_PER_ROOM = 2;
 
 const Create = () => {
   const router = useRouter();
@@ -31,16 +35,20 @@ const Create = () => {
     setSocket(socket);
 
     socket.on('connect', () => {});
-    socket.on('setRoom', ({ room }) => {
-      console.log('end', room);
 
+    // SET ROOM
+    socket.on('setRoom', ({ room }) => {
       setRoom(room);
+    });
+
+    //UPDATE ROOM
+    socket.on('updateRoom', ({ newRoom }) => {
+      if (newRoom.id === parseInt(roomId)) setRoom(newRoom);
     });
   };
 
   const getRoom = () => {
     if (socket && roomId) {
-      console.log('sent', roomId);
       socket.emit('getRoomById', roomId);
     }
   };
@@ -49,7 +57,29 @@ const Create = () => {
     getRoom();
   }, [socket, roomId]);
 
-  console.log(room);
+  useEffect(() => {
+    if (room && user) {
+      if (room.users.length <= MAX_USER_PER_ROOM) {
+        if (room.owner.id !== user.id && socket) {
+          socket.emit('addUserToRoom', { user, roomId });
+          getRoom();
+        }
+      } else if (
+        !room.users.find(
+          (roomUser) => parseInt(roomUser.id) === parseInt(user.id)
+        )
+      ) {
+        toast.error(
+          `Le nombre maximum de joueurs par partie est ${MAX_USER_PER_ROOM}`,
+          {
+            icon: '🧙',
+            theme: 'light',
+          }
+        );
+        router.push(Router.getRoutes().CHOICE.slug);
+      }
+    }
+  }, [room, user, socket]);
 
   if (!roomId || !user || !room) return <Waiting />;
 
