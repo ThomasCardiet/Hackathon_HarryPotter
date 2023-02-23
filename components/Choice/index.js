@@ -22,8 +22,7 @@ const Choice = ({ setUser, user }) => {
     // REDIRECT IF NOT LOGGED
     if (!Api.isLoggedUser()) router.push(Router.getRoutes().LOGIN.slug);
   }, []);
-
-
+  
   return (
     <>
       <main>
