@@ -18,7 +18,7 @@ const TIME_PENALITY = {
 
 const INDICE_TIMEOUT = 3000;
 
-export const Party = ({ user, setUser }) => {
+export const Party = ({ user, stopGame, winner }) => {
   const router = useRouter();
 
   const [winnerHouse, setWinnerHouse] = useState(
@@ -180,6 +180,14 @@ export const Party = ({ user, setUser }) => {
     }
   };
 
+  useEffect(() => {
+    if (finished) stopGame();
+  }, [finished]);
+
+  useEffect(() => {
+    if (winner) setFinished(true);
+  }, [winner]);
+
   return (
     <>
       {finished ? (
@@ -218,6 +226,7 @@ export const Party = ({ user, setUser }) => {
               </h1>
             </div>
             <div className={'success-container-logo'}>{winnerHouseImg}</div>
+            {winner && <p>Le joueur {winner.name} & gagné !</p>}
             <ul className={'success-container-content'}>
               {users.map((item, index) => {
                 return (
