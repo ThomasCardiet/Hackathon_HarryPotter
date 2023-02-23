@@ -3,10 +3,8 @@ import Default from '@/components/Default';
 import {Waiting} from '@/components/Waiting';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
-import io from 'Socket.IO-client'
 import { Api } from '../api'
 import Head from 'next/head';
-let socket;
 
 const Page = ({ path }) => {
 
@@ -32,20 +30,6 @@ const Page = ({ path }) => {
     })
     setUser(Api.getLoggedUser())
   }, [])
-
-
-  useEffect(() => {
-    console.log(user)
-  }, [user])
-
-  useEffect(() => {socketInitializer()}, [])
-
-  const socketInitializer = async () => {
-    await fetch('/api/socket')
-    socket = io()
-
-    socket.on('connect', () => {})
-  }
 
   return (
     <>
