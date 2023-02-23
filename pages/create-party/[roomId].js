@@ -1,5 +1,5 @@
 import { Api } from '@/api';
-import { CreateParty } from '@/components/CreateParty';
+import { ViewRoom } from '@/components/ViewRoom';
 import { Waiting } from '@/components/Waiting';
 import { useRouter } from 'next/router';
 import { Router } from '@/router';
@@ -17,6 +17,7 @@ const Create = () => {
   // SOCKET STATES
   const [user, setUser] = useState(null);
   const [room, setRoom] = useState(null);
+  const [partyCanStart, setPartyCanStart] = useState(false);
   const [socket, setSocket] = useState(null);
 
   // GET USERS FROM API
@@ -41,9 +42,17 @@ const Create = () => {
       setRoom(room);
     });
 
-    //UPDATE ROOM
+    // UPDATE ROOM
     socket.on('updateRoom', ({ newRoom }) => {
-      if (newRoom.id === parseInt(roomId)) setRoom(newRoom);
+      if (newRoom.id === parseInt(roomId)) {
+        setRoom(newRoom);
+        if (newRoom.users.length >= MAX_USER_PER_ROOM) setPartyCanStart(true);
+      }
+    });
+
+    // REDIRECT TO PARTY
+    socket.on('redirectToParty', (roomId) => {
+      if (room && room.id === parseInt(roomId)) router.push(`/party/${roomId}`);
     });
   };
 
@@ -81,10 +90,22 @@ const Create = () => {
     }
   }, [room, user, socket]);
 
+  // START GAME
+  const startGame = () => {
+    if (socket) socket.emit('startGame', roomId);
+  };
+
   if (!roomId || !user || !room) return <Waiting />;
 
   return (
-    <CreateParty setUser={setUser} user={user} socket={socket} room={room} />
+    <ViewRoom
+      setUser={setUser}
+      user={user}
+      socket={socket}
+      room={room}
+      partyCanStart={partyCanStart}
+      startGame={startGame}
+    />
   );
 };
 

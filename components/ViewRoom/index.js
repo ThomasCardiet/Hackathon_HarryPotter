@@ -3,12 +3,11 @@ import Link from 'next/link';
 import useSound from 'use-sound';
 import { Api } from '@/api';
 import { Router } from '@/router';
-import { Waiting } from '@/components/Waiting';
 import { useRouter } from 'next/router';
 import { SplitChars, Tween } from 'react-gsap';
 import UserBadge from '../UserBadge/UserBadge';
 
-export const CreateParty = ({ setUser, user, room }) => {
+export const ViewRoom = ({ setUser, user, room, partyCanStart, startGame }) => {
   const router = useRouter();
 
   const soundUrl = '/sounds/button1.wav';
@@ -22,8 +21,6 @@ export const CreateParty = ({ setUser, user, room }) => {
     // REDIRECT IF NOT LOGGED
     if (!Api.isLoggedUser()) router.push(Router.getRoutes().LOGIN.slug);
   }, []);
-
-  if (!room) return <Waiting />;
 
   return (
     <>
@@ -69,23 +66,28 @@ export const CreateParty = ({ setUser, user, room }) => {
               <UserBadge user={user} setUser={setUser} />
             </div>
             <div className={'join-container-form'}>
-              <div className={"room-id"}>
-                <p style={{marginBottom:"20px"}} className={"text-20 text-ProzaLibre-Regular text-yellow"}>Le code de la partie est : {room.id}</p>
-              </div>
-              <p className="text-20 text-white text-ProzaLibre-Regular">
+              <p className="text-20 text-white">
                 Le créateur de la partie est: {room.owner.name}
               </p>
               <br />
-              <p style={{marginBottom:"7px"}} className="text-20 text-ProzaLibre-Regular text-yellow">
+              <p className="text-20 text-Harry text-yellow">
                 Liste des joueurs:
               </p>
               <ul>
                 {room.users.map((user, index) => (
-                  <li style={{marginBottom:"7px"}} className="text-white text-ProzaLibre-Regular" key={index}>
+                  <li className="text-white" key={index}>
                     {user.name}
                   </li>
                 ))}
               </ul>
+              {partyCanStart && user && user.id === room.owner.id && (
+                <>
+                  <br />
+                  <button onClick={startGame} className="text-40 tex-yellow">
+                    Commencer
+                  </button>
+                </>
+              )}
             </div>
           </aside>
         </section>

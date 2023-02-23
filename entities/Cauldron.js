@@ -5,7 +5,7 @@ export class Cauldron {
   type;
   name;
   img = {
-    basePath: 'images/cauldrons',
+    basePath: '/images/cauldrons',
     name: null,
   };
 
