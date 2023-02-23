@@ -1,12 +1,13 @@
 import { Party } from '@/components/Party';
 import { useRouter } from 'next/router';
 import { Waiting } from '@/components/Waiting';
-import React, { useEffect, useState } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { Api } from '@/api';
 import io from 'Socket.IO-client';
 import { Router } from '@/router';
+import {GameId} from "../_app";
 
-const PlayParty = () => {
+const PlayParty = ({gameId}) => {
   const router = useRouter();
   const { roomId } = router.query;
 
@@ -21,6 +22,7 @@ const PlayParty = () => {
     // REDIRECT NOT LOGGED
     if (!Api.isLoggedUser()) router.push(Router.getRoutes().LOGIN.slug);
     setUser(Api.getLoggedUser());
+    setWinner(Api.getLoggedUser())
   }, []);
 
   // SOCKETS
@@ -58,10 +60,18 @@ const PlayParty = () => {
       socket.emit('getRoomById', roomId);
     }
   };
-
-  const stopGame = () => {
+  
+  
+  
+  const stopGame = async () => {
     if (socket && roomId && user) {
       socket.emit('stopGame', { roomId, winner: user });
+      let data = {
+        gameId: GameId,
+        userId : user
+      }
+      //const request = await Api.postNewGameEnd(data)
+      console.log("api request")
     }
   };
 
