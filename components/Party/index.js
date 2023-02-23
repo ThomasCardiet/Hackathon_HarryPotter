@@ -185,7 +185,7 @@ export const Party = ({ user, stopGame, winner }) => {
       toast.success(`${winner.name} est le grand gagnant !`, {
         icon: '👊',
         theme: 'light',
-        position: 'top-center',
+        position: 'bottom-right',
       });
     }
   }, [winner]);
