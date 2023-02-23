@@ -175,7 +175,7 @@ const Party = () => {
     );
 
   return (
-    <main className="party">
+    <div className="party">
       <CountDown
         time={countdownTime}
         setTime={setCountDownTime}
@@ -313,7 +313,7 @@ const Party = () => {
           />
         ))}
       </ul>
-    </main>
+    </div>
   );
 };
 
