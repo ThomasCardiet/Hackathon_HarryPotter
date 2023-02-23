@@ -1,0 +1,10 @@
+input{
+  background: none;
+  border: 1px solid $yellow;
+  padding: 0.5em;
+  color: $yellow !important;
+  border-radius: 2px;
+  &:focus{
+    outline: none;
+  }
+}

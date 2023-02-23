@@ -1,0 +1,17 @@
+.count-down {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  color: white;
+}
+.count-down p {
+  font-size: 25px;
+}
+.count-down.warning {
+  color: rgb(206, 157, 65);
+}
+.count-down.dangerous {
+  color: rgb(216, 70, 70);
+}
+
+/*# sourceMappingURL=countdown.css.map */
