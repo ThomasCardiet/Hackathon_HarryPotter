@@ -42,6 +42,7 @@ const PlayParty = () => {
         !room.users.find((roomUser) => roomUser.id === Api.getLoggedUser().id)
       )
         return router.push(Router.getRoutes().CHOICE.slug);
+      setWinner(room.winner);
       setRoom(room);
     });
 
