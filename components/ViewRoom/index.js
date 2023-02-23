@@ -29,7 +29,7 @@ export const ViewRoom = ({ setUser, user, room, partyCanStart, startGame }) => {
           <aside className={'join-container'}>
             <div className={'join-container-top'}>
               <Link href={'/choice'} className={'join-container-top-back'}>
-                <img src={'images/icons/arrow-left.svg'} alt={'back'} />
+                <img src={'../images/icons/arrow-left.svg'} alt={'back'} />
               </Link>
               <div className={'join-container-top-title'}>
                 <h3 className={'text-50 text-Harry text-yellow'}>
