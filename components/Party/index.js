@@ -71,7 +71,7 @@ export const Party = ({ user, setUser }) => {
         position: 'bottom-center',
       });
     }
-
+    
     // GET NEEDED INGREDIENT
     const neededIngredient =
       potions[currentPotionIndex].getIngredients()[

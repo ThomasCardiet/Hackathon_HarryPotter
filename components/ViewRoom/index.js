@@ -29,7 +29,7 @@ export const ViewRoom = ({ setUser, user, room, partyCanStart, startGame }) => {
           <aside className={'join-container'}>
             <div className={'join-container-top'}>
               <Link href={'/choice'} className={'join-container-top-back'}>
-                <img src={'images/icons/arrow-left.svg'} alt={'back'} />
+                <img src={'/images/icons/arrow-left.svg'} alt={'back'} />
               </Link>
               <div className={'join-container-top-title'}>
                 <h3 className={'text-50 text-Harry text-yellow'}>
@@ -69,7 +69,7 @@ export const ViewRoom = ({ setUser, user, room, partyCanStart, startGame }) => {
               <div style={{marginBottom:"20px"}} className={"room"}>
                 <p className={"text-yellow text-15 text-ProzaLibre-Regular"}> Le numéro de la room : {room.id}</p>
               </div>
-              <p className="text-20 text-white">
+              <p className="text-20 text-white text-ProzaLibre-Regular">
                 Le créateur de la partie est: {room.owner.name}
               </p>
               <br />
@@ -78,7 +78,7 @@ export const ViewRoom = ({ setUser, user, room, partyCanStart, startGame }) => {
               </p>
               <ul style={{marginTop:"10px"}}>
                 {room.users.map((user, index) => (
-                  <li style={{marginBottom:"10px"}} className="text-white" key={index}>
+                  <li style={{marginBottom:"10px"}} className="text-white text-ProzaLibre-Regular" key={index}>
                     {user.name}
                   </li>
                 ))}
