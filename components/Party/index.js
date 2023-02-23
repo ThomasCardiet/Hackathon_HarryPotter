@@ -180,7 +180,14 @@ export const Party = ({ user, stopGame, winner }) => {
   }, [finished]);
 
   useEffect(() => {
-    if (winner) setFinished(true);
+    if (winner) {
+      setFinished(true);
+      toast.success(`${winner.name} est le grand gagnant !`, {
+        icon: '👊',
+        theme: 'light',
+        position: 'top-center',
+      });
+    }
   }, [winner]);
 
   return (
