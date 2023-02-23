@@ -87,11 +87,11 @@ const SocketHandler = (req, res) => {
         };
         console.log(data);
         let gameId;
-        /* const request = Api.postNewGame(data, room.users[0].token).then(
+        const request = Api.postNewGame(data, room.users[0].token).then(
           (response) => {
             updateRoom(roomId, { gameId: response.data.id });
           }
-        ); */
+        );
 
         // ADD STARTED
 
@@ -128,9 +128,9 @@ const SocketHandler = (req, res) => {
           userId: winner.id,
         };
 
-        /* Api.postNewGameEnd(data).then((res) => {
+        Api.postNewGameEnd(data).then((res) => {
           console.log('res', res.data);
-        }); */
+        });
 
         socket.broadcast.emit('sendWinner', { rId: roomId, winner });
         socket.emit('sendWinner', { rId: roomId, winner });
