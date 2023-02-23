@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const LOCAL_STORAGE_AUTH = 'auth';
 
 export class Api {
@@ -152,5 +154,19 @@ export class Api {
     const local = JSON.parse(localStorage.getItem(LOCAL_STORAGE_AUTH));
     if (!local.user) return null;
     return local.user;
+  }
+  
+  static postNewGame = async(data) =>{
+    if (!this.isLoggedUser()) return null;
+    const local = JSON.parse(localStorage.getItem(LOCAL_STORAGE_AUTH));
+    console.log(local.token)
+    const request = await axios.post('https://hp-api-iim.azurewebsites.net/matches/start' ,data,{
+      headers: {
+        'Authorization': "Bearer " +  local.token,
+        'Content-Type' : "application/json"
+      }
+    })
+  
+    console.log(request)
   }
 }

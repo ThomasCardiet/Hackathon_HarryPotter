@@ -38,7 +38,7 @@ const Page = ({ path }) => {
         <meta name="description" content="Harry Potter potion maker game" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Component route={route} users={users} user={user} setUser={setUser} />
+      {users.length >  0 ?  <Component route={route} users={users} user={user} setUser={setUser} /> :""}
     </>
   )
 

@@ -18,14 +18,17 @@ export default function App({ Component, pageProps }: AppProps) {
 
     return (
       <AnimatePresence exitBeforeEnter>
+
           <Sparkles/>
+
+      <main style={{zIndex:99}}>
           <motion.div
               key={router.route}
               initial="initialState"
               animate="animateState"
               exit="exitState"
               transition={{
-                  duration: 0.75,
+                  duration:3,
               }}
               variants={{
                   initialState: {
@@ -37,12 +40,11 @@ export default function App({ Component, pageProps }: AppProps) {
                   exitState: {
                       opacity: 0,
                   },
-              }}>
-
-      <main style={{zIndex:99}}>
+              }}
+          >
           <Component {...pageProps} />
-      </main>
           </motion.div>
+      </main>
           <ToastContainer
           />
       </AnimatePresence>
