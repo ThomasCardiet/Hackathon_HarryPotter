@@ -51,6 +51,25 @@ const SocketHandler = (req, res) => {
         socket.broadcast.emit('updateRoom', { newRoom });
         socket.emit('updateRoom', { newRoom });
       });
+
+      socket.on('startGame', (roomId) => {
+        const room = rooms.find(
+          (room) => parseInt(room.id) === parseInt(roomId)
+        );
+        if (!room || room.started) return;
+
+        rooms = rooms.filter((r) => r.id !== roomId);
+        const newRoom = {
+          ...room,
+          started: true,
+        };
+        rooms.push(newRoom);
+
+        console.log('StartRoom sent');
+
+        socket.broadcast.emit('redirectToParty', roomId);
+        socket.emit('redirectToParty', roomId);
+      });
     });
   }
   res.end();
@@ -63,6 +82,7 @@ const createRoom = (owner) => {
     id: rooms.length,
     owner,
     users: [owner],
+    started: false,
   };
 
   return room;

@@ -16,7 +16,9 @@ const TIME_PENALITY = {
   WRONG_INGREDIENT: 5,
 };
 
-const Party = ({ user, setUser }) => {
+const INDICE_TIMEOUT = 3000;
+
+export const Party = ({ user, setUser }) => {
   const router = useRouter();
 
   const [winnerHouse, setWinnerHouse] = useState(
@@ -174,7 +176,7 @@ const Party = ({ user, setUser }) => {
       setCanTakeIndice(false);
       setTimeout(() => {
         resetAllClassFlip();
-      }, '1000');
+      }, INDICE_TIMEOUT);
     }
   };
 
@@ -290,7 +292,7 @@ const Party = ({ user, setUser }) => {
                     >
                       <div className={'indices-container-item-image'}></div>
                       <div className={'indices-container-item-background '}>
-                        <img src={'images/carte.png'} />
+                        <img src={'/images/carte.png'} />
                       </div>
                       <div className={'content'}>
                         {/* {item.img && item.img} */}
@@ -319,7 +321,7 @@ const Party = ({ user, setUser }) => {
                     >
                       <div className={'indices-container-item-image'}></div>
                       <div className={'indices-container-item-background'}>
-                        <img src={'images/carte.png'} />
+                        <img src={'/images/carte.png'} />
                       </div>
                       <div className={'content'}>
                         {/* {item.img && item.img} */}
@@ -348,7 +350,7 @@ const Party = ({ user, setUser }) => {
                     >
                       <div className={'indices-container-item-image'}></div>
                       <div className={'indices-container-item-background'}>
-                        <img src={'images/carte.png'} />
+                        <img src={'/images/carte.png'} />
                       </div>
                       <div className={'content'}>
                         {/* {item.img && item.img} */}
@@ -382,5 +384,3 @@ const Party = ({ user, setUser }) => {
     </>
   );
 };
-
-export default Party;

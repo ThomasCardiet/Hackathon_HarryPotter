@@ -4,7 +4,7 @@ export class Ingredient {
   name;
   bonus;
   img = {
-    basePath: 'images/ingredients',
+    basePath: '/images/ingredients',
     name: null,
   };
 
