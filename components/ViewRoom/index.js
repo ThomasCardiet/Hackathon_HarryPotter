@@ -66,6 +66,9 @@ export const ViewRoom = ({ setUser, user, room, partyCanStart, startGame }) => {
               <UserBadge user={user} setUser={setUser} />
             </div>
             <div className={'join-container-form'}>
+              <div style={{marginBottom:"20px"}} className={"room"}>
+                <p className={"text-yellow text-15 text-ProzaLibre-Regular"}> Le numéro de la room : {room.id}</p>
+              </div>
               <p className="text-20 text-white">
                 Le créateur de la partie est: {room.owner.name}
               </p>
@@ -73,9 +76,9 @@ export const ViewRoom = ({ setUser, user, room, partyCanStart, startGame }) => {
               <p className="text-20 text-Harry text-yellow">
                 Liste des joueurs:
               </p>
-              <ul>
+              <ul style={{marginTop:"10px"}}>
                 {room.users.map((user, index) => (
-                  <li className="text-white" key={index}>
+                  <li style={{marginBottom:"10px"}} className="text-white" key={index}>
                     {user.name}
                   </li>
                 ))}
@@ -83,7 +86,7 @@ export const ViewRoom = ({ setUser, user, room, partyCanStart, startGame }) => {
               {partyCanStart && user && user.id === room.owner.id && (
                 <>
                   <br />
-                  <button onClick={startGame} className="text-40 tex-yellow">
+                  <button onClick={startGame} className="btn-reset btn-yellow">
                     Commencer
                   </button>
                 </>
