@@ -7684,8 +7684,7 @@ input[type=text]:focus, input[type=password]:focus {
   cursor: pointer;
 }
 .indices-container-item.inactive img {
-  -webkit-filter: grayscale(100%);
-  /* Safari 6.0 - 9.0 */
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
 }
 .indices-container-item.second {
@@ -7709,8 +7708,7 @@ input[type=text]:focus, input[type=password]:focus {
   transform: translate(-50%, -50%) rotateY(-180deg);
 }
 .indices-container-item.flip.inactive img {
-  -webkit-filter: grayscale(0%);
-  /* Safari 6.0 - 9.0 */
+  -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
   filter: grayscale(0%);
 }
 .indices-container-item.flip::after {
@@ -8089,24 +8087,17 @@ input[type=text]:focus, input[type=password]:focus {
   color: #2E8B57;
 }
 
-.waiting-block {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  position: relative;
-}
-
 .success {
   height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
+  animation: apear 2s;
 }
 .success.Serpentard {
-  background-image: url("../public/images/wallpaper-win-serpentard.png");
+  background-image: url("../public/images/wallpaper-win-Serpentard.png");
 }
-.success.Griffondor {
-  background-image: url("../public/images/wallpaper-win-griffondor.png");
+.success.Gryffondor {
+  background-image: url("../public/images/wallpaper-win-Gryffondor.png");
 }
 .success.Serdaigle {
   background-image: url("../public/images/wallpaper-win-Serdaigle.png");
@@ -8170,6 +8161,23 @@ input[type=text]:focus, input[type=password]:focus {
   width: 60px;
 }
 
+@keyframes apear {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 25%;
+  }
+  50% {
+    opacity: 50%;
+  }
+  75% {
+    opacity: 75%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
 @keyframes ligth {
   0% {
     opacity: 75%;
@@ -8187,6 +8195,14 @@ input[type=text]:focus, input[type=password]:focus {
     opacity: 75%;
   }
 }
+.waiting-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+}
+
 .join {
   height: 100vh;
   background-image: url("../public/images/wallpaper-choice.png");
