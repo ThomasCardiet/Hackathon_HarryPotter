@@ -1,4 +1,5 @@
 import { Server } from 'Socket.IO';
+import {Api} from "../../api";
 
 let rooms = [];
 
@@ -64,9 +65,27 @@ const SocketHandler = (req, res) => {
         if (!room || room.started) return;
 
         rooms = rooms.filter((r) => r.id !== parseInt(roomId));
+  
+        let usersId = []
+        room.users.map((item)=>{
+          usersId.push(item.id)
+        })
+  
+        let data = {
+          game :"Harry Potion",
+          userIds : usersId,
+          type : "1v1"
+        }
+        let idGame = 0;
+        Api.postNewGame(data).then(res => {
+          console.log(res.data.id)
+          idGame = res.data.id
+        })
+        
         const newRoom = {
           ...room,
           started: true,
+          idGame
         };
         console.log('StartRoom sent');
 
@@ -81,8 +100,22 @@ const SocketHandler = (req, res) => {
       // STOP GAME
       socket.on('stopGame', ({ roomId, winner }) => {
         console.log('stopGame', roomId, winner);
+  
+        const room = rooms.find(
+            (room) => parseInt(room.id) === parseInt(roomId)
+        );
+        if (!room) return;
+        
+        let data = {
+          gameId: room.idGame,
+          userId : room.winner.id
+        }
+        
+        Api.postNewGameEnd(data)
+        
         socket.broadcast.emit('sendWinner', { rId: roomId, winner });
         socket.emit('sendWinner', { rId: roomId, winner });
+        
       });
     });
   }

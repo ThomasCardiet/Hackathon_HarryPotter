@@ -149,6 +149,8 @@ export const Party = ({ user, stopGame, winner }) => {
     setClassFlipThird('');
   };
 
+  
+  
   const launchIndices = (index) => {
     // NOT ENOUGH TIME
     if (countdownTime <= TIME_PENALITY.INDICE + 10) {
@@ -185,7 +187,10 @@ export const Party = ({ user, stopGame, winner }) => {
   }, [finished]);
 
   useEffect(() => {
-    if (winner) setFinished(true);
+    if (winner){
+      setFinished(true);
+    }
+    
   }, [winner]);
 
   return (

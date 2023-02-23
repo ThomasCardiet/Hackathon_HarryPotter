@@ -21,6 +21,7 @@ const PlayParty = () => {
     // REDIRECT NOT LOGGED
     if (!Api.isLoggedUser()) router.push(Router.getRoutes().LOGIN.slug);
     setUser(Api.getLoggedUser());
+    setWinner(Api.getLoggedUser())
   }, []);
 
   // SOCKETS
@@ -61,6 +62,7 @@ const PlayParty = () => {
   const stopGame = () => {
     if (socket && roomId && user) {
       socket.emit('stopGame', { roomId, winner: user });
+      
     }
   };
 

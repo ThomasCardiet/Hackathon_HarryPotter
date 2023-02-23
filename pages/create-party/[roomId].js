@@ -19,7 +19,7 @@ const Create = () => {
   const [room, setRoom] = useState(null);
   const [partyCanStart, setPartyCanStart] = useState(false);
   const [socket, setSocket] = useState(null);
-
+  const [gameId, setGameId] = useState(0);
   // GET USERS FROM API
   useEffect(() => {
     setUser(Api.getLoggedUser());
@@ -91,24 +91,13 @@ const Create = () => {
   }, [room, user, socket]);
 
   // START GAME
-  const startGame = () => {
+  const startGame = async () => {
     if (socket) socket.emit('startGame', roomId);
-    let usersId = []
-    
-    room.users.map((item)=>{
-      usersId.push(item.id)
-    })
-    console.log(usersId)
-    
-    let data = {
-      game :"Harry Potter",
-      userIds : usersId,
-      type : "1v1"
-    }
-    console.log(data)
-    const request = Api.postNewGame(data)
-    console.log(request)
   };
+  
+  
+  
+  
   
   
   console.log(room)
