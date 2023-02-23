@@ -73,7 +73,7 @@ const JoinParty = ({ setUser, user }) => {
                     htmlFor={'party-code'}
                     className={'text-20 text-ProzaLibre-SemiBold text-white'}
                   >
-                    Party code :
+                    Code la partie :
                   </label>
                   <input
                     type={'number'}

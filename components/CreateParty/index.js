@@ -69,16 +69,19 @@ export const CreateParty = ({ setUser, user, room }) => {
               <UserBadge user={user} setUser={setUser} />
             </div>
             <div className={'join-container-form'}>
-              <p className="text-20 text-white">
+              <div className={"room-id"}>
+                <p style={{marginBottom:"20px"}} className={"text-20 text-ProzaLibre-Regular text-yellow"}>Le code de la partie est : {room.id}</p>
+              </div>
+              <p className="text-20 text-white text-ProzaLibre-Regular">
                 Le créateur de la partie est: {room.owner.name}
               </p>
               <br />
-              <p className="text-20 text-Harry text-yellow">
+              <p style={{marginBottom:"7px"}} className="text-20 text-ProzaLibre-Regular text-yellow">
                 Liste des joueurs:
               </p>
               <ul>
                 {room.users.map((user, index) => (
-                  <li className="text-white" key={index}>
+                  <li style={{marginBottom:"7px"}} className="text-white text-ProzaLibre-Regular" key={index}>
                     {user.name}
                   </li>
                 ))}
