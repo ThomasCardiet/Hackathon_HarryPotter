@@ -9,6 +9,9 @@
     "dev:sass": "sass --watch styles/global.scss:styles/global.css",
     "dev": "concurrently --kill-others \"next dev\" \"npm run dev:sass\""
   },
+  "engines": {
+    "node": "14.x"
+  },
   "dependencies": {
     "@next/font": "^13.1.6",
     "@types/node": "18.14.0",

@@ -60,7 +60,7 @@ export default function LoginForm({setUser}){
         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={SchemaLogin}>
             <Form>
                 <div className={"form-row"}>
-                    <label className={"text-15 text-white text-ProzaLibre-Regular"}>Nom d'utilisateur</label>
+                    <label className={"text-15 text-white text-ProzaLibre-Regular"}>Nom d&apos;utilisateur</label>
                     <Field type={"text"} name={"name"} placeholder={"Axel"}/>
                     <ErrorMessage name={"name"} component={"p"} className={"text-error text-ProzaLibre-Regular"}/>
                 </div>
