@@ -43,7 +43,6 @@ const Page = ({ path }) => {
   )
 
 }
-
 export default Page;
 
 export async function getStaticPaths() {

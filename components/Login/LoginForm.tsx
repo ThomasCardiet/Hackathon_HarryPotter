@@ -32,7 +32,8 @@ export default function LoginForm({setUser}){
 
     const onSubmit = (credentials: MyFormValues) => {
       Api.loginUser(credentials).then((data) => {
-        if(data.statusCode && data.statusCode === 500) {
+          console.log(data)
+        if(data.statusCode) {
           switch (data.message) {
             case "Internal server error":
               data.message = "Une erreur est survenue lors de la connexion";
@@ -42,8 +43,7 @@ export default function LoginForm({setUser}){
             icon : "🧙",
             theme :"light"
           })
-        }
-
+        }else if (!data.statusCode){
         Api.storeUser(data);
         setUser(data.user);
         router.push(Router.getRoutes().CHOICE.slug)
@@ -51,6 +51,7 @@ export default function LoginForm({setUser}){
           icon : "🧙",
           theme :"light"
         })
+        }
       });
     }
 

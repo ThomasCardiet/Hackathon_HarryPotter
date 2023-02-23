@@ -7684,7 +7684,8 @@ input[type=text]:focus, input[type=password]:focus {
   cursor: pointer;
 }
 .indices-container-item.inactive img {
-  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  -webkit-filter: grayscale(100%);
+  /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
 }
 .indices-container-item.second {
@@ -7708,7 +7709,8 @@ input[type=text]:focus, input[type=password]:focus {
   transform: translate(-50%, -50%) rotateY(-180deg);
 }
 .indices-container-item.flip.inactive img {
-  -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+  -webkit-filter: grayscale(0%);
+  /* Safari 6.0 - 9.0 */
   filter: grayscale(0%);
 }
 .indices-container-item.flip::after {
@@ -7950,6 +7952,13 @@ input[type=text]:focus, input[type=password]:focus {
     opacity: 75%;
   }
 }
+.party {
+  height: 100vh;
+  background-image: url("../public/images/wallpaper-party.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .ingredients-block {
   position: absolute;
   padding: 10px 20px;
