@@ -22,18 +22,13 @@ export const Party = ({ user, stopGame, winner }) => {
   const router = useRouter();
 
   const [winnerHouse, setWinnerHouse] = useState(
-    user ? user.house.name : 'Serdaigle'
+    user ? user.house.name : 'Ravenclaw'
   );
   const [winnerHouseImg, setWinnerHouseImg] = useState(
     <img src={'/images/' + winnerHouse + '.png'} />
   );
 
-  const [users, setUsers] = useState([
-    { name: 'Axel', house: 'Serpentard', potionDone: 3 },
-    { name: 'Sofyane', house: 'Gryffondor', potionDone: 2 },
-    { name: 'Thomas', house: 'Serdaigle', potionDone: 1 },
-    { name: 'Louis', house: 'Poufsouffle', potionDone: 2 },
-  ]);
+  const [users, setUsers] = useState([]);
 
   const [ingredients, setIngredients] = useState([]);
   const [dropBoxOffsets, setDropBoxOffsets] = useState(null);
@@ -226,7 +221,16 @@ export const Party = ({ user, stopGame, winner }) => {
               </h1>
             </div>
             <div className={'success-container-logo'}>{winnerHouseImg}</div>
-            {winner && <p>Le joueur {winner.name} & gagné !</p>}
+
+            {winner && (
+              <p
+                className={
+                  'success-container-logo-name text-30 text-ProzaLibre-SemiBold text-yellow'
+                }
+              >
+                Le joueur {winner.name} a gagné !
+              </p>
+            )}
             <ul className={'success-container-content'}>
               {users.map((item, index) => {
                 return (
