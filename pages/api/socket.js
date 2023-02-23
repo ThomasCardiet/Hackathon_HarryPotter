@@ -80,7 +80,13 @@ const SocketHandler = (req, res) => {
 
       // STOP GAME
       socket.on('stopGame', ({ roomId, winner }) => {
-        console.log('stopGame', roomId, winner);
+        console.log('Gamed Stopped');
+        updateRoom(roomId, {
+          finished: true,
+          winner: winner,
+        });
+
+        console.log(rooms);
         socket.broadcast.emit('sendWinner', { rId: roomId, winner });
         socket.emit('sendWinner', { rId: roomId, winner });
       });
@@ -91,13 +97,32 @@ const SocketHandler = (req, res) => {
 
 export default SocketHandler;
 
+// CREATE ROOM
 const createRoom = (owner) => {
   const room = {
     id: rooms.length,
     owner,
     users: [owner],
     started: false,
+    finished: false,
+    winner: null,
   };
 
   return room;
+};
+
+const updateRoom = (roomId, params) => {
+  const room = rooms.find((room) => parseInt(room.id) === parseInt(roomId));
+  if (!room) return;
+
+  rooms = rooms.filter((r) => r.id !== parseInt(roomId));
+  const newRoom = {
+    ...room,
+    ...params,
+  };
+  console.log('StartRoom sent');
+
+  if (!rooms.find((r) => parseInt(r.id) === parseInt(roomId))) {
+    rooms.push(newRoom);
+  }
 };
