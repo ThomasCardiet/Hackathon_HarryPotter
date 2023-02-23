@@ -45,8 +45,7 @@ export default function LoginForm({setUser}){
         }
 
         Api.storeUser(data);
-        setUser(data.user)
-          console.log(data)
+        setUser(data.user);
         router.push(Router.getRoutes().CHOICE.slug)
         return toast.success("Connexion réussie", {
           icon : "🧙",
