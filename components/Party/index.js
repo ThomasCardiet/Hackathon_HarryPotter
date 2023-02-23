@@ -1,12 +1,13 @@
+import React, { useRef, useEffect, useState } from 'react';
 import { DraggableIngredient } from '@/components/DraggableIngredient';
 import { DropBlock } from '@/components/DropBlock';
 import { getShuffledIngredients, Ingredient } from '@/entities/Ingredient';
 import { getPartyPotions } from '@/entities/Potion';
-import { useEffect, useState } from 'react';
 import { Api } from '@/api';
 import { Router } from '@/router';
 import { useRouter } from 'next/router';
-import React from 'react';
+import Link from 'next/link';
+import { SplitChars, Tween } from 'react-gsap';
 import { CountDown, DEFAULT_INIT_TIME } from '../CountDown';
 import { toast } from 'react-toastify';
 
@@ -15,8 +16,22 @@ const TIME_PENALITY = {
   WRONG_INGREDIENT: 5,
 };
 
-const Party = () => {
+const Party = ({ user, setUser }) => {
   const router = useRouter();
+
+  const [winnerHouse, setWinnerHouse] = useState(
+    user ? user.house.name : 'Serdaigle'
+  );
+  const [winnerHouseImg, setWinnerHouseImg] = useState(
+    <img src={'/images/' + winnerHouse + '.png'} />
+  );
+
+  const [users, setUsers] = useState([
+    { name: 'Axel', house: 'Serpentard', potionDone: 3 },
+    { name: 'Sofyane', house: 'Gryffondor', potionDone: 2 },
+    { name: 'Thomas', house: 'Serdaigle', potionDone: 1 },
+    { name: 'Louis', house: 'Poufsouffle', potionDone: 2 },
+  ]);
 
   const [ingredients, setIngredients] = useState([]);
   const [dropBoxOffsets, setDropBoxOffsets] = useState(null);
@@ -159,153 +174,212 @@ const Party = () => {
       setCanTakeIndice(false);
       setTimeout(() => {
         resetAllClassFlip();
-      }, '5000');
+      }, '1000');
     }
   };
 
-  if (finished) {
-    router.push(Router.getRoutes().SUCCESS.slug);
-  }
+  console.log('users', user);
+
   return (
-    <div className="party">
-      <CountDown
-        time={countdownTime}
-        setTime={setCountDownTime}
-        setParentState={setFinished}
-      />
-      {potions && potions[currentPotionIndex] && (
-        <>
-          <div className="party__potion-name">
-            <h1>
-              Potion ({currentPotionIndex + 1}/{potions.length}):{' '}
-              {potions[currentPotionIndex].getName()}
-            </h1>
-            {potions[currentPotionIndex].getIngredients()[
-              currentIngredientPotionIndex
-            ] && (
-              <p>
-                Ingrédient requis:{' '}
-                <span>
-                  {
-                    potions[currentPotionIndex].getIngredients()[
-                      currentIngredientPotionIndex
-                    ].name
-                  }
-                </span>
-              </p>
-            )}
+    <>
+      {finished ? (
+        <section className={'success ' + winnerHouse}>
+          <aside className={'success-container'}>
+            <div className={'success-container-title'}>
+              <h1 className={'text-50 text-Harry text-yellow'}>
+                <Tween
+                  from={{ opacity: '0', scale: '0.4' }}
+                  to={{ opacity: '100%', scale: '1' }}
+                  ease="expo.out()"
+                  duration={6}
+                  stagger={0.1}
+                >
+                  <SplitChars
+                    wrapper={<span style={{ display: 'inline-block' }} />}
+                  >
+                    Victoire de la maison
+                  </SplitChars>
+                </Tween>
+              </h1>
+              <h1 className={'text-100 text-Harry text-yellow'}>
+                <Tween
+                  from={{ opacity: '0', scale: '0.4' }}
+                  to={{ opacity: '100%', scale: '1' }}
+                  ease="expo.out()"
+                  duration={6}
+                  stagger={0.1}
+                >
+                  <SplitChars
+                    wrapper={<span style={{ display: 'inline-block' }} />}
+                  >
+                    {winnerHouse}
+                  </SplitChars>
+                </Tween>
+              </h1>
+            </div>
+            <div className={'success-container-logo'}>{winnerHouseImg}</div>
+            <ul className={'success-container-content'}>
+              {users.map((item, index) => {
+                return (
+                  <li
+                    key={index}
+                    className={'text-30 text-white text-ProzaLibre-Regular'}
+                  >
+                    <img src={'/images/' + item.house + '.png'} />
+                    {item.name} - {item.potionDone} / 3
+                  </li>
+                );
+              })}
+            </ul>
+            <div className={'success-container-button'}>
+              <Link href={'/choice'} className={'btn-reset btn-yellow'}>
+                Rejouer
+              </Link>
+            </div>
+          </aside>
+        </section>
+      ) : (
+        <div className="party">
+          <CountDown
+            time={countdownTime}
+            setTime={setCountDownTime}
+            setParentState={setFinished}
+          />
+          {potions && potions[currentPotionIndex] && (
+            <>
+              <div className="party__potion-name">
+                <h1>
+                  Potion ({currentPotionIndex + 1}/{potions.length}):{' '}
+                  {potions[currentPotionIndex].getName()}
+                </h1>
+                {potions[currentPotionIndex].getIngredients()[
+                  currentIngredientPotionIndex
+                ] && (
+                  <p>
+                    Ingrédient requis:{' '}
+                    <span>
+                      {
+                        potions[currentPotionIndex].getIngredients()[
+                          currentIngredientPotionIndex
+                        ].name
+                      }
+                    </span>
+                  </p>
+                )}
+              </div>
+              <DropBlock
+                cauldron={potions[currentPotionIndex].getCauldron()}
+                setDropBoxOffsets={setDropBoxOffsets}
+              />
+            </>
+          )}
+          <div className={'indices'}>
+            <div className={'indices-container'}>
+              {indices.map((item, index) => {
+                if (index === 0) {
+                  return (
+                    <div
+                      onClick={(e) => launchIndices(index)}
+                      key={index}
+                      className={
+                        'indices-container-item first ' +
+                        classFlipFirst +
+                        (canTakeIndice ? '' : ' inactive') +
+                        (item.indiceTaken === true ? ' inactive' : '')
+                      }
+                    >
+                      <div className={'indices-container-item-image'}></div>
+                      <div className={'indices-container-item-background '}>
+                        <img src={'images/carte.png'} />
+                      </div>
+                      <div className={'content'}>
+                        {/* {item.img && item.img} */}
+                        {potions &&
+                          potions[currentPotionIndex] &&
+                          potions[currentPotionIndex].getIngredients()[
+                            currentIngredientPotionIndex
+                          ] &&
+                          potions[currentPotionIndex]
+                            .getIngredients()
+                            [currentIngredientPotionIndex].getImgComponent()}
+                      </div>
+                    </div>
+                  );
+                } else if (index === 1) {
+                  return (
+                    <div
+                      onClick={(e) => launchIndices(index)}
+                      key={index}
+                      className={
+                        'indices-container-item second ' +
+                        classFlipSecond +
+                        (canTakeIndice ? '' : ' inactive') +
+                        (item.indiceTaken === true ? ' inactive' : '')
+                      }
+                    >
+                      <div className={'indices-container-item-image'}></div>
+                      <div className={'indices-container-item-background'}>
+                        <img src={'images/carte.png'} />
+                      </div>
+                      <div className={'content'}>
+                        {/* {item.img && item.img} */}
+                        {potions &&
+                          potions[currentPotionIndex] &&
+                          potions[currentPotionIndex].getIngredients()[
+                            currentIngredientPotionIndex
+                          ] &&
+                          potions[currentPotionIndex]
+                            .getIngredients()
+                            [currentIngredientPotionIndex].getImgComponent()}
+                      </div>
+                    </div>
+                  );
+                } else if (index === 2) {
+                  return (
+                    <div
+                      onClick={(e) => launchIndices(index)}
+                      key={index}
+                      className={
+                        'indices-container-item third ' +
+                        classFlipThird +
+                        (canTakeIndice ? '' : ' inactive') +
+                        (item.indiceTaken === true ? ' inactive' : '')
+                      }
+                    >
+                      <div className={'indices-container-item-image'}></div>
+                      <div className={'indices-container-item-background'}>
+                        <img src={'images/carte.png'} />
+                      </div>
+                      <div className={'content'}>
+                        {/* {item.img && item.img} */}
+                        {potions &&
+                          potions[currentPotionIndex] &&
+                          potions[currentPotionIndex].getIngredients()[
+                            currentIngredientPotionIndex
+                          ] &&
+                          potions[currentPotionIndex]
+                            .getIngredients()
+                            [currentIngredientPotionIndex].getImgComponent()}
+                      </div>
+                    </div>
+                  );
+                }
+              })}
+            </div>
           </div>
-          <DropBlock
-            cauldron={potions[currentPotionIndex].getCauldron()}
-            setDropBoxOffsets={setDropBoxOffsets}
-          />
-        </>
-      )}
-      <div className={'indices'}>
-        <div className={'indices-container'}>
-          {indices.map((item, index) => {
-            if (index === 0) {
-              return (
-                <div
-                  onClick={(e) => launchIndices(index)}
-                  key={index}
-                  className={
-                    'indices-container-item first ' +
-                    classFlipFirst +
-                    (canTakeIndice ? '' : ' inactive') +
-                    (item.indiceTaken === true ? ' inactive' : '')
-                  }
-                >
-                  <div className={'indices-container-item-image'}></div>
-                  <div className={'indices-container-item-background '}>
-                    <img src={'images/carte.png'} />
-                  </div>
-                  <div className={'content'}>
-                    {/* {item.img && item.img} */}
-                    {potions &&
-                      potions[currentPotionIndex] &&
-                      potions[currentPotionIndex].getIngredients()[
-                        currentIngredientPotionIndex
-                      ] &&
-                      potions[currentPotionIndex]
-                        .getIngredients()
-                        [currentIngredientPotionIndex].getImgComponent()}
-                  </div>
-                </div>
-              );
-            } else if (index === 1) {
-              return (
-                <div
-                  onClick={(e) => launchIndices(index)}
-                  key={index}
-                  className={
-                    'indices-container-item second ' +
-                    classFlipSecond +
-                    (canTakeIndice ? '' : ' inactive') +
-                    (item.indiceTaken === true ? ' inactive' : '')
-                  }
-                >
-                  <div className={'indices-container-item-image'}></div>
-                  <div className={'indices-container-item-background'}>
-                    <img src={'images/carte.png'} />
-                  </div>
-                  <div className={'content'}>
-                    {/* {item.img && item.img} */}
-                    {potions &&
-                      potions[currentPotionIndex] &&
-                      potions[currentPotionIndex].getIngredients()[
-                        currentIngredientPotionIndex
-                      ] &&
-                      potions[currentPotionIndex]
-                        .getIngredients()
-                        [currentIngredientPotionIndex].getImgComponent()}
-                  </div>
-                </div>
-              );
-            } else if (index === 2) {
-              return (
-                <div
-                  onClick={(e) => launchIndices(index)}
-                  key={index}
-                  className={
-                    'indices-container-item third ' +
-                    classFlipThird +
-                    (canTakeIndice ? '' : ' inactive') +
-                    (item.indiceTaken === true ? ' inactive' : '')
-                  }
-                >
-                  <div className={'indices-container-item-image'}></div>
-                  <div className={'indices-container-item-background'}>
-                    <img src={'images/carte.png'} />
-                  </div>
-                  <div className={'content'}>
-                    {/* {item.img && item.img} */}
-                    {potions &&
-                      potions[currentPotionIndex] &&
-                      potions[currentPotionIndex].getIngredients()[
-                        currentIngredientPotionIndex
-                      ] &&
-                      potions[currentPotionIndex]
-                        .getIngredients()
-                        [currentIngredientPotionIndex].getImgComponent()}
-                  </div>
-                </div>
-              );
-            }
-          })}
+          <ul className="ingredients-block">
+            {ingredients.map((ingredient, index) => (
+              <DraggableIngredient
+                dropBoxOffsets={dropBoxOffsets}
+                ingredient={ingredient}
+                dropIngredient={dropIngredient}
+                key={index}
+              />
+            ))}
+          </ul>
         </div>
-      </div>
-      <ul className="ingredients-block">
-        {ingredients.map((ingredient, index) => (
-          <DraggableIngredient
-            dropBoxOffsets={dropBoxOffsets}
-            ingredient={ingredient}
-            dropIngredient={dropIngredient}
-            key={index}
-          />
-        ))}
-      </ul>
-    </div>
+      )}
+    </>
   );
 };
 
