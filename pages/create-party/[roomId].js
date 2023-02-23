@@ -93,8 +93,27 @@ const Create = () => {
   // START GAME
   const startGame = () => {
     if (socket) socket.emit('startGame', roomId);
+    let usersId = []
+    
+    room.users.map((item)=>{
+      usersId.push(item.id)
+    })
+    console.log(usersId)
+    
+    let data = {
+      game :"Harry Potter",
+      userIds : usersId,
+      type : "1v1"
+    }
+    console.log(data)
+    const request = Api.postNewGame(data)
+    console.log(request)
   };
-
+  
+  
+  console.log(room)
+  
+  
   if (!roomId || !user || !room) return <Waiting />;
 
   return (
