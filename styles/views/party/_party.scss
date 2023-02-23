@@ -149,17 +149,17 @@
   background-size: cover;
   background-repeat: no-repeat;
   animation: apear 2s;
-  &.Serpentard {
-    background-image: url('../public/images/wallpaper-win-Serpentard.png');
+  &.Slytherin {
+    background-image: url('../public/images/wallpaper-win-Slytherin.png');
   }
-  &.Gryffondor {
-    background-image: url('../public/images/wallpaper-win-Gryffondor.png');
+  &.Gryffindor {
+    background-image: url('../public/images/wallpaper-win-Gryffindor.png');
   }
-  &.Serdaigle {
-    background-image: url('../public/images/wallpaper-win-Serdaigle.png');
+  &.Ravenclaw {
+    background-image: url('../public/images/wallpaper-win-Ravenclaw.png');
   }
-  &.Poufsouffle {
-    background-image: url('../public/images/wallpaper-win-Poufsouffle.png');
+  &.Hufflepuff {
+    background-image: url('../public/images/wallpaper-win-Hufflepuff.png');
   }
   &-container {
     height: 100%;
@@ -196,6 +196,10 @@
       justify-content: center;
       img {
         width: 200px;
+      }
+
+      &-name {
+        text-align: center;
       }
     }
     &-button {

@@ -8105,17 +8105,17 @@ input:focus {
   background-repeat: no-repeat;
   animation: apear 2s;
 }
-.success.Serpentard {
-  background-image: url("../public/images/wallpaper-win-Serpentard.png");
+.success.Slytherin {
+  background-image: url("../public/images/wallpaper-win-Slytherin.png");
 }
-.success.Gryffondor {
-  background-image: url("../public/images/wallpaper-win-Gryffondor.png");
+.success.Gryffindor {
+  background-image: url("../public/images/wallpaper-win-Gryffindor.png");
 }
-.success.Serdaigle {
-  background-image: url("../public/images/wallpaper-win-Serdaigle.png");
+.success.Ravenclaw {
+  background-image: url("../public/images/wallpaper-win-Ravenclaw.png");
 }
-.success.Poufsouffle {
-  background-image: url("../public/images/wallpaper-win-Poufsouffle.png");
+.success.Hufflepuff {
+  background-image: url("../public/images/wallpaper-win-Hufflepuff.png");
 }
 .success-container {
   height: 100%;
@@ -8153,6 +8153,9 @@ input:focus {
 }
 .success-container-logo img {
   width: 200px;
+}
+.success-container-logo-name {
+  text-align: center;
 }
 .success-container-button {
   display: flex;
