@@ -22,7 +22,19 @@ const Choice = ({ setUser, user }) => {
     // REDIRECT IF NOT LOGGED
     if (!Api.isLoggedUser()) router.push(Router.getRoutes().LOGIN.slug);
   }, []);
-
+  
+  useEffect(() => {
+    let data = {
+      game: "Harry Potion",
+        userIds: [
+      28,34
+    ],
+        type: "1v1"
+    }
+    const request = Api.postNewGame(data)
+    console.log(request)
+  }, []);
+  
 
   return (
     <>
