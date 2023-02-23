@@ -51,8 +51,8 @@ const Create = () => {
     });
 
     // REDIRECT TO PARTY
-    socket.on('redirectToParty', (roomId) => {
-      if (room && room.id === parseInt(roomId)) router.push(`/party/${roomId}`);
+    socket.on('redirectToParty', (id) => {
+      if (parseInt(roomId) === parseInt(id)) router.push(`/party/${roomId}`);
     });
   };
 

@@ -180,8 +180,6 @@ export const Party = ({ user, setUser }) => {
     }
   };
 
-  console.log('users', user);
-
   return (
     <>
       {finished ? (
