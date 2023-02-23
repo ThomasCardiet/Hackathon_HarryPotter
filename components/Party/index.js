@@ -1,10 +1,11 @@
-import Head from 'next/head';
 import { DraggableIngredient } from '@/components/DraggableIngredient';
 import { DropBlock } from '@/components/DropBlock';
 import { getShuffledIngredients, Ingredient } from '@/entities/Ingredient';
-import { getPartyPotions, Potion } from '@/entities/Potion';
+import { getPartyPotions } from '@/entities/Potion';
 import { useEffect, useState } from 'react';
 import { Api } from '@/api';
+import { Router } from '@/router';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { CountDown, DEFAULT_INIT_TIME } from '../CountDown';
 import { toast } from 'react-toastify';
@@ -15,6 +16,8 @@ const TIME_PENALITY = {
 };
 
 const Party = () => {
+  const router = useRouter();
+
   const [ingredients, setIngredients] = useState([]);
   const [dropBoxOffsets, setDropBoxOffsets] = useState(null);
 
@@ -160,20 +163,9 @@ const Party = () => {
     }
   };
 
-  if (finished)
-    return (
-      <div className="party-finish">
-        <h2>Partie Terminée !</h2>
-        {countdownTime <= 0 ? (
-          <p className="party-finish__text lose">Le temps est écoulé...</p>
-        ) : (
-          <p className="party-finish__text win">
-            Félicitation vous voilà Alchimiste !
-          </p>
-        )}
-      </div>
-    );
-
+  if (finished) {
+    router.push(Router.getRoutes().SUCCESS.slug);
+  }
   return (
     <div className="party">
       <CountDown
