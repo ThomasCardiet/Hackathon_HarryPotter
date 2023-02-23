@@ -22,6 +22,9 @@ const SocketHandler = (req, res) => {
           (room) => parseInt(room.id) === parseInt(roomId)
         );
         if (!room) return;
+
+        console.log(room, rooms);
+
         socket.emit('setRoom', { room });
       });
 
@@ -63,7 +66,9 @@ const SocketHandler = (req, res) => {
           ...room,
           started: true,
         };
+        console.log('ROOMS LENGHT 1', rooms);
         rooms.push(newRoom);
+        console.log('ROOMS LENGHT 2', rooms);
 
         console.log('StartRoom sent');
 
