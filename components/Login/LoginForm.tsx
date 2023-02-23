@@ -32,7 +32,6 @@ export default function LoginForm({setUser}){
 
     const onSubmit = (credentials: MyFormValues) => {
       Api.loginUser(credentials).then((data) => {
-          console.log(data)
         if(data.statusCode) {
           switch (data.message) {
             case "Internal server error":
@@ -45,8 +44,7 @@ export default function LoginForm({setUser}){
           })
         }else if (!data.statusCode){
         Api.storeUser(data);
-        setUser(data.user)
-          console.log(data)
+        setUser(data.user);
         router.push(Router.getRoutes().CHOICE.slug)
         return toast.success("Connexion réussie", {
           icon : "🧙",

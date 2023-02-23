@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import useSound from 'use-sound';
 import { Api } from '@/api';
 import { Router } from '@/router';
+import { Waiting } from '@/components/Waiting';
 import { useRouter } from 'next/router';
 import { SplitChars, Tween } from 'react-gsap';
 import UserBadge from '../UserBadge/UserBadge';
 
-const JoinParty = ({ setUser, user }) => {
+export const CreateParty = ({ setUser, user, room }) => {
   const router = useRouter();
 
   const soundUrl = '/sounds/button1.wav';
-
-  const [inputRoomId, setInputRoomId] = useState(0);
 
   const [play, { stop }] = useSound(soundUrl, { volume: 0.4 });
   const onClickLaunchSound = () => {
@@ -23,6 +22,9 @@ const JoinParty = ({ setUser, user }) => {
     // REDIRECT IF NOT LOGGED
     if (!Api.isLoggedUser()) router.push(Router.getRoutes().LOGIN.slug);
   }, []);
+
+  if (!room) return <Waiting />;
+
   return (
     <>
       <main>
@@ -44,7 +46,7 @@ const JoinParty = ({ setUser, user }) => {
                     <SplitChars
                       wrapper={<span style={{ display: 'inline-block' }} />}
                     >
-                      Rejoins une partie
+                      Infos de la Room
                     </SplitChars>
                   </Tween>
                 </h3>
@@ -59,7 +61,7 @@ const JoinParty = ({ setUser, user }) => {
                     <SplitChars
                       wrapper={<span style={{ display: 'inline-block' }} />}
                     >
-                      Rejoins une partie
+                      Infos de la Room
                     </SplitChars>
                   </Tween>
                 </h3>
@@ -67,31 +69,20 @@ const JoinParty = ({ setUser, user }) => {
               <UserBadge user={user} setUser={setUser} />
             </div>
             <div className={'join-container-form'}>
-              <form>
-                <div className={'join-container-form-input'}>
-                  <label
-                    htmlFor={'party-code'}
-                    className={'text-20 text-ProzaLibre-SemiBold text-white'}
-                  >
-                    Party code :
-                  </label>
-                  <input
-                    type={'number'}
-                    id={'party-code'}
-                    className={'text-20 text-ProzaLibre-SemiBold text-white'}
-                    value={inputRoomId}
-                    onChange={(e) => setInputRoomId(e.target.value)}
-                    required
-                  />
-                </div>
-                <Link
-                  href={`create-party/${inputRoomId}`}
-                  className={'btn-reset btn-yellow'}
-                  onClick={(e) => onClickLaunchSound()}
-                >
-                  Join
-                </Link>
-              </form>
+              <p className="text-20 text-white">
+                Le créateur de la partie est: {room.owner.name}
+              </p>
+              <br />
+              <p className="text-20 text-Harry text-yellow">
+                Liste des joueurs:
+              </p>
+              <ul>
+                {room.users.map((user, index) => (
+                  <li className="text-white" key={index}>
+                    {user.name}
+                  </li>
+                ))}
+              </ul>
             </div>
           </aside>
         </section>
@@ -99,5 +90,3 @@ const JoinParty = ({ setUser, user }) => {
     </>
   );
 };
-
-export default JoinParty;
