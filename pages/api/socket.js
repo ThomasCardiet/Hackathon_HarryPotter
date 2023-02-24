@@ -3,8 +3,7 @@ import { Api } from '../../api';
 
 let rooms = [];
 
-const SocketHandler = (req, res) => {
-  let connectedUser = null;
+
   if (res.socket.server.io) {
     console.log('Socket is already running');
   } else {
@@ -20,7 +19,6 @@ const SocketHandler = (req, res) => {
     io.on('connection', (socket) => {
       // CREATE PARTY
       socket.on('createParty', (user) => {
-        connectedUser = user;
         const room = createRoom(user);
         rooms.push(room);
         socket.emit('redirectRoom', { user, room });
@@ -38,7 +36,6 @@ const SocketHandler = (req, res) => {
 
       // ADD USER TO ROOM
       socket.on('addUserToRoom', ({ user, roomId }) => {
-        connectedUser = user;
         const room = rooms.find(
           (room) => parseInt(room.id) === parseInt(roomId)
         );
@@ -78,15 +75,12 @@ const SocketHandler = (req, res) => {
         room.users.map((item) => {
           usersId.push(item.id);
         });
-        console.log(usersId);
 
         let data = {
           game: 'Harry Potion',
           userIds: usersId,
           type: '1v1',
         };
-        console.log(data);
-        let gameId;
         const request = Api.postNewGame(data, room.users[0].token).then(
           (response) => {
             updateRoom(roomId, { gameId: response.data.id });
@@ -129,7 +123,7 @@ const SocketHandler = (req, res) => {
         };
 
         Api.postNewGameEnd(data).then((res) => {
-          console.log('res', res.data);
+          console.log('Sended To api: ', res && res.data ? 'Oui' : 'Non');
         });
 
         socket.broadcast.emit('sendWinner', { rId: roomId, winner });

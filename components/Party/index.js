@@ -18,17 +18,8 @@ const TIME_PENALITY = {
 
 const INDICE_TIMEOUT = 2000;
 
-export const Party = ({ user, stopGame, winner, finished, setFinished }) => {
+export const Party = ({ room, stopGame, winner, finished, setFinished }) => {
   const router = useRouter();
-
-  const [winnerHouse, setWinnerHouse] = useState(
-    winner ? winner.house.name : 'Ravenclaw'
-  );
-  const [winnerHouseImg, setWinnerHouseImg] = useState(
-    <img src={'/images/' + winnerHouse + '.png'} />
-  );
-
-  const [users, setUsers] = useState([]);
 
   const [ingredients, setIngredients] = useState([]);
   const [dropBoxOffsets, setDropBoxOffsets] = useState(null);
@@ -112,7 +103,7 @@ export const Party = ({ user, stopGame, winner, finished, setFinished }) => {
           });
         } else {
           // IF LAST POTION FINISH GAME
-          stopGame(user);
+          stopGame(true);
         }
       }
     } else {
@@ -184,10 +175,6 @@ export const Party = ({ user, stopGame, winner, finished, setFinished }) => {
   };
 
   useEffect(() => {
-    if (finished) stopGame();
-  }, [finished]);
-
-  useEffect(() => {
     if (winner) {
       setFinished(true);
     }
@@ -196,7 +183,7 @@ export const Party = ({ user, stopGame, winner, finished, setFinished }) => {
   return (
     <>
       {finished && winner ? (
-        <section className={'success ' + winnerHouse}>
+        <section className={'success ' + winner.house.name}>
           <aside className={'success-container'}>
             <div className={'success-container-title'}>
               <h1 className={'text-50 text-Harry text-yellow'}>
@@ -225,12 +212,14 @@ export const Party = ({ user, stopGame, winner, finished, setFinished }) => {
                   <SplitChars
                     wrapper={<span style={{ display: 'inline-block' }} />}
                   >
-                    {winnerHouse}
+                    {winner.house.name}
                   </SplitChars>
                 </Tween>
               </h1>
             </div>
-            <div className={'success-container-logo'}>{winnerHouseImg}</div>
+            <div className={'success-container-logo'}>
+              <img src={'/images/' + winner.house.name + '.png'} />
+            </div>
 
             {winner && (
               <p
@@ -241,19 +230,21 @@ export const Party = ({ user, stopGame, winner, finished, setFinished }) => {
                 Le joueur {winner.name} a gagné !
               </p>
             )}
-            <ul className={'success-container-content'}>
-              {users.map((item, index) => {
-                return (
-                  <li
-                    key={index}
-                    className={'text-30 text-white text-ProzaLibre-Regular'}
-                  >
-                    <img src={'/images/' + item.house + '.png'} />
-                    {item.name} - {item.potionDone} / 3
-                  </li>
-                );
-              })}
-            </ul>
+            {room && (
+              <ul className={'success-container-content'}>
+                {room.users.map((item, index) => {
+                  return (
+                    <li
+                      key={index}
+                      className={'text-30 text-white text-ProzaLibre-Regular'}
+                    >
+                      <img src={'/images/' + item.house.name + '.png'} />
+                      {item.name} - {item.points} Points
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
             <div className={'success-container-button'}>
               <Link href={'/choice'} className={'btn-reset btn-yellow'}>
                 Rejouer

@@ -61,9 +61,13 @@ const PlayParty = ({ gameId }) => {
     }
   };
 
-  const stopGame = async (winner) => {
-    if (socket && roomId && winner) {
-      socket.emit('stopGame', { roomId, winner });
+  const stopGame = async (isWinner) => {
+    const againstUser = room.users.find((roomUser) => roomUser.id !== user.id);
+    if (socket && roomId && user) {
+      socket.emit('stopGame', {
+        roomId,
+        winner: isWinner ? user : againstUser,
+      });
     }
   };
 
@@ -75,7 +79,7 @@ const PlayParty = ({ gameId }) => {
 
   return (
     <Party
-      user={user}
+      room={room}
       stopGame={stopGame}
       winner={winner}
       finished={finished}

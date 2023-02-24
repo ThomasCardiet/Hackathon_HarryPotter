@@ -71,7 +71,7 @@ export default function LoginForm({setUser}){
                 </div>
                 <div className={"form-row-button"}>
                     <button type={"submit"} className={"btn-reset btn-yellow"}>Connexion</button>
-                    <a href={"#"} type={"submit"} className={"btn-reset btn-yellow"}>Inscription</a>
+                    <a href={"https://hp-leaderboard.netlify.app/signup/"} type={"submit"} className={"btn-reset btn-yellow"}>Inscription</a>
                 </div>
             </Form>
         </Formik>

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 export const MINUTE = 60; // SECONDS
 export const SECOND = 1000; // MILLISECONDS
-export const DEFAULT_INIT_TIME = 3 * MINUTE; // 5 MINUTES
+export const DEFAULT_INIT_TIME = 5 * MINUTE; // 5 MINUTES
 
 const formatTimer = (time) => {
   const minutes = Math.trunc(time / MINUTE);
@@ -38,7 +38,9 @@ export const CountDown = ({ time, setTime, stopGame = null, start = true }) => {
     if (time <= 0) {
       setTime(0);
       setRun(false);
-      if (stopGame) stopGame();
+      if (stopGame) {
+        stopGame(false);
+      }
     }
   }, [time]);
 
