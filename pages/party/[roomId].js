@@ -5,7 +5,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Api } from '@/api';
 import io from 'socket.io-client';
 import { Router } from '@/router';
-import { GameId } from '../_app';
 
 const PlayParty = ({ gameId }) => {
   const router = useRouter();
@@ -16,6 +15,7 @@ const PlayParty = ({ gameId }) => {
   const [socket, setSocket] = useState(null);
   const [winner, setWinner] = useState(null);
   const [room, setRoom] = useState(null);
+  const [finished, setFinished] = useState(false);
 
   // GET USER FROM API
   useEffect(() => {
@@ -61,15 +61,9 @@ const PlayParty = ({ gameId }) => {
     }
   };
 
-  const stopGame = async () => {
-    if (socket && roomId && user) {
-      socket.emit('stopGame', { roomId, winner: user });
-      let data = {
-        gameId: GameId,
-        userId: user,
-      };
-      //const request = await Api.postNewGameEnd(data)
-      console.log('api request');
+  const stopGame = async (winner) => {
+    if (socket && roomId && winner) {
+      socket.emit('stopGame', { roomId, winner });
     }
   };
 
@@ -79,7 +73,15 @@ const PlayParty = ({ gameId }) => {
 
   if (!user || !room) return <Waiting />;
 
-  return <Party user={user} stopGame={stopGame} winner={winner} />;
+  return (
+    <Party
+      user={user}
+      stopGame={stopGame}
+      winner={winner}
+      finished={finished}
+      setFinished={setFinished}
+    />
+  );
 };
 
 export default PlayParty;

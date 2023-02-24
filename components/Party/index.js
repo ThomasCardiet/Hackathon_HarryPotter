@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DraggableIngredient } from '@/components/DraggableIngredient';
 import { DropBlock } from '@/components/DropBlock';
 import { getShuffledIngredients, Ingredient } from '@/entities/Ingredient';
@@ -16,13 +16,13 @@ const TIME_PENALITY = {
   WRONG_INGREDIENT: 5,
 };
 
-const INDICE_TIMEOUT = 3000;
+const INDICE_TIMEOUT = 2000;
 
-export const Party = ({ user, stopGame, winner }) => {
+export const Party = ({ user, stopGame, winner, finished, setFinished }) => {
   const router = useRouter();
 
   const [winnerHouse, setWinnerHouse] = useState(
-    user ? user.house.name : 'Ravenclaw'
+    winner ? winner.house.name : 'Ravenclaw'
   );
   const [winnerHouseImg, setWinnerHouseImg] = useState(
     <img src={'/images/' + winnerHouse + '.png'} />
@@ -33,7 +33,6 @@ export const Party = ({ user, stopGame, winner }) => {
   const [ingredients, setIngredients] = useState([]);
   const [dropBoxOffsets, setDropBoxOffsets] = useState(null);
 
-  const [finished, setFinished] = useState(false);
   const [countdownTime, setCountDownTime] = useState(DEFAULT_INIT_TIME);
 
   // POTIONS
@@ -113,7 +112,7 @@ export const Party = ({ user, stopGame, winner }) => {
           });
         } else {
           // IF LAST POTION FINISH GAME
-          setFinished(true);
+          stopGame(user);
         }
       }
     } else {
@@ -196,7 +195,7 @@ export const Party = ({ user, stopGame, winner }) => {
 
   return (
     <>
-      {finished ? (
+      {finished && winner ? (
         <section className={'success ' + winnerHouse}>
           <aside className={'success-container'}>
             <div className={'success-container-title'}>
@@ -267,7 +266,7 @@ export const Party = ({ user, stopGame, winner }) => {
           <CountDown
             time={countdownTime}
             setTime={setCountDownTime}
-            setParentState={setFinished}
+            stopGame={stopGame}
           />
           {potions && potions[currentPotionIndex] && (
             <>

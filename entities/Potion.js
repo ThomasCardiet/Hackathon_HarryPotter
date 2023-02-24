@@ -2,6 +2,8 @@ import { Cauldron, CAULDRONS } from './Cauldron';
 import { Ingredient, INGREDIENTS } from './Ingredient';
 import { shuffleArray } from '@/helpers/array';
 
+const NUMBER_GAME_POTIONS = 4;
+
 export class Potion {
   name;
   ingredients;
@@ -123,5 +125,5 @@ export const getPotionByName = (name) => {
  * GET 3 SHUFFLED ARRAY OF POTIONS
  */
 export const getPartyPotions = () => {
-  return shuffleArray(getPotions()).slice(0, 3);
+  return shuffleArray(getPotions()).slice(0, NUMBER_GAME_POTIONS);
 };
