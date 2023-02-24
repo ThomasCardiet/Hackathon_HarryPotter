@@ -6,7 +6,7 @@ import { Router } from '@/router';
 import React, { useContext } from 'react';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import io from 'Socket.IO-client';
+import io from 'socket.io-client';
 
 const MAX_USER_PER_ROOM = 2;
 

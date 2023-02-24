@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { Waiting } from '@/components/Waiting';
 import React, { useContext, useEffect, useState } from 'react';
 import { Api } from '@/api';
-import io from 'Socket.IO-client';
+import io from 'socket.io-client';
 import { Router } from '@/router';
 import { GameId } from '../_app';
 

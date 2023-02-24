@@ -4,7 +4,7 @@ import React, { useRef, useEffect } from 'react';
 import useSound from 'use-sound';
 import { SplitChars, Tween, Controls, PlayState } from 'react-gsap';
 import Link from 'next/link';
-import io from 'Socket.IO-client';
+import io from 'socket.io-client';
 import { Router } from '../../router';
 let socket;
 const Home = ({ user }) => {

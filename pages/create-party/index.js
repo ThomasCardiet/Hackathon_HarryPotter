@@ -2,7 +2,7 @@ import { Waiting } from '@/components/Waiting';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { Api } from '../../api';
-import io from 'Socket.IO-client';
+import io from 'socket.io-client';
 
 const CreateParty = () => {
   // SOCKET STATES
