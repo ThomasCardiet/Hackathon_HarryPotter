@@ -1,25 +1,13 @@
-import Head from 'next/head';
 import { getIngredients } from '../../entities/Ingredient';
 import React, { useRef, useEffect } from 'react';
 import useSound from 'use-sound';
 import { SplitChars, Tween, Controls, PlayState } from 'react-gsap';
 import Link from 'next/link';
-import io from 'socket.io-client';
 import { Router } from '../../router';
 let socket;
 const Home = ({ user }) => {
   const dropBlockRef = useRef(null);
   const ingredients = getIngredients();
-  const socketInitializer = async () => {
-    await fetch('/api/socket');
-    socket = io();
-
-    socket.on('connect', () => {});
-  };
-
-  useEffect(() => {
-    socketInitializer();
-  }, []);
 
   const soundUrl = 'Booum.mp3';
   const soundUrl2 = 'rain-and-thunder-113218.mp3';
