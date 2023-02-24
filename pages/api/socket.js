@@ -1,8 +1,10 @@
 import { Server } from 'Socket.IO';
+import { Api } from '../../api';
 
 let rooms = [];
 
 const SocketHandler = (req, res) => {
+  let connectedUser = null;
   if (res.socket.server.io) {
     console.log('Socket is already running');
   } else {
@@ -18,6 +20,7 @@ const SocketHandler = (req, res) => {
     io.on('connection', (socket) => {
       // CREATE PARTY
       socket.on('createParty', (user) => {
+        connectedUser = user;
         const room = createRoom(user);
         rooms.push(room);
         socket.emit('redirectRoom', { user, room });
@@ -35,6 +38,7 @@ const SocketHandler = (req, res) => {
 
       // ADD USER TO ROOM
       socket.on('addUserToRoom', ({ user, roomId }) => {
+        connectedUser = user;
         const room = rooms.find(
           (room) => parseInt(room.id) === parseInt(roomId)
         );
@@ -68,6 +72,29 @@ const SocketHandler = (req, res) => {
         );
         if (!room || room.started) return;
 
+        let usersId = [];
+
+        //SEND API
+        room.users.map((item) => {
+          usersId.push(item.id);
+        });
+        console.log(usersId);
+
+        let data = {
+          game: 'Harry Potion',
+          userIds: usersId,
+          type: '1v1',
+        };
+        console.log(data);
+        let gameId;
+        const request = Api.postNewGame(data, room.users[0].token).then(
+          (response) => {
+            updateRoom(roomId, { gameId: response.data.id });
+          }
+        );
+
+        // ADD STARTED
+
         rooms = rooms.filter((r) => r.id !== parseInt(roomId));
         const newRoom = {
           ...room,
@@ -85,13 +112,26 @@ const SocketHandler = (req, res) => {
 
       // STOP GAME
       socket.on('stopGame', ({ roomId, winner }) => {
-        console.log('Gamed Stopped');
+        const room = rooms.find(
+          (room) => parseInt(room.id) === parseInt(roomId)
+        );
+        if (!room) return;
+
+        console.log('stopGame', roomId, winner);
         updateRoom(roomId, {
           finished: true,
           winner: winner,
         });
 
-        console.log(rooms);
+        let data = {
+          gameId: room.gameId,
+          userId: winner.id,
+        };
+
+        Api.postNewGameEnd(data).then((res) => {
+          console.log('res', res.data);
+        });
+
         socket.broadcast.emit('sendWinner', { rId: roomId, winner });
         socket.emit('sendWinner', { rId: roomId, winner });
       });
@@ -102,15 +142,12 @@ const SocketHandler = (req, res) => {
 
 export default SocketHandler;
 
-// CREATE ROOM
 const createRoom = (owner) => {
   const room = {
     id: rooms.length,
     owner,
     users: [owner],
     started: false,
-    finished: false,
-    winner: null,
   };
 
   return room;

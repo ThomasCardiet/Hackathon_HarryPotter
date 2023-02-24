@@ -1,7 +1,12 @@
 .waiting-block {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
   position: relative;
+
+  .waiting-block__link {
+    margin-top: 50px;
+  }
 }

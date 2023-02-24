@@ -3,7 +3,7 @@ import { ViewRoom } from '@/components/ViewRoom';
 import { Waiting } from '@/components/Waiting';
 import { useRouter } from 'next/router';
 import { Router } from '@/router';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import io from 'Socket.IO-client';
@@ -39,6 +39,7 @@ const Create = () => {
 
     // SET ROOM
     socket.on('setRoom', ({ room }) => {
+      if (room.started) router.push(`/party/${roomId}`);
       setRoom(room);
     });
 
@@ -91,7 +92,7 @@ const Create = () => {
   }, [room, user, socket]);
 
   // START GAME
-  const startGame = () => {
+  const startGame = async () => {
     if (socket) socket.emit('startGame', roomId);
   };
 

@@ -29,7 +29,7 @@ export const ViewRoom = ({ setUser, user, room, partyCanStart, startGame }) => {
           <aside className={'join-container'}>
             <div className={'join-container-top'}>
               <Link href={'/choice'} className={'join-container-top-back'}>
-                <img src={'images/icons/arrow-left.svg'} alt={'back'} />
+                <img src={'/images/icons/arrow-left.svg'} alt={'back'} />
               </Link>
               <div className={'join-container-top-title'}>
                 <h3 className={'text-50 text-Harry text-yellow'}>
@@ -66,16 +66,19 @@ export const ViewRoom = ({ setUser, user, room, partyCanStart, startGame }) => {
               <UserBadge user={user} setUser={setUser} />
             </div>
             <div className={'join-container-form'}>
-              <p className="text-20 text-white">
+              <div style={{marginBottom:"20px"}} className={"room"}>
+                <p className={"text-yellow text-15 text-ProzaLibre-Regular"}> Le numéro de la room : {room.id}</p>
+              </div>
+              <p className="text-20 text-white text-ProzaLibre-Regular">
                 Le créateur de la partie est: {room.owner.name}
               </p>
               <br />
               <p className="text-20 text-Harry text-yellow">
                 Liste des joueurs:
               </p>
-              <ul>
+              <ul style={{marginTop:"10px"}}>
                 {room.users.map((user, index) => (
-                  <li className="text-white" key={index}>
+                  <li style={{marginBottom:"10px"}} className="text-white text-ProzaLibre-Regular" key={index}>
                     {user.name}
                   </li>
                 ))}
@@ -83,7 +86,7 @@ export const ViewRoom = ({ setUser, user, room, partyCanStart, startGame }) => {
               {partyCanStart && user && user.id === room.owner.id && (
                 <>
                   <br />
-                  <button onClick={startGame} className="text-40 tex-yellow">
+                  <button onClick={startGame} className="btn-reset btn-yellow">
                     Commencer
                   </button>
                 </>

@@ -145,6 +145,7 @@ export class Api {
     return localStorage.getItem(LOCAL_STORAGE_AUTH) ? true : false;
   }
 
+  
   /**
    * GET CURRENT LOGGED USER
    *
@@ -153,23 +154,40 @@ export class Api {
     if (!this.isLoggedUser()) return null;
     const local = JSON.parse(localStorage.getItem(LOCAL_STORAGE_AUTH));
     if (!local.user) return null;
-    return local.user;
+    return {
+      ...local.user,
+      token: local.token
+    };
   }
 
-  static postNewGame = async (data) => {
-    if (!this.isLoggedUser()) return null;
-    const local = JSON.parse(localStorage.getItem(LOCAL_STORAGE_AUTH));
+  static postNewGame = async (data, token) => {
     const request = await axios.post(
       'https://hp-api-iim.azurewebsites.net/matches/start',
       data,
       {
         headers: {
-          Authorization: 'Bearer ' + local.token,
+          Authorization: 'Bearer ' + token,
           'Content-Type': 'application/json',
         },
       }
-    );
-
-    console.log(request);
+    ).then((response)=>{
+      return response
+    })
+    return request;
   };
+  
+  static postNewGameEnd = async (data) => {
+    const request = await axios.post(
+        'https://hp-api-iim.azurewebsites.net/matches/end',
+        data,
+        {
+          headers: {
+            Authorization: data.userId.token,
+            'Content-Type': 'application/json',
+          },
+        }
+    );
+    return request
+  };
+  
 }

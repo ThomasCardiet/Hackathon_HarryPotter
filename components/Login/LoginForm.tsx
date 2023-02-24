@@ -55,7 +55,7 @@ export default function LoginForm({setUser}){
     }
 
 
-    const initialValues: MyFormValues = { name: 'test-32' , password : 'password' };
+    const initialValues: MyFormValues = { name: '' , password : '' };
     return (<>
         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={SchemaLogin}>
             <Form>

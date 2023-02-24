@@ -7810,7 +7810,6 @@ input:focus {
   background-image: url("../public/images/wallpaper-home.png");
   background-size: cover;
   background-repeat: no-repeat;
-  animation: apear 2s;
 }
 .home-container {
   height: 100%;
@@ -8211,10 +8210,14 @@ input:focus {
 }
 .waiting-block {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
   position: relative;
+}
+.waiting-block .waiting-block__link {
+  margin-top: 50px;
 }
 
 .join {

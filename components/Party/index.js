@@ -119,11 +119,14 @@ export const Party = ({ user, stopGame, winner }) => {
     } else {
       // BAD INGREDIENT
       setCountDownTime((prev) => prev - TIME_PENALITY.WRONG_INGREDIENT);
-      toast.error('Mauvais ingrédient (- 5 sec)', {
-        icon: '❌',
-        theme: 'light',
-        position: 'bottom-center',
-      });
+      toast.error(
+        `Mauvais ingrédient (- ${TIME_PENALITY.WRONG_INGREDIENT} sec)`,
+        {
+          icon: '❌',
+          theme: 'light',
+          position: 'bottom-center',
+        }
+      );
     }
   };
 
@@ -147,7 +150,7 @@ export const Party = ({ user, stopGame, winner }) => {
   const launchIndices = (index) => {
     // NOT ENOUGH TIME
     if (countdownTime <= TIME_PENALITY.INDICE + 10) {
-      return toast.error('Tu nas plus le temps !', {
+      return toast.error("Tu n'as plus le temps !", {
         icon: '❌',
         theme: 'light',
         position: 'bottom-center',
@@ -156,6 +159,12 @@ export const Party = ({ user, stopGame, winner }) => {
 
     let findIndice = indices.find((item, indexItem) => indexItem === index);
     if (findIndice.indiceTaken === false && canTakeIndice) {
+      toast.error(`Indice utilisé (- ${TIME_PENALITY.INDICE} sec)`, {
+        icon: '❌',
+        theme: 'light',
+        position: 'bottom-center',
+      });
+
       setCountDownTime((prev) => prev - TIME_PENALITY.INDICE);
       /*Set to true if already taken*/
       let indicesCopy = [...indices];
@@ -182,11 +191,6 @@ export const Party = ({ user, stopGame, winner }) => {
   useEffect(() => {
     if (winner) {
       setFinished(true);
-      toast.success(`${winner.name} est le grand gagnant !`, {
-        icon: '👊',
-        theme: 'light',
-        position: 'bottom-right',
-      });
     }
   }, [winner]);
 
