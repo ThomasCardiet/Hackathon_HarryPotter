@@ -2,8 +2,12 @@ import { Server } from 'socket.io';
 import { Api } from '../../api';
 
 let rooms = [];
+const GAME_WIN_POINTS = 10;
 
 const SocketHandler = (req, res) => {
+  Api.getGames().then((res) => {
+    setRooms(res);
+  });
   if (res.socket.server.io) {
     console.log('Socket is already running');
   } else {
@@ -77,15 +81,13 @@ const SocketHandler = (req, res) => {
         });
 
         let data = {
-          game: 'Harry Potion',
           userIds: usersId,
-          type: '1v1',
+          roomId,
         };
-        const request = Api.postNewGame(data, room.users[0].token).then(
-          (response) => {
-            updateRoom(roomId, { gameId: response.data.id });
-          }
-        );
+        Api.postNewGame(data).then((response) => {
+          console.log('start game: ', data);
+          updateRoom(roomId, { gameId: response.data.id });
+        });
 
         // ADD STARTED
 
@@ -111,19 +113,20 @@ const SocketHandler = (req, res) => {
         );
         if (!room) return;
 
-        console.log('stopGame', roomId, winner);
+        console.log('stopGame', roomId, winner.username);
         updateRoom(roomId, {
           finished: true,
           winner: winner,
         });
 
         let data = {
-          gameId: room.gameId,
-          userId: winner.id,
+          roomId: room.id,
+          winnerId: winner.id,
+          points: GAME_WIN_POINTS,
         };
 
         Api.postNewGameEnd(data).then((res) => {
-          console.log('Sended To api: ', res && res.data ? 'Oui' : 'Non');
+          console.log('Sended To api');
         });
 
         socket.broadcast.emit('sendWinner', { rId: roomId, winner });
@@ -136,9 +139,25 @@ const SocketHandler = (req, res) => {
 
 export default SocketHandler;
 
+const getNextRoomId = () => {
+  const sort = rooms.sort((a, b) => {
+    if (a.id > b.id) {
+      return -1;
+    }
+    if (a.id < b.id) {
+      return 1;
+    }
+
+    // names must be equal
+    return 0;
+  });
+
+  return sort.length > 0 ? sort[0].id + 1 : 0;
+};
+
 const createRoom = (owner) => {
   const room = {
-    id: rooms.length,
+    id: getNextRoomId(),
     owner,
     users: [owner],
     started: false,
@@ -161,4 +180,15 @@ const updateRoom = (roomId, params) => {
   if (!rooms.find((r) => parseInt(r.id) === parseInt(roomId))) {
     rooms.push(newRoom);
   }
+};
+
+const setRooms = (array) => {
+  array.forEach((room) => {
+    rooms.push({
+      id: room.roomId,
+      finished: room.finished,
+      users: room.players.map((player) => player.id),
+      started: true,
+    });
+  });
 };

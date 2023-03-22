@@ -17,17 +17,13 @@ const Page = ({ path }) => {
   });
 
   // SOCKET STATES
-  const [users, setUsers] = useState([]);
   const [user, setUser] = useState(null);
 
   // GET USERS FROM API
   useEffect(() => {
-    Api.getAllUsers().then((data) => {
-      if (!data.status || data.status !== 400) {
-        setUsers(data);
-      }
+    Api.getLoggedUser().then((data) => {
+      if (data && data.user) setUser(data.user);
     });
-    setUser(Api.getLoggedUser());
   }, []);
 
   return (
@@ -37,11 +33,7 @@ const Page = ({ path }) => {
         <meta name="description" content="Harry Potter potion maker game" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      {users.length > 0 ? (
-        <Component route={route} users={users} user={user} setUser={setUser} />
-      ) : (
-        ''
-      )}
+      <Component route={route} user={user} setUser={setUser} />
     </>
   );
 };

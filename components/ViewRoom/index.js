@@ -22,6 +22,8 @@ export const ViewRoom = ({ setUser, user, room, partyCanStart, startGame }) => {
     if (!Api.isLoggedUser()) router.push(Router.getRoutes().LOGIN.slug);
   }, []);
 
+  console.log(room);
+
   return (
     <>
       <main>
@@ -66,20 +68,27 @@ export const ViewRoom = ({ setUser, user, room, partyCanStart, startGame }) => {
               <UserBadge user={user} setUser={setUser} />
             </div>
             <div className={'join-container-form'}>
-              <div style={{marginBottom:"20px"}} className={"room"}>
-                <p className={"text-yellow text-15 text-ProzaLibre-Regular"}> Le numéro de la room : {room.id}</p>
+              <div style={{ marginBottom: '20px' }} className={'room'}>
+                <p className={'text-yellow text-15 text-ProzaLibre-Regular'}>
+                  {' '}
+                  Le numéro de la room : {room.id}
+                </p>
               </div>
               <p className="text-20 text-white text-ProzaLibre-Regular">
-                Le créateur de la partie est: {room.owner.name}
+                Le créateur de la partie est: {room.owner.username}
               </p>
               <br />
               <p className="text-20 text-Harry text-yellow">
                 Liste des joueurs:
               </p>
-              <ul style={{marginTop:"10px"}}>
+              <ul style={{ marginTop: '10px' }}>
                 {room.users.map((user, index) => (
-                  <li style={{marginBottom:"10px"}} className="text-white text-ProzaLibre-Regular" key={index}>
-                    {user.name}
+                  <li
+                    style={{ marginBottom: '10px' }}
+                    className="text-white text-ProzaLibre-Regular"
+                    key={index}
+                  >
+                    {user.username}
                   </li>
                 ))}
               </ul>

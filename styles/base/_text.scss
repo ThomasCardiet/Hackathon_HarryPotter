@@ -1,17 +1,28 @@
-$sizes: ("100":100, "50" : 50, "40" : 40, "30" : 30, "20" : 20, "17" : 17 ,  "15" : 15);
+$sizes: (
+  '100': 100,
+  '50': 50,
+  '40': 40,
+  '30': 30,
+  '20': 20,
+  '17': 17,
+  '15': 15,
+);
 
 @each $name, $size in $sizes {
   .text-#{$name} {
     font-size: #{$size}px;
-    line-height: #{$size +5}px;
-
+    line-height: #{$size + 5}px;
   }
-
 }
 
-
-$colors: ("yellow":$yellow, "green" : $green, "white" : $white , "black" : $black, "red" : $red, "error": red);
-
+$colors: (
+  'yellow': $yellow,
+  'green': $green,
+  'white': $white,
+  'black': $black,
+  'red': $red,
+  'error': red,
+);
 
 @each $colorName, $color in $colors {
   .text-#{$colorName} {
@@ -19,14 +30,17 @@ $colors: ("yellow":$yellow, "green" : $green, "white" : $white , "black" : $blac
   }
 }
 
-
-
-$fonts: ("ProzaLibre-SemiBold": "ProzaLibre-SemiBold", "ProzaLibre-Regular" : "ProzaLibre-Regular", "ProzaLibre-Medium" : "ProzaLibre-Medium" , "ProzaLibre-ExtraBold" :"ProzaLibre-ExtraBold" , "ProzaLibre-Bold": "ProzaLibre-Bold", "Harry" :"Crimes of Grindelwald");
-
+$fonts: (
+  'ProzaLibre-SemiBold': 'ProzaLibre-SemiBold',
+  'ProzaLibre-Regular': 'ProzaLibre-Regular',
+  'ProzaLibre-Medium': 'ProzaLibre-Medium',
+  'ProzaLibre-ExtraBold': 'ProzaLibre-ExtraBold',
+  'ProzaLibre-Bold': 'ProzaLibre-Bold',
+  'Harry': 'Crimes of Grindelwald',
+);
 
 @each $fontName, $font in $fonts {
   .text-#{$fontName} {
     font-family: $font;
   }
 }
-

@@ -43,10 +43,16 @@ const UserBadge = ({ user, setUser }) => {
         <div className={'user-badge'}>
           <div className={'user-badge-container'}>
             <div className={'info'}>
-              {user ? <img src={'/images/' + user.house.name + '.png'} /> : ''}
+              {user && user.house ? (
+                <img src={'/images/' + user.house.name + '.png'} />
+              ) : (
+                ''
+              )}
               {user ? (
                 <p className={'text-20 text-yellow text-ProzaLibre-SemiBold'}>
-                  {user.name}
+                  {user.username}
+                  <br />
+                  {user.points}
                 </p>
               ) : (
                 ''

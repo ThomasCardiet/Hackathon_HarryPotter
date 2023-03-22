@@ -21,8 +21,9 @@ const PlayParty = ({ gameId }) => {
   useEffect(() => {
     // REDIRECT NOT LOGGED
     if (!Api.isLoggedUser()) router.push(Router.getRoutes().LOGIN.slug);
-    setUser(Api.getLoggedUser());
-    setWinner(Api.getLoggedUser());
+    Api.getLoggedUser().then((data) => {
+      setUser(data.user);
+    });
   }, []);
 
   // SOCKETS
@@ -39,13 +40,15 @@ const PlayParty = ({ gameId }) => {
 
     // SET ROOM
     socket.on('setRoom', ({ room }) => {
-      if (
-        room.started &&
-        !room.users.find((roomUser) => roomUser.id === Api.getLoggedUser().id)
-      )
-        return router.push(Router.getRoutes().CHOICE.slug);
-      setWinner(room.winner);
-      setRoom(room);
+      Api.getLoggedUser().then((data) => {
+        if (
+          room.started &&
+          !room.users.find((roomUser) => roomUser.id === data.user?.id)
+        )
+          return router.push(Router.getRoutes().CHOICE.slug);
+        setWinner(room.winner);
+        setRoom(room);
+      });
     });
 
     socket.on('sendWinner', ({ rId, winner }) => {

@@ -7,8 +7,12 @@ export class Api {
 
   static routes = {
     GET_USERS: 'users',
-    AUTH_LOGIN: 'auth/log-in',
-    AUTH_REGISTER: 'auth/register',
+    GET_USER: 'user',
+    AUTH_LOGIN: 'log-in',
+    AUTH_REGISTER: 'register',
+    START_GAME: 'start-game',
+    END_GAME: 'end-game',
+    GET_GAMES: 'get-games',
   };
 
   static getPath() {
@@ -80,6 +84,20 @@ export class Api {
   }
 
   /**
+   * GET ALL USERS
+   */
+  static async getUser(id) {
+    return await this.fetchApi(`${this.getRoutes().GET_USER}/${id}`);
+  }
+
+  /**
+   * GET LAST ROOM
+   */
+  static async getGames() {
+    return await this.fetchApi(this.getRoutes().GET_GAMES);
+  }
+
+  /**
    * LOGIN USER
    *
    * @param {Object} credentials
@@ -145,49 +163,44 @@ export class Api {
     return localStorage.getItem(LOCAL_STORAGE_AUTH) ? true : false;
   }
 
-  
   /**
    * GET CURRENT LOGGED USER
    *
    */
-  static getLoggedUser() {
+  static async getLoggedUser() {
     if (!this.isLoggedUser()) return null;
     const local = JSON.parse(localStorage.getItem(LOCAL_STORAGE_AUTH));
     if (!local.user) return null;
+    const user = await Api.getUser(local.user.id);
     return {
-      ...local.user,
-      token: local.token
+      token: local.token,
+      user,
     };
   }
 
-  static postNewGame = async (data, token) => {
+  static postNewGame = async (data) => {
+    const request = await axios
+      .post(`${process.env.API_HOST}/${Api.getRoutes().START_GAME}`, data, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((response) => {
+        return response;
+      });
+    return request;
+  };
+
+  static postNewGameEnd = async (data) => {
     const request = await axios.post(
-      'https://hp-api-iim.azurewebsites.net/matches/start',
+      `${process.env.API_HOST}/${Api.getRoutes().END_GAME}`,
       data,
       {
         headers: {
-          Authorization: 'Bearer ' + token,
           'Content-Type': 'application/json',
         },
       }
-    ).then((response)=>{
-      return response
-    })
+    );
     return request;
   };
-  
-  static postNewGameEnd = async (data) => {
-    const request = await axios.post(
-        'https://hp-api-iim.azurewebsites.net/matches/end',
-        data,
-        {
-          headers: {
-            Authorization: data.userId.token,
-            'Content-Type': 'application/json',
-          },
-        }
-    );
-    return request
-  };
-  
 }

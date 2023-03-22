@@ -15,14 +15,17 @@ const Create = () => {
   const { roomId } = router.query;
 
   // SOCKET STATES
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(false);
   const [room, setRoom] = useState(null);
   const [partyCanStart, setPartyCanStart] = useState(false);
   const [socket, setSocket] = useState(null);
 
   // GET USERS FROM API
   useEffect(() => {
-    setUser(Api.getLoggedUser());
+    Api.getLoggedUser().then((data) => {
+      if (data && data.user) setUser(data.user);
+      else router.push(Router.getRoutes().HOME.slug);
+    });
   }, []);
 
   // SOCKETS
@@ -41,6 +44,7 @@ const Create = () => {
     socket.on('setRoom', ({ room }) => {
       if (room.started) router.push(`/party/${roomId}`);
       setRoom(room);
+      if (room.users.length >= MAX_USER_PER_ROOM) setPartyCanStart(true);
     });
 
     // UPDATE ROOM
@@ -68,7 +72,7 @@ const Create = () => {
   }, [socket, roomId]);
 
   useEffect(() => {
-    if (room && user) {
+    if (room && user && Api.isLoggedUser()) {
       if (room.users.length <= MAX_USER_PER_ROOM) {
         if (room.owner.id !== user.id && socket) {
           socket.emit('addUserToRoom', { user, roomId });

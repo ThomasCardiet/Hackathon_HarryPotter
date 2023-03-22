@@ -1,4 +1,5 @@
 import { Waiting } from '@/components/Waiting';
+import { Router } from '@/router';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { Api } from '../../api';
@@ -12,7 +13,10 @@ const CreateParty = () => {
 
   // GET USERS FROM API
   useEffect(() => {
-    setUser(Api.getLoggedUser());
+    Api.getLoggedUser().then((data) => {
+      if (data && data.user) setUser(data.user);
+      else router.push(Router.getRoutes().HOME.slug);
+    });
   }, []);
 
   // SOCKETS
@@ -38,8 +42,8 @@ const CreateParty = () => {
   };
 
   useEffect(() => {
-    createParty();
-  }, [socket]);
+    if (user) createParty();
+  }, [socket, user]);
 
   return <Waiting />;
 };
