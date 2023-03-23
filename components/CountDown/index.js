@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 
 export const MINUTE = 60; // SECONDS
 export const SECOND = 1000; // MILLISECONDS
-export const DEFAULT_INIT_TIME = 5 * MINUTE; // 5 MINUTES
+export const DEFAULT_INIT_TIME_MINUTES = 5; // 5 MINUTES
+export const DEFAULT_INIT_TIME = DEFAULT_INIT_TIME_MINUTES * MINUTE; // 5 MINUTES
 
 const formatTimer = (time) => {
   const minutes = Math.trunc(time / MINUTE);

@@ -96,8 +96,8 @@ const Create = () => {
   }, [room, user, socket]);
 
   // START GAME
-  const startGame = async () => {
-    if (socket) socket.emit('startGame', roomId);
+  const startGame = async (params) => {
+    if (socket) socket.emit('startGame', { roomId, params });
   };
 
   if (!roomId || !user || !room) return <Waiting />;

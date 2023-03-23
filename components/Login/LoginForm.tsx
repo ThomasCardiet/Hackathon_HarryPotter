@@ -1,8 +1,7 @@
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as yup from 'yup';
-import {toast, ToastContainer} from "react-toastify";
+import {toast} from "react-toastify";
 import React, { useEffect } from "react";
-import { Waiting } from '../Waiting';
 import { Api } from "@/api";
 import { useRouter } from "next/router";
 import { Router } from "@/router";

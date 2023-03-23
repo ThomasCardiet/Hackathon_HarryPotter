@@ -21,64 +21,60 @@ const Home = ({ user }) => {
   };
 
   return (
-    <main>
-      <section className={'home'}>
-        <aside className={'home-container'}>
-          <div className={'home-container-title'}>
-            <h1 className={'text-100 text-Harry text-yellow'}>
-              <Tween
-                from={{ opacity: '0', scale: '0.4' }}
-                to={{ opacity: '100%', scale: '1' }}
-                ease="expo.out()"
-                duration={6}
-                stagger={0.1}
-              >
-                <SplitChars
-                  wrapper={<span style={{ display: 'inline-block' }} />}
-                >
-                  Harry potion
-                </SplitChars>
-              </Tween>
-            </h1>
-            <h1 className={'text-100 text-Harry text-yellow text-blur'}>
-              <Tween
-                from={{ opacity: '0', scale: '0.4' }}
-                to={{ opacity: '100%', scale: '1' }}
-                ease="expo.out()"
-                duration={6}
-                stagger={0.1}
-              >
-                <SplitChars
-                  wrapper={<span style={{ display: 'inline-block' }} />}
-                >
-                  Harry potion
-                </SplitChars>
-              </Tween>
-            </h1>
-          </div>
-          <div className={'home-container-description'}>
-            <p className={'text-15 text-white text-ProzaLibre-Regular'}>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-              consectetur deleniti ea enim, eos in inventore molestiae nihil
-              officia perferendis.
-            </p>
-          </div>
-          <div className={'home-container-button'}>
-            <Link
-              onClick={() => onClickLaunchSound()}
-              href={
-                user
-                  ? Router.getRoutes().CHOICE.slug
-                  : Router.getRoutes().LOGIN.slug
-              }
-              className={'btn-reset btn-yellow'}
+    <section className={'home'}>
+      <aside className={'home-container'}>
+        <div className={'home-container-title'}>
+          <h1 className={'text-100 text-Harry text-yellow'}>
+            <Tween
+              from={{ opacity: '0', scale: '0.4' }}
+              to={{ opacity: '100%', scale: '1' }}
+              ease="expo.out()"
+              duration={6}
+              stagger={0.1}
             >
-              Commencer
-            </Link>
-          </div>
-        </aside>
-      </section>
-    </main>
+              <SplitChars
+                wrapper={<span style={{ display: 'inline-block' }} />}
+              >
+                Harry potion
+              </SplitChars>
+            </Tween>
+          </h1>
+          <h1 className={'text-100 text-Harry text-yellow text-blur'}>
+            <Tween
+              from={{ opacity: '0', scale: '0.4' }}
+              to={{ opacity: '100%', scale: '1' }}
+              ease="expo.out()"
+              duration={6}
+              stagger={0.1}
+            >
+              <SplitChars
+                wrapper={<span style={{ display: 'inline-block' }} />}
+              >
+                Harry potion
+              </SplitChars>
+            </Tween>
+          </h1>
+        </div>
+        <div className={'home-container-description'}>
+          <p className={'text-15 text-white text-ProzaLibre-Regular'}>
+            Viens défier tes amis et sois le meilleur sorcier
+          </p>
+        </div>
+        <div className={'home-container-button'}>
+          <Link
+            onClick={() => onClickLaunchSound()}
+            href={
+              user
+                ? Router.getRoutes().CHOICE.slug
+                : Router.getRoutes().LOGIN.slug
+            }
+            className={'btn-reset btn-yellow'}
+          >
+            Commencer
+          </Link>
+        </div>
+      </aside>
+    </section>
   );
 };
 

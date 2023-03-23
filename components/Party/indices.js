@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { TIME_PENALITY } from '.';
 
-export const INDICE_TIMEOUT = 2000;
+export const INDICE_PARAMS = {
+  TIMEOUT: 2000,
+  DEFAULT_QUANTITY: 3,
+};
 
 export const Indices = ({
   countdownTime,
@@ -10,21 +13,38 @@ export const Indices = ({
   potions,
   currentPotionIndex,
   currentIngredientPotionIndex,
-  setClassFlipFirst,
-  setClassFlipSecond,
-  setClassFlipThird,
   canTakeIndice,
   setCanTakeIndice,
-  classFlipFirst,
-  classFlipSecond,
-  classFlipThird,
-  resetAllClassFlip,
+  setIsUsingIndice,
+  quantity = INDICE_PARAMS.DEFAULT_QUANTITY,
 }) => {
-  const [indices, setIndices] = useState([
-    { indiceTaken: false },
-    { indiceTaken: false },
-    { indiceTaken: false },
-  ]);
+  const [indices, setIndices] = useState([]);
+
+  useEffect(() => {
+    const array = [];
+    for (let i = 0; i < quantity; i++) {
+      array.push({ indiceTaken: false, flip: false });
+    }
+    setIndices(array);
+  }, []);
+
+  const flipIndice = (index) => {
+    setIndices((prev) => {
+      const array = [...indices];
+      array[index] = { ...array[index], flip: true };
+      return array;
+    });
+    setIsUsingIndice(true);
+
+    setTimeout(() => {
+      setIndices((prev) => {
+        const array = [...indices];
+        array[index] = { ...array[index], flip: false };
+        return array;
+      });
+      setIsUsingIndice(false);
+    }, INDICE_PARAMS.TIMEOUT);
+  };
 
   const launchIndices = (index) => {
     // NOT ENOUGH TIME
@@ -49,17 +69,8 @@ export const Indices = ({
       let indicesCopy = [...indices];
       findIndice.indiceTaken = true;
       setIndices(indicesCopy);
-      if (index === 0) {
-        setClassFlipFirst('flip');
-      } else if (index === 1) {
-        setClassFlipSecond('flip');
-      } else if (index === 2) {
-        setClassFlipThird('flip');
-      }
+      flipIndice(index);
       setCanTakeIndice(false);
-      setTimeout(() => {
-        resetAllClassFlip();
-      }, INDICE_TIMEOUT);
     }
   };
 
@@ -67,94 +78,35 @@ export const Indices = ({
     <div className={'indices'}>
       <div className={'indices-container'}>
         {indices.map((item, index) => {
-          if (index === 0) {
-            return (
-              <div
-                onClick={(e) => launchIndices(index)}
-                key={index}
-                className={
-                  'indices-container-item first ' +
-                  classFlipFirst +
-                  (canTakeIndice ? '' : ' inactive') +
-                  (item.indiceTaken === true ? ' inactive' : '')
-                }
-              >
-                <div className={'indices-container-item-image'}></div>
-                <div className={'indices-container-item-background '}>
-                  <img src={'/images/carte.png'} />
-                </div>
-                <div className={'content'}>
-                  {/* {item.img && item.img} */}
-                  {potions &&
-                    potions[currentPotionIndex] &&
-                    potions[currentPotionIndex].getIngredients()[
-                      currentIngredientPotionIndex
-                    ] &&
-                    potions[currentPotionIndex]
-                      .getIngredients()
-                      [currentIngredientPotionIndex].getImgComponent()}
-                </div>
+          return (
+            <div
+              onClick={(e) => launchIndices(index)}
+              key={index}
+              className={
+                'indices-container-item ' +
+                (item.flip ? 'flip' : '') +
+                (canTakeIndice ? '' : ' inactive') +
+                (item.indiceTaken ? ' inactive' : '')
+              }
+              style={{ left: `${80 - 5 * (indices.length - 1) + 5 * index}%` }}
+            >
+              <div className={'indices-container-item-image'}></div>
+              <div className={'indices-container-item-background '}>
+                <img draggable="false" src={'/images/carte.png'} />
               </div>
-            );
-          } else if (index === 1) {
-            return (
-              <div
-                onClick={(e) => launchIndices(index)}
-                key={index}
-                className={
-                  'indices-container-item second ' +
-                  classFlipSecond +
-                  (canTakeIndice ? '' : ' inactive') +
-                  (item.indiceTaken === true ? ' inactive' : '')
-                }
-              >
-                <div className={'indices-container-item-image'}></div>
-                <div className={'indices-container-item-background'}>
-                  <img src={'/images/carte.png'} />
-                </div>
-                <div className={'content'}>
-                  {/* {item.img && item.img} */}
-                  {potions &&
-                    potions[currentPotionIndex] &&
-                    potions[currentPotionIndex].getIngredients()[
-                      currentIngredientPotionIndex
-                    ] &&
-                    potions[currentPotionIndex]
-                      .getIngredients()
-                      [currentIngredientPotionIndex].getImgComponent()}
-                </div>
+              <div className={'content'}>
+                {/* {item.img && item.img} */}
+                {potions &&
+                  potions[currentPotionIndex] &&
+                  potions[currentPotionIndex].getIngredients()[
+                    currentIngredientPotionIndex
+                  ] &&
+                  potions[currentPotionIndex]
+                    .getIngredients()
+                    [currentIngredientPotionIndex].getImgComponent()}
               </div>
-            );
-          } else if (index === 2) {
-            return (
-              <div
-                onClick={(e) => launchIndices(index)}
-                key={index}
-                className={
-                  'indices-container-item third ' +
-                  classFlipThird +
-                  (canTakeIndice ? '' : ' inactive') +
-                  (item.indiceTaken === true ? ' inactive' : '')
-                }
-              >
-                <div className={'indices-container-item-image'}></div>
-                <div className={'indices-container-item-background'}>
-                  <img src={'/images/carte.png'} />
-                </div>
-                <div className={'content'}>
-                  {/* {item.img && item.img} */}
-                  {potions &&
-                    potions[currentPotionIndex] &&
-                    potions[currentPotionIndex].getIngredients()[
-                      currentIngredientPotionIndex
-                    ] &&
-                    potions[currentPotionIndex]
-                      .getIngredients()
-                      [currentIngredientPotionIndex].getImgComponent()}
-                </div>
-              </div>
-            );
-          }
+            </div>
+          );
         })}
       </div>
     </div>

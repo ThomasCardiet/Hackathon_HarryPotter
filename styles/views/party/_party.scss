@@ -9,6 +9,10 @@
   position: absolute;
   padding: 10px 20px;
   column-count: 2;
+
+  @media screen and (max-width: 768px) {
+    column-count: 1;
+  }
 }
 
 .party__potion-name {
@@ -22,6 +26,7 @@
   padding: 35px 10px 20px 10px;
   width: var(--width);
   text-align: center;
+  z-index: 2;
 
   p {
     margin-top: 10px;

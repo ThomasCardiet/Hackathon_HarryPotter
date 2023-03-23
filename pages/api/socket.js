@@ -67,7 +67,7 @@ const SocketHandler = (req, res) => {
       });
 
       // START GAME
-      socket.on('startGame', (roomId) => {
+      socket.on('startGame', ({ roomId, params }) => {
         const room = rooms.find(
           (room) => parseInt(room.id) === parseInt(roomId)
         );
@@ -86,7 +86,7 @@ const SocketHandler = (req, res) => {
         };
         Api.postNewGame(data).then((response) => {
           console.log('start game: ', data);
-          updateRoom(roomId, { gameId: response.data.id });
+          updateRoom(roomId, { gameId: response.data.id, params });
         });
 
         // ADD STARTED

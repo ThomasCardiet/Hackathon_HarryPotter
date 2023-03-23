@@ -7683,6 +7683,8 @@ input[type=text]:focus, input[type=password]:focus {
   height: 100vh;
 }
 .indices-container-item {
+  position: fixed;
+  top: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7692,25 +7694,15 @@ input[type=text]:focus, input[type=password]:focus {
   border-radius: 20px;
   transition: transform 1s ease-in-out, box-shadow 0.2s ease-in-out, left 1s ease-in-out, top 1s ease-in-out;
   cursor: pointer;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }
 .indices-container-item.inactive img {
   -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
-}
-.indices-container-item.second {
-  position: fixed;
-  top: 80%;
-  left: 75%;
-}
-.indices-container-item.third {
-  position: fixed;
-  top: 80%;
-  left: 80%;
-}
-.indices-container-item.first {
-  position: fixed;
-  top: 80%;
-  left: 70%;
 }
 .indices-container-item.flip {
   left: 50%;
@@ -8167,6 +8159,11 @@ input:focus {
   padding: 10px 20px;
   column-count: 2;
 }
+@media screen and (max-width: 768px) {
+  .ingredients-block {
+    column-count: 1;
+  }
+}
 
 .party__potion-name {
   --width: 30vw;
@@ -8178,6 +8175,7 @@ input:focus {
   padding: 35px 10px 20px 10px;
   width: var(--width);
   text-align: center;
+  z-index: 2;
 }
 .party__potion-name p {
   margin-top: 10px;
@@ -8492,6 +8490,36 @@ input:focus {
   position: relative;
   z-index: 20;
   margin-top: 40px;
+}
+.join-container-form-params {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin: 40px 0;
+}
+@media screen and (max-width: 768px) {
+  .join-container-form-params {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+.join-container-form-params.odd > div:last-of-type {
+  grid-column: 1/3;
+}
+@media screen and (max-width: 768px) {
+  .join-container-form-params.odd > div:last-of-type {
+    grid-column: unset;
+  }
+}
+.join-container-form-params > div {
+  margin: 0 auto;
+}
+.join-container-form-params label {
+  color: white;
+  text-align: center;
+  display: block;
+}
+.join-container-form-params input {
+  margin-top: 10px;
 }
 .join-container-form-crown {
   --icon-size: 13px;

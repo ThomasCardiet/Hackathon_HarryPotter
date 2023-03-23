@@ -6,7 +6,7 @@ import { getPartyPotions } from '@/entities/Potion';
 import { Api } from '@/api';
 import { Router } from '@/router';
 import { useRouter } from 'next/router';
-import { CountDown, DEFAULT_INIT_TIME } from '../CountDown';
+import { CountDown, DEFAULT_INIT_TIME, MINUTE } from '../CountDown';
 import { toast } from 'react-toastify';
 import { Indices } from './indices';
 import { PartyEnd } from './end';
@@ -22,13 +22,13 @@ export const Party = ({ room, stopGame, winner, finished, setFinished }) => {
   const [ingredients, setIngredients] = useState([]);
   const [dropBoxOffsets, setDropBoxOffsets] = useState(null);
 
-  const [countdownTime, setCountDownTime] = useState(DEFAULT_INIT_TIME);
+  const [countdownTime, setCountDownTime] = useState(
+    room.params.timer ? room.params.timer * MINUTE : DEFAULT_INIT_TIME
+  );
 
   // INDICES
-  const [classFlipFirst, setClassFlipFirst] = useState('');
-  const [classFlipSecond, setClassFlipSecond] = useState('');
-  const [classFlipThird, setClassFlipThird] = useState('');
   const [canTakeIndice, setCanTakeIndice] = useState(true);
+  const [isUsingIndice, setIsUsingIndice] = useState(false);
 
   // POTIONS
   const [potions, setPotions] = useState([]);
@@ -41,7 +41,7 @@ export const Party = ({ room, stopGame, winner, finished, setFinished }) => {
     if (!Api.isLoggedUser()) router.push(Router.getRoutes().LOGIN.slug);
 
     if (!ingredients.length) setIngredients(getShuffledIngredients());
-    if (!potions.length) setPotions(getPartyPotions());
+    if (!potions.length) setPotions(getPartyPotions(room.params.potions));
   }, []);
 
   /**
@@ -49,11 +49,7 @@ export const Party = ({ room, stopGame, winner, finished, setFinished }) => {
    */
   const dropIngredient = (droppedIngredient) => {
     // ERROR IF INDICE IS FLIP
-    if (
-      classFlipFirst === 'flip' ||
-      classFlipSecond === 'flip' ||
-      classFlipThird === 'flip'
-    ) {
+    if (isUsingIndice) {
       return toast.error('Impossible, vous lisez un indice !', {
         icon: '❌',
         theme: 'light',
@@ -74,7 +70,6 @@ export const Party = ({ room, stopGame, winner, finished, setFinished }) => {
     if (isNeededIngredient) {
       // RESET CAN TAKE INDICE
       setCanTakeIndice(true);
-      resetAllClassFlip();
 
       toast.success('Ingrédient ajouté', {
         icon: '🧪',
@@ -122,14 +117,6 @@ export const Party = ({ room, stopGame, winner, finished, setFinished }) => {
         }
       );
     }
-  };
-
-  // INDICES
-
-  const resetAllClassFlip = () => {
-    setClassFlipSecond('');
-    setClassFlipFirst('');
-    setClassFlipThird('');
   };
 
   useEffect(() => {
@@ -183,15 +170,10 @@ export const Party = ({ room, stopGame, winner, finished, setFinished }) => {
             currentIngredientPotionIndex={currentIngredientPotionIndex}
             countdownTime={countdownTime}
             setCountDownTime={setCountDownTime}
-            setClassFlipFirst={setClassFlipFirst}
-            setClassFlipSecond={setClassFlipSecond}
-            setClassFlipThird={setClassFlipThird}
             canTakeIndice={canTakeIndice}
             setCanTakeIndice={setCanTakeIndice}
-            classFlipFirst={classFlipFirst}
-            classFlipSecond={classFlipSecond}
-            classFlipThird={classFlipThird}
-            resetAllClassFlip={resetAllClassFlip}
+            setIsUsingIndice={setIsUsingIndice}
+            quantity={room.params.indices}
           />
           <ul className="ingredients-block">
             {ingredients.map((ingredient, index) => (

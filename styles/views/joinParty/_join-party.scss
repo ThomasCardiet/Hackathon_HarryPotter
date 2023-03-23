@@ -82,6 +82,41 @@
 
       margin-top: 40px;
 
+      &-params {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin: 40px 0;
+
+        @media screen and (max-width: 768px) {
+          grid-template-columns: repeat(1, 1fr);
+        }
+
+        &.odd {
+          > div:last-of-type {
+            grid-column: 1/3;
+
+            @media screen and (max-width: 768px) {
+              grid-column: unset;
+            }
+          }
+        }
+
+        > div {
+          margin: 0 auto;
+        }
+
+        label {
+          color: white;
+          text-align: center;
+          display: block;
+        }
+
+        input {
+          margin-top: 10px;
+        }
+      }
+
       &-crown {
         --icon-size: 13px;
 
