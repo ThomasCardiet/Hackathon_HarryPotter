@@ -32,10 +32,10 @@ const Stats = ({ setUser, user, props }) => {
   }, [props, user]);
 
   return (
-    <section className={'party-list'}>
-      <aside className={'party-list-container'}>
-        <div className={'join-container-top'}>
-          <Link href={'/choice'} className={'join-container-top-back'}>
+    <section className={'stats'}>
+      <aside className={'stats-container'}>
+        <div className={'stats-container-top'}>
+          <Link href={'/choice'} className={'stats-container-top-back'}>
             <img src={'images/icons/arrow-left.svg'} alt={'back'} />
           </Link>
           <div className={'join-container-top-title'}>
