@@ -11,12 +11,10 @@ import { toast } from 'react-toastify';
 import { Indices } from './indices';
 import { PartyEnd } from './end';
 
-const TIME_PENALITY = {
+export const TIME_PENALITY = {
   INDICE: 20,
   WRONG_INGREDIENT: 5,
 };
-
-const INDICE_TIMEOUT = 2000;
 
 export const Party = ({ room, stopGame, winner, finished, setFinished }) => {
   const router = useRouter();
@@ -25,6 +23,12 @@ export const Party = ({ room, stopGame, winner, finished, setFinished }) => {
   const [dropBoxOffsets, setDropBoxOffsets] = useState(null);
 
   const [countdownTime, setCountDownTime] = useState(DEFAULT_INIT_TIME);
+
+  // INDICES
+  const [classFlipFirst, setClassFlipFirst] = useState('');
+  const [classFlipSecond, setClassFlipSecond] = useState('');
+  const [classFlipThird, setClassFlipThird] = useState('');
+  const [canTakeIndice, setCanTakeIndice] = useState(true);
 
   // POTIONS
   const [potions, setPotions] = useState([]);
@@ -120,58 +124,12 @@ export const Party = ({ room, stopGame, winner, finished, setFinished }) => {
     }
   };
 
-  const [indices, setIndices] = useState([
-    { indiceTaken: false },
-    { indiceTaken: false },
-    { indiceTaken: false },
-  ]);
-
-  const [classFlipFirst, setClassFlipFirst] = useState('');
-  const [classFlipSecond, setClassFlipSecond] = useState('');
-  const [classFlipThird, setClassFlipThird] = useState('');
-  const [canTakeIndice, setCanTakeIndice] = useState(true);
+  // INDICES
 
   const resetAllClassFlip = () => {
     setClassFlipSecond('');
     setClassFlipFirst('');
     setClassFlipThird('');
-  };
-
-  const launchIndices = (index) => {
-    // NOT ENOUGH TIME
-    if (countdownTime <= TIME_PENALITY.INDICE + 10) {
-      return toast.error("Tu n'as plus le temps !", {
-        icon: '❌',
-        theme: 'light',
-        position: 'bottom-center',
-      });
-    }
-
-    let findIndice = indices.find((item, indexItem) => indexItem === index);
-    if (findIndice.indiceTaken === false && canTakeIndice) {
-      toast.error(`Indice utilisé (- ${TIME_PENALITY.INDICE} sec)`, {
-        icon: '❌',
-        theme: 'light',
-        position: 'bottom-center',
-      });
-
-      setCountDownTime((prev) => prev - TIME_PENALITY.INDICE);
-      /*Set to true if already taken*/
-      let indicesCopy = [...indices];
-      findIndice.indiceTaken = true;
-      setIndices(indicesCopy);
-      if (index === 0) {
-        setClassFlipFirst('flip');
-      } else if (index === 1) {
-        setClassFlipSecond('flip');
-      } else if (index === 2) {
-        setClassFlipThird('flip');
-      }
-      setCanTakeIndice(false);
-      setTimeout(() => {
-        resetAllClassFlip();
-      }, INDICE_TIMEOUT);
-    }
   };
 
   useEffect(() => {
@@ -220,15 +178,20 @@ export const Party = ({ room, stopGame, winner, finished, setFinished }) => {
             </>
           )}
           <Indices
-            indices={indices}
-            launchIndices={launchIndices}
             potions={potions}
             currentPotionIndex={currentPotionIndex}
             currentIngredientPotionIndex={currentIngredientPotionIndex}
+            countdownTime={countdownTime}
+            setCountDownTime={setCountDownTime}
+            setClassFlipFirst={setClassFlipFirst}
+            setClassFlipSecond={setClassFlipSecond}
+            setClassFlipThird={setClassFlipThird}
             canTakeIndice={canTakeIndice}
+            setCanTakeIndice={setCanTakeIndice}
             classFlipFirst={classFlipFirst}
             classFlipSecond={classFlipSecond}
             classFlipThird={classFlipThird}
+            resetAllClassFlip={resetAllClassFlip}
           />
           <ul className="ingredients-block">
             {ingredients.map((ingredient, index) => (

@@ -10,6 +10,20 @@ export class Router {
       name: 'Choice',
       slug: '/choice',
     },
+    LIST_PARTY: {
+      name: 'ListParty',
+      slug: '/list-party',
+      props: {
+        games: true,
+      },
+    },
+    STATS: {
+      name: 'Stats',
+      slug: '/stats',
+      props: {
+        houses: true,
+      },
+    },
     LOGIN: {
       name: 'Login',
       slug: '/login',
@@ -26,6 +40,11 @@ export class Router {
     JOIN_PARTY: {
       name: 'JoinParty',
       slug: '/join-party',
+    },
+
+    CREATE_PARTY: {
+      name: 'CreateParty',
+      slug: '/create-party',
     },
 
     COMPTEUR: {

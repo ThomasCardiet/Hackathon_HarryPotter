@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { Api } from '../api';
 import Head from 'next/head';
 import React from 'react';
+import { useProps } from '../components/Hooks';
 
 const Page = ({ path }) => {
   const route = Router.getRouteBySlug(path);
@@ -18,6 +19,7 @@ const Page = ({ path }) => {
 
   // SOCKET STATES
   const [user, setUser] = useState(null);
+  const [props, setProps] = useProps(path);
 
   // GET USERS FROM API
   useEffect(() => {
@@ -33,7 +35,7 @@ const Page = ({ path }) => {
         <meta name="description" content="Harry Potter potion maker game" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Component route={route} user={user} setUser={setUser} />
+      <Component route={route} user={user} setUser={setUser} props={props} />
     </>
   );
 };

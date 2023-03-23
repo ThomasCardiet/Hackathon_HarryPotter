@@ -13,6 +13,7 @@ export class Api {
     START_GAME: 'start-game',
     END_GAME: 'end-game',
     GET_GAMES: 'get-games',
+    GET_HOUSES: 'get-houses',
   };
 
   static getPath() {
@@ -95,6 +96,13 @@ export class Api {
    */
   static async getGames() {
     return await this.fetchApi(this.getRoutes().GET_GAMES);
+  }
+
+  /**
+   * GET HOUSES
+   */
+  static async getHouses() {
+    return await this.fetchApi(this.getRoutes().GET_HOUSES);
   }
 
   /**

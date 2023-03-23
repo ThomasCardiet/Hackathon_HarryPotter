@@ -66,6 +66,26 @@
 
       margin-top: 40px;
 
+      &-crown {
+        --icon-size: 13px;
+
+        li {
+          position: relative;
+
+          svg {
+            position: absolute;
+            height: var(--icon-size);
+            width: var(--icon-size);
+            left: calc(-1 * (var(--icon-size) + 6px));
+            top: 0;
+
+            * {
+              fill: yellow;
+            }
+          }
+        }
+      }
+
       form {
         display: flex;
         flex-direction: column;

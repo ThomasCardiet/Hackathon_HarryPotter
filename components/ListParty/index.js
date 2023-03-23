@@ -1,16 +1,17 @@
-import React, { useEffect } from 'react';
-import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
 import useSound from 'use-sound';
 import { Api } from '@/api';
 import { Router } from '@/router';
 import { useRouter } from 'next/router';
 import { SplitChars, Tween } from 'react-gsap';
 import UserBadge from '../UserBadge/UserBadge';
-import { ICONS } from '../Icon';
+import { useProps } from '../Hooks';
+import Link from 'next/link';
 
-export const ViewRoom = ({ setUser, user, room, partyCanStart, startGame }) => {
+const Choice = ({ setUser, user, props }) => {
+  const [games, setGames] = useState([]);
+
   const router = useRouter();
-
   const soundUrl = '/sounds/button1.wav';
 
   const [play, { stop }] = useSound(soundUrl, { volume: 0.4 });
@@ -23,14 +24,27 @@ export const ViewRoom = ({ setUser, user, room, partyCanStart, startGame }) => {
     if (!Api.isLoggedUser()) router.push(Router.getRoutes().LOGIN.slug);
   }, []);
 
+  useEffect(() => {
+    if (props.games && user) {
+      setGames(
+        props.games.filter((game) => {
+          return (
+            game.players.find((player) => player.id === user.id) &&
+            game.finished
+          );
+        })
+      );
+    }
+  }, [props, user]);
+
   return (
     <>
       <main>
-        <section className={'join'}>
-          <aside className={'join-container'}>
+        <section className={'party-list'}>
+          <aside className={'party-list-container'}>
             <div className={'join-container-top'}>
               <Link href={'/choice'} className={'join-container-top-back'}>
-                <img src={'/images/icons/arrow-left.svg'} alt={'back'} />
+                <img src={'images/icons/arrow-left.svg'} alt={'back'} />
               </Link>
               <div className={'join-container-top-title'}>
                 <h3 className={'text-50 text-Harry text-yellow'}>
@@ -44,7 +58,7 @@ export const ViewRoom = ({ setUser, user, room, partyCanStart, startGame }) => {
                     <SplitChars
                       wrapper={<span style={{ display: 'inline-block' }} />}
                     >
-                      Infos de la Room
+                      Rejoins une partie
                     </SplitChars>
                   </Tween>
                 </h3>
@@ -59,50 +73,34 @@ export const ViewRoom = ({ setUser, user, room, partyCanStart, startGame }) => {
                     <SplitChars
                       wrapper={<span style={{ display: 'inline-block' }} />}
                     >
-                      Infos de la Room
+                      Rejoins une partie
                     </SplitChars>
                   </Tween>
                 </h3>
               </div>
               <UserBadge user={user} setUser={setUser} />
             </div>
-            <div className={'join-container-form'}>
-              <div style={{ marginBottom: '20px' }} className={'room'}>
-                <p className={'text-yellow text-15 text-ProzaLibre-Regular'}>
-                  {' '}
-                  Le numéro de la room : {room.id}
-                </p>
-              </div>
-              <br />
-              <p className="text-20 text-Harry text-yellow">
-                Liste des joueurs:
-              </p>
-              <ul
-                className="join-container-form-crown"
-                style={{ marginTop: '10px' }}
-              >
-                {room.users.map((user, index) => (
-                  <li
-                    style={{ marginBottom: '10px' }}
-                    className="text-white text-ProzaLibre-Regular"
-                    key={index}
-                  >
-                    {user.id === room.owner.id && ICONS.CROWN} {user.username}
+            <ul className={'party-container-list'}>
+              {games.map((game, index) => {
+                return (
+                  <li key={index}>
+                    <span>Numéro de Room: {game.roomId}</span>
+                    <Link
+                      href={`/party/${game.roomId}`}
+                      className={'btn-reset btn-yellow'}
+                      onClick={(e) => onClickLaunchSound()}
+                    >
+                      Voir resultat
+                    </Link>
                   </li>
-                ))}
-              </ul>
-              {partyCanStart && user && user.id === room.owner.id && (
-                <>
-                  <br />
-                  <button onClick={startGame} className="btn-reset btn-yellow">
-                    Commencer
-                  </button>
-                </>
-              )}
-            </div>
+                );
+              })}
+            </ul>
           </aside>
         </section>
       </main>
     </>
   );
 };
+
+export default Choice;

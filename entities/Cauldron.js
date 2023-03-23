@@ -60,14 +60,18 @@ export class Cauldron {
 // CAULDRON IMAGE LIST
 export const CAULDRON_IMAGES = {
   DEFAULT: 'cauldron_default.png',
+  FOLDABLE: 'cauldron_foldable.png',
+  SILVER: 'cauldron_silver.png',
+  COPPER: 'cauldron_copper.png',
+  BRASS: 'cauldron_brass.png',
 };
 
 // CAULDRONS LIST
 export const CAULDRONS = {
-  FOLDABLE: new Cauldron(CAULDRON_TYPES.FOLDABLE),
-  SILVER: new Cauldron(CAULDRON_TYPES.SILVER),
-  COPPER: new Cauldron(CAULDRON_TYPES.COPPER),
-  BRASS: new Cauldron(CAULDRON_TYPES.BRASS),
+  FOLDABLE: new Cauldron(CAULDRON_TYPES.FOLDABLE, CAULDRON_IMAGES.FOLDABLE),
+  SILVER: new Cauldron(CAULDRON_TYPES.SILVER, CAULDRON_IMAGES.SILVER),
+  COPPER: new Cauldron(CAULDRON_TYPES.COPPER, CAULDRON_IMAGES.COPPER),
+  BRASS: new Cauldron(CAULDRON_TYPES.BRASS, CAULDRON_IMAGES.BRASS),
 };
 
 /**

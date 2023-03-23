@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { Api } from '@/api';
+import { Router } from '@/router';
 
 export const usePosition = (ref) => {
   const [dropBoxOffsets, setDropBoxOffsets] = useState(null);
@@ -25,4 +27,31 @@ export const usePosition = (ref) => {
   }, [ref]);
 
   return [dropBoxOffsets, setDropBoxOffsets];
+};
+
+//PROPS
+export const useProps = (path) => {
+  const [props, setProps] = useState({});
+
+  const route = Router.getRouteBySlug(path);
+
+  useEffect(() => {
+    if (route.props) {
+      switch (true) {
+        case route.props.games:
+          Api.getGames().then((games) => {
+            setProps((prev) => ({ ...prev, ...{ games } }));
+          });
+          break;
+
+        case route.props.houses:
+          Api.getHouses().then((houses) => {
+            setProps((prev) => ({ ...prev, ...{ houses } }));
+          });
+          break;
+      }
+    }
+  }, [path]);
+
+  return [props, setProps];
 };

@@ -1,0 +1,57 @@
+.house-container-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 80vw;
+  margin: 0 auto;
+
+  .house-container-list__item {
+    position: relative;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+    height: 200px;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.35);
+    border-radius: 40px;
+
+    .house-container-list__item__content {
+      --icon-size: 20px;
+
+      position: relative;
+      z-index: 1;
+
+      svg {
+        position: absolute;
+        height: var(--icon-size);
+        width: var(--icon-size);
+        left: calc(50% - var(--icon-size) / 2);
+        top: calc(-1 * (var(--icon-size) + 6px));
+
+        * {
+          fill: yellow;
+        }
+      }
+
+      h3 {
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+    }
+
+    img {
+      position: absolute;
+      top: 20px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100;
+      object-fit: cover;
+      z-index: 0;
+    }
+  }
+}

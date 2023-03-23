@@ -1,16 +1,18 @@
-import React, { useEffect } from 'react';
-import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
 import useSound from 'use-sound';
 import { Api } from '@/api';
 import { Router } from '@/router';
 import { useRouter } from 'next/router';
 import { SplitChars, Tween } from 'react-gsap';
 import UserBadge from '../UserBadge/UserBadge';
+import { useProps } from '../Hooks';
+import Link from 'next/link';
 import { ICONS } from '../Icon';
 
-export const ViewRoom = ({ setUser, user, room, partyCanStart, startGame }) => {
-  const router = useRouter();
+const Stats = ({ setUser, user, props }) => {
+  const [houses, setHouses] = useState([]);
 
+  const router = useRouter();
   const soundUrl = '/sounds/button1.wav';
 
   const [play, { stop }] = useSound(soundUrl, { volume: 0.4 });
@@ -23,14 +25,20 @@ export const ViewRoom = ({ setUser, user, room, partyCanStart, startGame }) => {
     if (!Api.isLoggedUser()) router.push(Router.getRoutes().LOGIN.slug);
   }, []);
 
+  useEffect(() => {
+    if (props.houses && user) {
+      setHouses(props.houses);
+    }
+  }, [props, user]);
+
   return (
     <>
       <main>
-        <section className={'join'}>
-          <aside className={'join-container'}>
+        <section className={'party-list'}>
+          <aside className={'party-list-container'}>
             <div className={'join-container-top'}>
               <Link href={'/choice'} className={'join-container-top-back'}>
-                <img src={'/images/icons/arrow-left.svg'} alt={'back'} />
+                <img src={'images/icons/arrow-left.svg'} alt={'back'} />
               </Link>
               <div className={'join-container-top-title'}>
                 <h3 className={'text-50 text-Harry text-yellow'}>
@@ -44,7 +52,7 @@ export const ViewRoom = ({ setUser, user, room, partyCanStart, startGame }) => {
                     <SplitChars
                       wrapper={<span style={{ display: 'inline-block' }} />}
                     >
-                      Infos de la Room
+                      Liste des maisons
                     </SplitChars>
                   </Tween>
                 </h3>
@@ -59,46 +67,26 @@ export const ViewRoom = ({ setUser, user, room, partyCanStart, startGame }) => {
                     <SplitChars
                       wrapper={<span style={{ display: 'inline-block' }} />}
                     >
-                      Infos de la Room
+                      Liste des maisons
                     </SplitChars>
                   </Tween>
                 </h3>
               </div>
               <UserBadge user={user} setUser={setUser} />
             </div>
-            <div className={'join-container-form'}>
-              <div style={{ marginBottom: '20px' }} className={'room'}>
-                <p className={'text-yellow text-15 text-ProzaLibre-Regular'}>
-                  {' '}
-                  Le numéro de la room : {room.id}
-                </p>
-              </div>
-              <br />
-              <p className="text-20 text-Harry text-yellow">
-                Liste des joueurs:
-              </p>
-              <ul
-                className="join-container-form-crown"
-                style={{ marginTop: '10px' }}
-              >
-                {room.users.map((user, index) => (
-                  <li
-                    style={{ marginBottom: '10px' }}
-                    className="text-white text-ProzaLibre-Regular"
-                    key={index}
-                  >
-                    {user.id === room.owner.id && ICONS.CROWN} {user.username}
-                  </li>
-                ))}
-              </ul>
-              {partyCanStart && user && user.id === room.owner.id && (
-                <>
-                  <br />
-                  <button onClick={startGame} className="btn-reset btn-yellow">
-                    Commencer
-                  </button>
-                </>
-              )}
+            <div className={'house-container-list'}>
+              {houses.map((house, index) => {
+                return (
+                  <div key={index} className={'house-container-list__item'}>
+                    <img src={'/images/' + house.name + '.png'} />
+                    <div className="house-container-list__item__content">
+                      {user && user.house.id === house.id && ICONS.CROWN}
+                      <h3>{house.name}</h3>
+                      <p>{house.points} Points</p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </aside>
         </section>
@@ -106,3 +94,5 @@ export const ViewRoom = ({ setUser, user, room, partyCanStart, startGame }) => {
     </>
   );
 };
+
+export default Stats;

@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app'
 import {AnimatePresence,motion} from "framer-motion";
 import { useRouter } from "next/router";
 import {ToastContainer} from "react-toastify";
-import React, {createContext, useState} from "react";
+import React from "react";
 import 'react-toastify/dist/ReactToastify.css';
 import Sparkles from "@/components/sparkles/sparkles";
 

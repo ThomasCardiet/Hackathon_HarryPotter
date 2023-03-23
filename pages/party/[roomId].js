@@ -46,7 +46,15 @@ const PlayParty = ({ gameId }) => {
           !room.users.find((roomUser) => roomUser.id === data.user?.id)
         )
           return router.push(Router.getRoutes().CHOICE.slug);
-        setWinner(room.winner);
+        if (room.winner) {
+          if (room.winner.username) {
+            setWinner(room.winner);
+          } else {
+            Api.getUser(room.winner.id).then((user) => {
+              setWinner(user);
+            });
+          }
+        }
         setRoom(room);
       });
     });

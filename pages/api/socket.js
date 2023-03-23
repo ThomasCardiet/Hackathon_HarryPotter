@@ -187,8 +187,9 @@ const setRooms = (array) => {
     rooms.push({
       id: room.roomId,
       finished: room.finished,
-      users: room.players.map((player) => player.id),
+      users: room.players,
       started: true,
+      winner: room.winner,
     });
   });
 };
