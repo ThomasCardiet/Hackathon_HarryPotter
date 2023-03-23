@@ -63,7 +63,7 @@ const Choice = ({ setUser, user }) => {
             <UserBadge user={user} setUser={setUser} />
             <div className={'choice-container-buttons'}>
               <Link
-                href={Router.getRoutes().CREATE_PARTY.slug}
+                href={'/create-party'}
                 className={'btn-reset btn-yellow'}
                 onClick={(e) => onClickLaunchSound()}
               >

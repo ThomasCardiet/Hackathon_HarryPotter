@@ -42,11 +42,6 @@ export class Router {
       slug: '/join-party',
     },
 
-    CREATE_PARTY: {
-      name: 'CreateParty',
-      slug: '/create-party',
-    },
-
     COMPTEUR: {
       name: 'Compteur',
       slug: '/compteur',
