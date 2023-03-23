@@ -30,6 +30,10 @@
 
         cursor: pointer;
 
+        @media screen and (max-width: 768px) {
+          left: unset;
+        }
+
         img {
           width: 100%;
           height: 100%;
@@ -42,6 +46,18 @@
         justify-content: center;
         position: relative;
         z-index: 20;
+
+        @media screen and (max-width: 1024px) {
+          h3 {
+            font-size: 35px;
+          }
+        }
+
+        @media screen and (max-width: 768px) {
+          h3 {
+            font-size: 30px;
+          }
+        }
 
         .text-blur {
           position: absolute;
@@ -93,8 +109,19 @@
 
         gap: 20px;
 
+        @media screen and (max-width: 768px) {
+          label {
+            display: block;
+            text-align: center;
+          }
+        }
+
         input {
           margin-left: 10px;
+
+          @media screen and (max-width: 768px) {
+            margin-top: 10px;
+          }
         }
         a {
           margin-top: 20px;

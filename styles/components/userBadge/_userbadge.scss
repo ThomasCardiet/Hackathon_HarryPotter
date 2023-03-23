@@ -1,5 +1,5 @@
-.user-badge{
-  &-container{
+.user-badge {
+  &-container {
     display: flex !important;
     align-items: center;
     justify-content: center;
@@ -7,21 +7,25 @@
     gap: 10px;
     padding-inline: 1em;
     padding-block: 20px;
-    .info{
+    .info {
       display: flex !important;
       align-items: center;
       justify-content: center;
     }
-    img{
+    img {
       width: 75px;
     }
   }
 }
 
-
-.position-badge{
+.position-badge {
   border-radius: 20px;
   position: fixed;
   left: 80%;
   top: 20%;
+
+  @media screen and (max-width: 768px) {
+    top: 0;
+    left: 0;
+  }
 }

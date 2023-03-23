@@ -168,6 +168,7 @@
     justify-content: center;
     flex-direction: column;
     gap: 50px;
+    overflow: auto;
     &-title {
       display: inline-flex;
       justify-content: center;
@@ -178,6 +179,16 @@
       flex-direction: column;
       h1 {
         text-align: center;
+
+        @media screen and (max-width: 1024px) {
+          font-size: 35px;
+          line-height: 60px;
+        }
+
+        @media screen and (max-width: 768px) {
+          font-size: 30px;
+          line-height: 40px;
+        }
       }
       .text-blur {
         position: absolute;

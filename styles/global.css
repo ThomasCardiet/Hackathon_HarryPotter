@@ -7639,6 +7639,16 @@ body {
   justify-content: center;
   gap: 30px;
 }
+@media screen and (max-width: 768px) {
+  .form-row-button {
+    flex-direction: column;
+    text-align: center;
+  }
+  .form-row-button button,
+  .form-row-button a {
+    margin: 0 auto;
+  }
+}
 
 input[type=text], input[type=password] {
   border: none;
@@ -7793,6 +7803,12 @@ input[type=text]:focus, input[type=password]:focus {
   left: 80%;
   top: 20%;
 }
+@media screen and (max-width: 768px) {
+  .position-badge {
+    top: 0;
+    left: 0;
+  }
+}
 
 input {
   background: none;
@@ -7810,6 +7826,7 @@ input:focus {
   background-image: url("../public/images/wallpaper-home.png");
   background-size: cover;
   background-repeat: no-repeat;
+  overflow: hidden;
 }
 .home-container {
   height: 100%;
@@ -7824,6 +7841,16 @@ input:focus {
   justify-content: center;
   position: relative;
   z-index: 20;
+}
+@media screen and (max-width: 1024px) {
+  .home-container-title h1 {
+    font-size: 35px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .home-container-title h1 {
+    font-size: 25px;
+  }
 }
 .home-container-title .text-blur {
   position: absolute;
@@ -7894,6 +7921,16 @@ input:focus {
   position: relative;
   z-index: 20;
 }
+@media screen and (max-width: 1024px) {
+  .choice-container-title h1 {
+    font-size: 35px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .choice-container-title h1 {
+    font-size: 25px;
+  }
+}
 .choice-container-title .text-blur {
   position: absolute;
   left: 50%;
@@ -7909,6 +7946,16 @@ input:focus {
   justify-content: center;
   align-items: center;
   gap: 20px;
+}
+@media screen and (max-width: 768px) {
+  .choice-container-buttons {
+    flex-direction: column;
+    text-align: center;
+  }
+  .choice-container-buttons button,
+  .choice-container-buttons a {
+    margin: 0 auto;
+  }
 }
 
 .party-list {
@@ -7964,6 +8011,19 @@ input:focus {
 .party-list .party-container-list li a {
   position: absolute;
   right: 0;
+}
+@media screen and (max-width: 768px) {
+  .party-list .party-container-list li a {
+    display: block;
+    position: static;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .party-list .party-container-list li {
+    text-align: center;
+  }
 }
 
 .house-container-list {
@@ -8037,6 +8097,16 @@ input:focus {
   position: relative;
   z-index: 20;
 }
+@media screen and (max-width: 1024px) {
+  .login-container-title h1 {
+    font-size: 35px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .login-container-title h1 {
+    font-size: 25px;
+  }
+}
 .login-container-title .text-blur {
   position: absolute;
   left: 50%;
@@ -8056,6 +8126,16 @@ input:focus {
   display: flex;
   flex-direction: column;
   gap: 40px;
+}
+@media screen and (max-width: 1024px) {
+  .login-container-form form {
+    width: 40%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .login-container-form form {
+    width: 60%;
+  }
 }
 
 @keyframes ligth {
@@ -8228,6 +8308,7 @@ input:focus {
   justify-content: center;
   flex-direction: column;
   gap: 50px;
+  overflow: auto;
 }
 .success-container-title {
   display: inline-flex;
@@ -8240,6 +8321,18 @@ input:focus {
 }
 .success-container-title h1 {
   text-align: center;
+}
+@media screen and (max-width: 1024px) {
+  .success-container-title h1 {
+    font-size: 35px;
+    line-height: 60px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .success-container-title h1 {
+    font-size: 30px;
+    line-height: 40px;
+  }
 }
 .success-container-title .text-blur {
   position: absolute;
@@ -8355,6 +8448,11 @@ input:focus {
   z-index: 999;
   cursor: pointer;
 }
+@media screen and (max-width: 768px) {
+  .join-container-top-back {
+    left: unset;
+  }
+}
 .join-container-top-back img {
   width: 100%;
   height: 100%;
@@ -8365,6 +8463,16 @@ input:focus {
   justify-content: center;
   position: relative;
   z-index: 20;
+}
+@media screen and (max-width: 1024px) {
+  .join-container-top-title h3 {
+    font-size: 35px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .join-container-top-title h3 {
+    font-size: 30px;
+  }
 }
 .join-container-top-title .text-blur {
   position: absolute;
@@ -8407,8 +8515,19 @@ input:focus {
   justify-content: center;
   gap: 20px;
 }
+@media screen and (max-width: 768px) {
+  .join-container-form form label {
+    display: block;
+    text-align: center;
+  }
+}
 .join-container-form form input {
   margin-left: 10px;
+}
+@media screen and (max-width: 768px) {
+  .join-container-form form input {
+    margin-top: 10px;
+  }
 }
 .join-container-form form a {
   margin-top: 20px;

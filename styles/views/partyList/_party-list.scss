@@ -52,6 +52,17 @@
       a {
         position: absolute;
         right: 0;
+
+        @media screen and (max-width: 768px) {
+          display: block;
+          position: static;
+          margin: 0 auto;
+          margin-top: 10px;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        text-align: center;
       }
     }
   }
